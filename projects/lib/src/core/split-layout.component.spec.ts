@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxFoldableComponent } from './ngx-foldable.component';
+import { SplitLayoutComponent } from './split-layout.component';
 
-describe('NgxFoldableComponent', () => {
-  let component: NgxFoldableComponent;
-  let fixture: ComponentFixture<NgxFoldableComponent>;
+describe('SplitLayout', () => {
+  let component: SplitLayoutComponent;
+  let fixture: ComponentFixture<SplitLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgxFoldableComponent ]
+      declarations: [ SplitLayoutComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxFoldableComponent);
+    fixture = TestBed.createComponent(SplitLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

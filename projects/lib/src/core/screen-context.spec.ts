@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NgxFoldableService } from './ngx-foldable.service';
+import { ScreenContext } from './screen-context';
 
 describe('NgxFoldableService', () => {
-  let service: NgxFoldableService;
+  let service: ScreenContext;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NgxFoldableService);
+    service = TestBed.inject(ScreenContext);
   });
 
   it('should be created', () => {
