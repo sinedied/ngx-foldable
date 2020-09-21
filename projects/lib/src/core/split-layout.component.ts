@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-ngx-foldable',
+  selector: 'fd-split-layout',
   template: `
     <p>
       ngx-foldable works!
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class NgxFoldableComponent implements OnInit {
+export class SplitLayoutComponent implements OnInit {
 
   constructor() { }
 
