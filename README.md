@@ -1,27 +1,32 @@
-# NgxFoldable
+# :book: ngx-foldable
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
+TODO: badges
 
-## Development server
+> ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the [Surface Duo](https://docs.microsoft.com/dual-screen/web/?WT.mc_id=ngxfoldable-github-yolasors)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+TODO: gif demo
 
-## Code scaffolding
+## Status
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.
 
-## Build
+## How to test on your browser
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The dual-screen emulation feature requires Microsoft Edge or Google Chrome canary versions for now, with experimental flags to enable.
 
-## Running unit tests
+Follow [the instructions here](https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=ngxfoldable-github-yolasors#build-and-test-on-the-desktop) to setup your browser for dual-screen emulation.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Library usage
 
-## Running end-to-end tests
+Add the library to your Angular project:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```sh
+npm install ngx-foldable
+```
 
-## Further help
+Check out the [demo](./demo) project to see an example usage of the library.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Components
+
+### Service
+
