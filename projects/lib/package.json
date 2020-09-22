@@ -1,5 +1,6 @@
 {
   "name": "ngx-foldable",
+  "description": "Angular library to help your build dual-screen experiences for foldable or dual-screen devices",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.1.2",
