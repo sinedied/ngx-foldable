@@ -24,7 +24,7 @@ Add the library to your Angular project:
 npm install ngx-foldable
 ```
 
-Check out the [demo](./demo) project to see an example usage of the library.
+Check out the [demo](./projects/demo) project to see an example usage of the library.
 
 ### Components
 
