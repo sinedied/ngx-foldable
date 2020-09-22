@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { fromEvent, Observable, ReplaySubject } from 'rxjs';
-import { map, tap, shareReplay, takeUntil } from 'rxjs/operators';
+import { map, shareReplay, startWith, takeUntil } from 'rxjs/operators';
 import { singleFoldHorizontal, singleFoldVertical } from './media-queries';
 import { ScreenSpanning } from './screen-spanning';
 
@@ -27,10 +27,12 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
   private destroyed$: ReplaySubject<void> = new ReplaySubject(1);
 
   constructor() {
+    this.currentContext = this.getScreenContext();
     this.screenContext$ = fromEvent(this.mediaQuery, 'change').pipe(
-      map(_ => this.getScreenContext()),
-      tap(() => {
+      startWith(1),
+      map(_ => {
         this.currentContext = this.getScreenContext();
+        return this.currentContext;
       }),
       shareReplay(1),
       takeUntil(this.destroyed$)
@@ -59,6 +61,10 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     return this.screenContext$;
   }
 
+  asObject(): ScreenContextData {
+    return this.currentContext;
+  }
+
   private getScreenContext(): ScreenContextData {
     const windowSegments = this.getWindowSegments();
     const screenSpanning = this.getScreenSpanning();
@@ -72,7 +78,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
   private getScreenSpanning(): ScreenSpanning {
     if (matchMedia(singleFoldHorizontal).matches) {
       return ScreenSpanning.Horizontal;
-    } else if (matchMedia(singleFoldVertical)) {
+    } else if (matchMedia(singleFoldVertical).matches) {
       return ScreenSpanning.Vertical;
     }
     return ScreenSpanning.None;
