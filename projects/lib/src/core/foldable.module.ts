@@ -11,6 +11,10 @@ import { WindowDirective } from './window.directive';
   ],
   imports: [
   ],
-  exports: [SplitLayoutComponent]
+  exports: [
+    SplitLayoutComponent,
+    IfSpanDirective,
+    WindowDirective
+  ]
 })
 export class FoldableModule { }
