@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
-import { map, tap, shareReplay } from 'rxjs/operators';
+import { fromEvent, Observable, ReplaySubject } from 'rxjs';
+import { map, tap, shareReplay, takeUntil } from 'rxjs/operators';
 import { singleFoldHorizontal, singleFoldVertical } from './media-queries';
 import { ScreenSpanning } from './screen-spanning';
 
@@ -20,11 +20,11 @@ export class ScreenContextData {
   providedIn: 'root'
 })
 export class ScreenContext implements ScreenContextData, OnDestroy {
-  private currentContext: ScreenContextData;
-  
-  private mediaQuery = matchMedia(`${singleFoldHorizontal}, ${singleFoldVertical}`);
 
+  private currentContext: ScreenContextData;
+  private mediaQuery = matchMedia(`${singleFoldHorizontal}, ${singleFoldVertical}`);
   private screenContext$: Observable<ScreenContextData>;
+  private destroyed$: ReplaySubject<void> = new ReplaySubject(1);
 
   constructor() {
     this.screenContext$ = fromEvent(this.mediaQuery, 'change').pipe(
@@ -32,14 +32,15 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
       tap(() => {
         this.currentContext = this.getScreenContext();
       }),
-      shareReplay(1)
+      shareReplay(1),
+      takeUntil(this.destroyed$)
     );
     this.screenContext$.subscribe();
-    // TODO: unsub destroy
   }
 
   ngOnDestroy() {
-
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
   
   get windowSegments(): DOMRect[] {
@@ -64,7 +65,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     return {
       windowSegments,
       screenSpanning,
-      isMultiScreen: screenSpanning != ScreenSpanning.None
+      isMultiScreen: screenSpanning !== ScreenSpanning.None
     };
   }
 
