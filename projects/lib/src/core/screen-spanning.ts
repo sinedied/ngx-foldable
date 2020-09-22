@@ -1,5 +1,5 @@
 export enum ScreenSpanning {
-  Vertical = "vertical",
-  Horizontal = "horizontal",
+  Vertical = "fold-vertical",
+  Horizontal = "fold-horizontal",
   None = "none"
 }
