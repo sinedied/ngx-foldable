@@ -1,3 +1,13 @@
 <!-- <div class="box1">box1</div> -->
-<div class="box2">box2</div>
+<div class="box2">
+  box2
+
+  {{ (screenContext$ | async) | json }}
+
+  <p *fdIfSpan="'multi'">This is only visible on multi screen mode.</p>
+  <p *fdIfSpan="'horizontal'">This is only visible on horizontal screen spanning.</p>
+  <p *fdIfSpan="'vertical'">This is only visible on vertical screen spanning.</p>
+  <p *fdIfSpan="'none'; else alt">This is only visible on single screen setup.</p>
+  <ng-template #alt><p>This is shown on multi screen mode.</p></ng-template>
+</div>
 <div class="box3">box3</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScreenContext } from 'ngx-foldable';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'demo';
+  
+  screenContext$ = this.screenContext.asObservable();
+
+  constructor(private screenContext: ScreenContext) {}
 }
