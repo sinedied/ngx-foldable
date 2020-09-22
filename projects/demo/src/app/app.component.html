@@ -1,13 +1,24 @@
+<div fdSplitLayout="flex">
+  <section fdWindow="0" class="s1">
+    <h1>Angular Foldable</h1>
+    <p>Angular library to help your build dual-screen experiences for foldable or dual-screen devices.</p>
+
+    {{ (screenContext$ | async) | json }}
+
+    <p *fdIfSpan="'multi'">This is only visible on multi screen mode.</p>
+    <p *fdIfSpan="'horizontal'">This is only visible on horizontal screen spanning.</p>
+    <p *fdIfSpan="'vertical'">This is only visible on vertical screen spanning.</p>
+    <p *fdIfSpan="'none'; else alt">This is only visible on single screen setup.</p>
+    <ng-template #alt><p>This is shown on multi screen mode.</p></ng-template>
+  </section>
+  <section fdWindow="1" class="s2">
+    Screen 2
+  </section>
+</div>
+
 <!-- <div class="box1">box1</div> -->
-<div class="box2">
+<!-- <div class="box2">
   box2
 
-  {{ (screenContext$ | async) | json }}
-
-  <p *fdIfSpan="'multi'">This is only visible on multi screen mode.</p>
-  <p *fdIfSpan="'horizontal'">This is only visible on horizontal screen spanning.</p>
-  <p *fdIfSpan="'vertical'">This is only visible on vertical screen spanning.</p>
-  <p *fdIfSpan="'none'; else alt">This is only visible on single screen setup.</p>
-  <ng-template #alt><p>This is shown on multi screen mode.</p></ng-template>
 </div>
-<div class="box3">box3</div>
+<div class="box3">box3</div> -->
