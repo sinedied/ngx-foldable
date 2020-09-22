@@ -1,5 +1,6 @@
 import { Directive, EmbeddedViewRef, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
@@ -46,7 +47,7 @@ export class IfSpanDirective<T> implements OnDestroy {
 
   constructor(private screenContext: ScreenContext, private viewContainer: ViewContainerRef, templateRef: TemplateRef<T>) {
     this.thenTemplateRef = templateRef;
-    this.screenContextSubscription = this.screenContext.asObservable().subscribe(() => this.updateView());
+    this.screenContextSubscription = this.screenContext.asObservable().pipe(skip(1)).subscribe(() => this.updateView());
   }
 
   ngOnDestroy() {
@@ -70,6 +71,7 @@ export class IfSpanDirective<T> implements OnDestroy {
 
   private updateView() {
     const match = this.matchCondition();
+
     if (match) {
       if (!this.thenViewRef) {
         this.viewContainer.clear();
