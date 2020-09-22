@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SplitLayoutComponent } from './split-layout.component';
-import { IfSpanningDirective } from './if-spanning.directive';
+import { IfSpanDirective } from './if-span.directive';
 import { WindowDirective } from './window.directive';
 
 @NgModule({
   declarations: [
     SplitLayoutComponent,
-    IfSpanningDirective,
+    IfSpanDirective,
     WindowDirective
   ],
   imports: [
