@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SplitLayoutComponent } from './split-layout.component';
 import { IfSpanDirective } from './if-span.directive';
 import { WindowDirective } from './window.directive';
+import { SplitLayoutDirective } from './split-layout.directive';
 
 @NgModule({
   declarations: [
-    SplitLayoutComponent,
     IfSpanDirective,
-    WindowDirective
-  ],
-  imports: [
+    WindowDirective,
+    SplitLayoutDirective
   ],
   exports: [
-    SplitLayoutComponent,
     IfSpanDirective,
-    WindowDirective
+    WindowDirective,
+    SplitLayoutDirective
   ]
 })
 export class FoldableModule { }
