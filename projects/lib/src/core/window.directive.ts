@@ -20,22 +20,40 @@ const layoutStyles = {
   },
   [SplitLayoutMode.Grid]: {
     [ScreenSpanning.Vertical]: [
-      { flex: '0 1 env(fold-left)' },
-      { flex: '0 1 calc(100vw - env(fold-right))' }
+      { gridArea: 'segment0' },
+      { gridArea: 'segment1' },
     ],
     [ScreenSpanning.Horizontal]: [
-      { flex: '0 1 env(fold-top)' },
-      { flex: '0 1 calc(100vh - env(fold-bottom))' }
+      { gridArea: 'segment0' },
+      { gridArea: 'segment1' },
     ]
   },
   [SplitLayoutMode.Absolute]: {
     [ScreenSpanning.Vertical]: [
-      { flex: '0 1 env(fold-left)' },
-      { flex: '0 1 calc(100vw - env(fold-right))' }
+      {
+        position: 'absolute',
+        left: 0,
+        right: 'calc(100vw - env(fold-left))',
+      },
+      {
+        position: 'absolute',
+        left: 'env(fold-right)',
+        right: 0
+      }
     ],
     [ScreenSpanning.Horizontal]: [
-      { flex: '0 1 env(fold-top)' },
-      { flex: '0 1 calc(100vh - env(fold-bottom))' }
+      {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        maxHeight: 'env(fold-top)'
+      },
+      {
+        position: 'absolute',
+        top: 'env(fold-bottom)',
+        width: '100%',
+        maxHeight: 'calc(100vh - env(fold-bottom))'
+      }
     ]
   }
 };
@@ -71,10 +89,15 @@ export class WindowDirective {
   }
 
   private updateStyle() {
-    const mode = this.splitLayout.layoutMode;
     const isMultiScreen = this.screenContext.isMultiScreen;
-    const spanning = this.screenContext.screenSpanning;
-    this.layoutStyle = isMultiScreen ? layoutStyles[mode][spanning][this.segment] : {};
+
+    if (isMultiScreen) {
+      const mode = this.splitLayout.layoutMode;
+      const spanning = this.screenContext.screenSpanning;
+      this.layoutStyle = layoutStyles[mode][spanning][this.segment];
+    } else {
+      this.layoutStyle = {};
+    }
   }
 
 }

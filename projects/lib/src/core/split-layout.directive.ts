@@ -30,6 +30,18 @@ const layoutStyles = {
     common: {
       display: 'grid',
       height: '100%'
+    },
+    [ScreenSpanning.Vertical]: {
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateAreas: '"segment0 segment1"',
+      gridAutoFlow: 'row',
+      columnGap: 'env(fold-width)'
+    },
+    [ScreenSpanning.Horizontal]: {
+      gridTemplateRows: '1fr 1fr',
+      gridTemplateAreas: '"segment0" "segment1"',
+      gridAutoFlow: 'row',
+      rowGap: 'env(fold-height)'
     }
   },
   [SplitLayoutMode.Absolute]: {
