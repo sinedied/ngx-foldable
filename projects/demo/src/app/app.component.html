@@ -1,24 +1,23 @@
-<div fdSplitLayout="flex">
+<!--
+  SplitLayout supports: flex, grid or absolute
+  Styling is only added when a multi screen mode is detected.
+-->
+<div fdSplitLayout="grid">
+  <!-- Assign to first window segment -->
   <section fdWindow="0" class="s1">
     <h1>Angular Foldable</h1>
     <p>Angular library to help your build dual-screen experiences for foldable or dual-screen devices.</p>
 
     {{ (screenContext$ | async) | json }}
-
-    <p *fdIfSpan="'multi'">This is only visible on multi screen mode.</p>
-    <p *fdIfSpan="'horizontal'">This is only visible on horizontal screen spanning.</p>
-    <p *fdIfSpan="'vertical'">This is only visible on vertical screen spanning.</p>
+    
     <p *fdIfSpan="'none'; else alt">This is only visible on single screen setup.</p>
     <ng-template #alt><p>This is shown on multi screen mode.</p></ng-template>
   </section>
+
+  <!-- Assign to second window segment -->
   <section fdWindow="1" class="s2">
-    Screen 2
+    <p *fdIfSpan="'multi'">This is only visible on multi screen mode.</p>
+    <p *fdIfSpan="'fold-horizontal'">This is only visible on horizontal fold spanning.</p>
+    <p *fdIfSpan="'fold-vertical'">This is only visible on vertical fold spanning.</p>
   </section>
 </div>
-
-<!-- <div class="box1">box1</div> -->
-<!-- <div class="box2">
-  box2
-
-</div>
-<div class="box3">box3</div> -->
