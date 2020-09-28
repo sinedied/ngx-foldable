@@ -147,9 +147,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/demo/tsconfig.app.json",
-              "projects/demo/tsconfig.spec.json",
-              "projects/demo/e2e/tsconfig.json"
+              "projects/demo/tsconfig.app.json"
             ],
             "exclude": [
               "**/node_modules/**"
