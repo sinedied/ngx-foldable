@@ -1,9 +1,9 @@
 - [x] Layout component to screen
 - [x] Hide/show based on current mode
-- [ ] Split layout helper
+- [x] Split layout helper
   * [x] flex
-  * [ ] grid
-  * [ ] absolute
+  * [x] grid
+  * [x] absolute
 - [x] Service with observable
 - [ ] RTL support
 - [ ] Unit tests
