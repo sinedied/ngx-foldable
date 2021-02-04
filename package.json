@@ -1,5 +1,6 @@
 {
   "name": "ngx-foldable",
+  "description": "Angular library to help you build dual-screen experiences for foldable or dual-screen devices",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "docs:serve": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal",
+    "docs:build": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +32,7 @@
     "@angular-devkit/build-angular": "~0.1101.2",
     "@angular/cli": "~11.1.2",
     "@angular/compiler-cli": "~11.1.1",
+    "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
@@ -45,5 +49,12 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
+  },
+  "compodoc": {
+    "hideGenerator": true,
+    "disableInternal": true,
+    "disablePrivate": true,
+    "disableCoverage": true,
+    "disableDependencies": true
   }
 }
