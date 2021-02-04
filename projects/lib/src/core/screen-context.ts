@@ -10,12 +10,23 @@ declare global {
   }
 }
 
+/**
+ * Holds information about the device screen context.
+ */
 export class ScreenContextData {
+  /** The list of available window segments. */
   readonly windowSegments: DOMRect[];
+  /** The current screen spanning mode. */
   readonly screenSpanning: ScreenSpanning;
+  /** True is current device have multiple screens available. */
   readonly isMultiScreen: boolean;
 }
 
+/**
+ * This service allows to query and receive updates about current device's screen context.
+ *
+ * See {@link ScreenContextData}
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -40,27 +51,48 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     this.screenContext$.subscribe();
   }
 
+  /** @ignored */
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
   
+  /** 
+   * The list of available window segments.
+   * @returns {DOMRect[]}
+   */
   get windowSegments(): DOMRect[] {
     return this.currentContext.windowSegments;
   }
 
+  /**
+   * The current screen spanning mode.
+   * @returns {ScreenSpanning}
+   */
   get screenSpanning(): ScreenSpanning {
     return this.currentContext.screenSpanning;
   }
 
+  /**
+   * True is current device have multiple screens available.
+   * @returns {boolean}
+   */
   get isMultiScreen(): boolean {
     return this.currentContext.isMultiScreen;
   }
 
+  /**
+   * Gets an observable emitting when the screen context changes.
+   * @returns {Observable<ScreenContextData>}
+   */
   asObservable(): Observable<ScreenContextData> {
     return this.screenContext$;
   }
 
+  /**
+   * Gets the current screen context.
+   * @returns {ScreenContextData}
+   */
   asObject(): ScreenContextData {
     return this.currentContext;
   }

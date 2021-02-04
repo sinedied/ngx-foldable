@@ -6,7 +6,10 @@ import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 import { SplitLayoutDirective, SplitLayoutMode } from './split-layout.directive';
 
-// Look 'ma, CSS-in-JS with Angular! ಠ_ಠ
+/**
+ * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ 
+ * @ignore 
+ */
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
@@ -58,6 +61,24 @@ const layoutStyles = {
   }
 };
 
+/**
+ * This directive is used to set specify on which window segment the container
+ * should be placed on multi screen devices.
+ * 
+ * When used on a single screen device, no layout change (CSS) is added.
+ * Only devices with up to two screen are currently supported, meaning that the
+ * window segment value must be either 0 or 1.
+ * 
+ * This directive can only be used within a {@link SplitLayoutDirective}.
+ * If {@link SplitLayoutMode} is set to `absolute`, you can assign multiple container
+ * element to the same window segment.
+ * 
+ * @example
+ * <div fdSplitLayout="grid">
+ *              <section fdWindow="0">Will be displayed on first screen</section>
+ *              <section fdWindow="1">Will be displayed on second screen (if available)</section>
+ * </div>
+ */
 @Directive({
   selector: '[fdWindow]'
 })
@@ -67,11 +88,16 @@ export class WindowDirective {
   private layoutStyle: SafeStyle;
   private screenContextSubscription: Subscription = null;
 
+  /** @ignore */
   @HostBinding('style')
   get style(): SafeStyle {
     return this.layoutStyle;
   }
 
+  /**
+   * Sets the target window segment to display this container on when multi screen is detected.
+   * @param {number} segment The target window segment, must be 0 or 1.
+   */
   @Input()
   set fdWindow(segment: number) {
     this.segment = segment;
@@ -82,6 +108,7 @@ export class WindowDirective {
     this.screenContextSubscription = this.screenContext.asObservable().pipe(skip(1)).subscribe(() => this.updateStyle());
   }
 
+  /** @ignore */
   ngOnDestroy() {
     if (this.screenContextSubscription !== null) {
       this.screenContextSubscription.unsubscribe();
@@ -92,6 +119,9 @@ export class WindowDirective {
     const isMultiScreen = this.screenContext.isMultiScreen;
 
     if (isMultiScreen) {
+      if (this.segment < 0 || this.segment > 1) {
+        throw new Error('Segment index must be 0 or 1');
+      }
       const mode = this.splitLayout.layoutMode;
       const spanning = this.screenContext.screenSpanning;
       this.layoutStyle = layoutStyles[mode][spanning][this.segment];

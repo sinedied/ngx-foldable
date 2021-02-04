@@ -5,13 +5,20 @@ import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
+/**
+ * Defines how the split layout container should be rendered when multi screen
+ * is detected.
+ */
 export enum SplitLayoutMode {
   Flex = 'flex',
   Grid = 'grid',
   Absolute = 'absolute'
 }
 
-// Look 'ma, CSS-in-JS with Angular! ಠ_ಠ
+/**
+ * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ 
+ * @ignore 
+ */
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     common: {
@@ -52,6 +59,20 @@ const layoutStyles = {
   }
 };
 
+/**
+ * Defines a parent layout container for creating a split layout on multi screen devices.
+ * 
+ * When used on a single screen device, no layout change (CSS) is added.
+ * You can choose between different {@link SplitLayoutMode} to suit your design.
+ * 
+ * This directive should be used along with {@link WindowDirective}.
+ *  
+ * @example
+ * <div fdSplitLayout="grid">
+ *              <section fdWindow="0">Will be displayed on first screen</section>
+ *              <section fdWindow="1">Will be displayed on second screen (if available)</section>
+ * </div>
+ */
 @Directive({
   selector: '[fdSplitLayout]'
 })
@@ -61,12 +82,17 @@ export class SplitLayoutDirective implements OnDestroy {
   private layoutStyle: SafeStyle;
   private screenContextSubscription: Subscription = null;
 
+  /**
+   * Sets the current split layout mode to use when multi screen is detected.
+   * @param {SplitLayoutMode} mode The split layout mode to use.
+   */
   @Input()
   set fdSplitLayout(mode: SplitLayoutMode) {
     this.mode = mode || SplitLayoutMode.Flex;
     this.updateStyle();
   }
 
+  /** @ignore */
   @HostBinding('style')
   get style(): SafeStyle {
     return this.layoutStyle;
@@ -77,10 +103,15 @@ export class SplitLayoutDirective implements OnDestroy {
     this.screenContextSubscription = this.screenContext.asObservable().pipe(skip(1)).subscribe(() => this.updateStyle());
   }
 
+  /**
+   * The current split layout mode to use when multi screen is detected.
+   * @return {SplitLayoutMode} The current split layout mode.
+   */
   get layoutMode(): SplitLayoutMode {
     return this.mode;
   }
 
+  /** @ignore */
   ngOnDestroy() {
     if (this.screenContextSubscription !== null) {
       this.screenContextSubscription.unsubscribe();

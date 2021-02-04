@@ -7,8 +7,9 @@ import { ScreenContext } from 'ngx-foldable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
   screenContext$ = this.screenContext.asObservable();
 
   constructor(private screenContext: ScreenContext) {}
+
 }
