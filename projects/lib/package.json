@@ -1,7 +1,30 @@
 {
   "name": "ngx-foldable",
+  "version": "0.1.0",
   "description": "Angular library to help you build dual-screen experiences for foldable or dual-screen devices",
-  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinedied/ngx-foldable.git"
+  },
+  "author": {
+    "name": "Yohan Lasorsa",
+    "url": "https://twitter.com/sinedied"
+  },
+  "homepage": "https://github.com/sinedied/ngx-foldable",
+  "bugs": {
+    "url": "https://github.com/sinedied/ngx-foldable/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "foldable",
+    "library",
+    "surface",
+    "multi-screen",
+    "dual-screen",
+    "components",
+    "helper"
+  ],
   "peerDependencies": {
     "@angular/common": "^10.1.2",
     "@angular/core": "^10.1.2"

@@ -1,18 +1,43 @@
 {
   "name": "ngx-foldable",
-  "description": "Angular library to help you build dual-screen experiences for foldable or dual-screen devices",
   "version": "0.0.0",
+  "description": "Angular library to help you build dual-screen experiences for foldable or dual-screen devices",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:lib": "npm run -s copy:assets && ng build --prod",
+    "build:demo": "ng build --prod demo",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "copy:assets": "cp README.md LICENSE projects/lib/",
     "docs:serve": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal",
     "docs:build": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs"
   },
-  "private": true,
+  "keywords": [
+    "angular",
+    "foldable",
+    "library",
+    "surface",
+    "multi-screen",
+    "dual-screen",
+    "components",
+    "helper"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinedied/ngx-foldable.git"
+  },
+  "author": {
+    "name": "Yohan Lasorsa",
+    "url": "https://twitter.com/sinedied"
+  },
+  "homepage": "https://github.com/sinedied/ngx-foldable",
+  "bugs": {
+    "url": "https://github.com/sinedied/ngx-foldable/issues"
+  },
+  "license": "MIT",
   "dependencies": {
     "@angular/animations": "~11.1.1",
     "@angular/common": "~11.1.1",
@@ -46,9 +71,13 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^11.1.2",
     "protractor": "~7.0.0",
+    "semantic-release-npm-github": "^1.0.4",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
   },
   "compodoc": {
     "hideGenerator": true,
@@ -56,5 +85,9 @@
     "disablePrivate": true,
     "disableCoverage": true,
     "disableDependencies": true
+  },
+  "release": {
+    "extends": "semantic-release-npm-github",
+    "branches": "main"
   }
 }
