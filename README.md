@@ -1,4 +1,4 @@
-# :book: ngx-foldable
+# 📖 ngx-foldable
 
 [![NPM version](https://img.shields.io/npm/v/ngx-foldable.svg)](https://www.npmjs.com/package/ngx-foldable)
 [![Build Status](https://github.com/sinedied/ngx-foldable/workflows/build/badge.svg)](https://github.com/sinedied/ngx-foldable/actions)
@@ -9,7 +9,7 @@
 
 TODO: screenshot demo
 
-See the [Live Demo](TODO URL)
+See the [Live Demo](https://sinedied.github.io/ngx-foldable/demo/)
 
 ## Status
 
@@ -92,4 +92,4 @@ export class AppComponent {
 }
 ```
 
-You can read the full documentation [here](TODO link).
+You can read the full documentation [here](https://sinedied.github.io/ngx-foldable/).

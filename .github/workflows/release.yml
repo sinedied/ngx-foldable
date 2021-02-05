@@ -20,7 +20,6 @@ jobs:
       npm run build:lib
       npm run build:demo
       npm run build:docs
-      cp -R dist/demo dist/docs/
       env:
         CI: true
     - run: npx semantic-release
@@ -31,5 +30,9 @@ jobs:
         # Need owner/admin account to bypass branch protection
         GIT_COMMITTER_NAME: sinedied
         GIT_COMMITTER_EMAIL: noda@free.fr
-    - run: 
-        # TODO: GH pages publish!!!!
+    - run: npm run deploy:docs
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GIT_AUTHOR_NAME: sinedied
+        GIT_AUTHOR_EMAIL: noda@free.fr
+        GIT_COMMITTER_NAME: sinedied
+        GIT_COMMITTER_EMAIL: noda@free.fr

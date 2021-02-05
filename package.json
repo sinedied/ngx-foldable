@@ -7,13 +7,15 @@
     "ng": "ng",
     "start": "ng serve",
     "build:lib": "npm run -s copy:assets && ng build --prod",
-    "build:demo": "ng build --prod demo",
-    "build:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs",
+    "build:demo": "ng build --prod demo --base-href='/ngx-foldable/demo'",
+    "build:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs && cp -R dist/demo dist/docs/",
+    "deploy:docs": "gh-pages -d dist/docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "copy:assets": "cp README.md LICENSE projects/lib/",
-    "serve:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal"
+    "serve:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal",
+    "release:check": "semantic-release --dry-run"
   },
   "keywords": [
     "angular",
@@ -62,6 +64,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "gh-pages": "^3.1.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.2.3",
@@ -93,10 +96,22 @@
         "@semantic-release/commit-analyzer",
         {
           "releaseRules": [
-            { "type": "chore", "release": "patch" },
-            { "type": "docs", "release": "patch" },
-            { "type": "refactor", "release": "patch" },
-            { "type": "style", "release": "patch" }
+            {
+              "type": "chore",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "release": "patch"
+            },
+            {
+              "type": "refactor",
+              "release": "patch"
+            },
+            {
+              "type": "style",
+              "release": "patch"
+            }
           ]
         }
       ],
@@ -123,7 +138,9 @@
       ],
       [
         "@semantic-release/github",
-        { "assets": ".package/*.tgz" }
+        {
+          "assets": ".package/*.tgz"
+        }
       ]
     ],
     "branches": "main"
