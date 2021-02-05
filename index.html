@@ -1,0 +1,165 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-foldable documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">ngx-foldable documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="book-ngx-foldable">:book: ngx-foldable</h1>
+<p><a href="https://www.npmjs.com/package/ngx-foldable"><img src="https://img.shields.io/npm/v/ngx-foldable.svg" alt="NPM version" class="img-responsive"></a>
+<img src="https://img.shields.io/node/v/ngx-foldable.svg" alt="Node version" class="img-responsive">
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" class="img-responsive"></a></p>
+<blockquote>
+<p>ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the <a href="https://docs.microsoft.com/dual-screen/web/?WT.mc_id=ngxfoldable-github-yolasors">Surface Duo</a></p>
+</blockquote>
+<p>TODO: screenshot demo</p>
+<p>See the [Live Demo](TODO URL)</p>
+<h2 id="status">Status</h2>
+<p>This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.</p>
+<h2 id="how-to-test-on-your-browser">How to test on your browser</h2>
+<p>The dual-screen emulation feature requires Microsoft Edge or Google Chrome canary versions for now, with experimental flags to enable.</p>
+<p>Follow <a href="https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=ngxfoldable-github-yolasors#build-and-test-on-the-desktop">the instructions here</a> to setup your browser for dual-screen emulation.</p>
+<h2 id="library-usage">Library usage</h2>
+<p>Check out the <a href="./projects/demo/src/app">demo</a> source code to see an example usage of the library.</p>
+<p>Add the library to your Angular project:</p>
+<div><pre class="line-numbers"><code class="language-sh">npm install ngx-foldable</code></pre></div><p>Import the library in your app:</p>
+<div><pre class="line-numbers"><code class="language-ts">import { FoldableModule } from &#39;ngx-foldable&#39;;
+...
+
+&#64;NgModule({
+  ...
+  imports: [
+    FoldableModule
+    ...
+  ],
+  ...
+})
+export class AppModule { }</code></pre></div><p>Use the provided <code>fdSplitLayout</code>, <code>fdWindow</code> and <code>fdIfSpan</code> directives to build your layout:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;!--
+  SplitLayout supports: flex, grid or absolute
+  Styling is only added when a multi screen mode is detected.
+--&gt;
+&lt;div fdSplitLayout=&quot;grid&quot;&gt;
+
+  &lt;!-- Assign to first window segment --&gt;
+  &lt;section fdWindow=&quot;0&quot;&gt;
+    This will be displayed on the first window segment of a multi screen or single screen device.
+
+    &lt;p *fdIfSpan=&quot;&#39;none&#39;; else alt&quot;&gt;This is only visible on a single screen device.&lt;/p&gt;
+    &lt;ng-template #alt&gt;&lt;p&gt;This is only visible on a multi screen device.&lt;/p&gt;&lt;/ng-template&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Assign to second window segment --&gt;
+  &lt;section fdWindow=&quot;1&quot;&gt;
+    This will be displayed on the second window segment of a multi screen device.
+
+    &lt;p *fdIfSpan=&quot;&#39;multi&#39;&quot;&gt;This is only visible on multi screen device, regardless of the orientation.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;fold-horizontal&#39;&quot;&gt;This is only visible on horizontal fold spanning.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;fold-vertical&#39;&quot;&gt;This is only visible on vertical fold spanning.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre></div><p>Using the <code>ScreenContext</code> service, you can also receive updates when the screen context changes:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { ScreenContext } from &#39;ngx-foldable&#39;;
+...
+export class AppComponent {
+  constructor(private screenContext: ScreenContext) {
+    this.screenContext
+      .asObservable()
+      .subscribe(context: ScreenContextData) {
+        console.log(&#39;Screen context changed:&#39;, context);
+      }
+  }
+}</code></pre></div><p>You can read the full documentation [here](TODO link).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
