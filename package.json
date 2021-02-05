@@ -8,12 +8,12 @@
     "start": "ng serve",
     "build:lib": "npm run -s copy:assets && ng build --prod",
     "build:demo": "ng build --prod demo",
+    "build:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "copy:assets": "cp README.md LICENSE projects/lib/",
-    "docs:serve": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal",
-    "docs:build": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs"
+    "serve:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal"
   },
   "keywords": [
     "angular",
