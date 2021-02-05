@@ -16,10 +16,10 @@ jobs:
       with:
         node-version: 14
     - run: |
-      npm ci
-      npm run build:lib
-      npm run build:demo
-      npm run build:docs
+        npm ci
+        npm run build:lib
+        npm run build:demo
+        npm run build:docs
       env:
         CI: true
     - run: npx semantic-release
