@@ -1,10 +1,7 @@
-- [x] Layout component to screen
-- [x] Hide/show based on current mode
-- [x] Split layout helper
-  * [x] flex
-  * [x] grid
-  * [x] absolute
-- [x] Service with observable
 - [ ] RTL support
-- [ ] Unit tests
-- [ ] Write docs
+- [!] Unit tests
+- [x] Write docs
+- [x] Setup GHA to publish demo
+- [x] Fill package.json infos
+- [x] Setup semantic release
+- [ ] Publish lib NPM
