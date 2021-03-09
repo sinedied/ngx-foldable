@@ -1,6 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap');
 
 html, body {
   margin: 0;
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  color: #fff;
+}
+
+h2, a {
+  font-weight: bold;
+  color: #27d;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+  color: #fff;
+  background-color: #445;
+  border-radius: .7em;
+  padding: 5px 10px;
+  margin: 0 5px;
 }

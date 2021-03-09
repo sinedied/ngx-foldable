@@ -2,22 +2,36 @@
   SplitLayout supports: flex, grid or absolute
   Styling is only added when a multi screen mode is detected.
 -->
-<div fdSplitLayout="grid">
-  <!-- Assign to first window segment -->
-  <section fdWindow="0" class="s1">
-    <h1>Angular Foldable</h1>
-    <p>Angular library to help your build dual-screen experiences for foldable or dual-screen devices.</p>
+<div class="container" fdSplitLayout="flex">
 
-    {{ (screenContext$ | async) | json }}
-    
-    <p *fdIfSpan="'none'; else alt">This is only visible on single screen setup.</p>
-    <ng-template #alt><p>This is shown on multi screen mode.</p></ng-template>
+  <!-- Assign to first window segment -->
+  <section fdWindow="0" class="main">
+    <h1>Angular Foldable Demo</h1>
+    <img src="./assets/angular.svg" class="logo">
+    <p>This little demo showcases how <a href="https://github.com/sinedied/ngx-foldable">ngx-foldable</a> library can help you build dual-screen experiences for foldable or dual-screen devices.</p>
+
+    <p class="note">
+      <span *fdIfSpan="'none'; else multi">
+        This app is running on a single screen setup.
+      </span>
+      <ng-template #multi>
+        <span>
+          This app is running on <em>{{ (screenContext$ | async)?.windowSegments.length }}</em> screens.
+        </span>
+      </ng-template>
+    </p>
   </section>
 
   <!-- Assign to second window segment -->
-  <section fdWindow="1" class="s2">
-    <p *fdIfSpan="'multi'">This is only visible on multi screen mode.</p>
-    <p *fdIfSpan="'fold-horizontal'">This is only visible on horizontal fold spanning.</p>
-    <p *fdIfSpan="'fold-vertical'">This is only visible on vertical fold spanning.</p>
+  <section fdWindow="1" class="secondary" *fdIfSpan="'multi'">
+    <div *fdIfSpan="'fold-horizontal'">
+      <div class="surface rotated"></div>
+    </div>
+    <div *fdIfSpan="'fold-vertical'">
+      <div class="surface "></div>
+    </div>
+
+    <p>In multi screen mode you can see your device orientation here.</p>
   </section>
+
 </div>
