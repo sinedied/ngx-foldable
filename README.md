@@ -5,9 +5,11 @@
 ![Node version](https://img.shields.io/node/v/ngx-foldable.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-> ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the [Surface Duo](https://docs.microsoft.com/dual-screen/web/?WT.mc_id=ngxfoldable-github-yolasors)
+> ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the [Surface Duo](https://docs.microsoft.com/dual-screen/web/?WT.mc_id=javascript-9776-yolasors)
 
-TODO: screenshot demo
+<p align="center">
+  <img src="./demo.png">
+<p>
 
 See the [Live Demo](https://sinedied.github.io/ngx-foldable/demo/)
 
