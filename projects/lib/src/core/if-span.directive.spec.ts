@@ -7,8 +7,7 @@ import { ScreenContext, ScreenContextData } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
 @Component({
-  selector: 'test',
-  template: `<div *fdIfSpan="condition">visible</div>`,
+  template: `<div *fd-if-span="condition">visible</div>`,
 })
 class TestComponent {
   condition = SpanCondition.None;
@@ -32,7 +31,9 @@ describe('IfSpanDirective', () => {
     );
     screenContextSpy.asObservable.and.returnValue(fakeObservable$);
     getter(screenContextSpy, 'isMultiScreen').and.returnValue(false);
-    getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.None);
+    getter(screenContextSpy, 'screenSpanning').and.returnValue(
+      ScreenSpanning.None
+    );
 
     fixture = TestBed.configureTestingModule({
       declarations: [IfSpanDirective, TestComponent],
@@ -52,10 +53,12 @@ describe('IfSpanDirective', () => {
 
     it('should make el invisible on multi screen mode', () => {
       getter(screenContextSpy, 'isMultiScreen').and.returnValue(true);
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.Vertical);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.Vertical
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
-  
+
       expect(el).toBeNull();
     });
   });
@@ -63,7 +66,9 @@ describe('IfSpanDirective', () => {
   describe('condition Multi', () => {
     beforeEach(() => {
       component.condition = SpanCondition.Multi;
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.Horizontal);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.Horizontal
+      );
     });
 
     it('should make el visible on multi screen mode', () => {
@@ -76,7 +81,9 @@ describe('IfSpanDirective', () => {
 
     it('should make el invisible on single screen mode', () => {
       getter(screenContextSpy, 'isMultiScreen').and.returnValue(false);
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.None);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.None
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 
@@ -91,7 +98,9 @@ describe('IfSpanDirective', () => {
     });
 
     it('should make el visible on horizontal span mode', () => {
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.Horizontal);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.Horizontal
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 
@@ -99,7 +108,9 @@ describe('IfSpanDirective', () => {
     });
 
     it('should make el invisible on vertical span mode', () => {
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.Vertical);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.Vertical
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 
@@ -108,7 +119,9 @@ describe('IfSpanDirective', () => {
 
     it('should make el invisible on single screen mode', () => {
       getter(screenContextSpy, 'isMultiScreen').and.returnValue(false);
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.None);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.None
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 
@@ -123,7 +136,9 @@ describe('IfSpanDirective', () => {
     });
 
     it('should make el invisible on horizontal span mode', () => {
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.Horizontal);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.Horizontal
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 
@@ -131,7 +146,9 @@ describe('IfSpanDirective', () => {
     });
 
     it('should make el visible on vertical span mode', () => {
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.Vertical);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.Vertical
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 
@@ -140,7 +157,9 @@ describe('IfSpanDirective', () => {
 
     it('should make el invisible on single screen mode', () => {
       getter(screenContextSpy, 'isMultiScreen').and.returnValue(false);
-      getter(screenContextSpy, 'screenSpanning').and.returnValue(ScreenSpanning.None);
+      getter(screenContextSpy, 'screenSpanning').and.returnValue(
+        ScreenSpanning.None
+      );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
 

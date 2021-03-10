@@ -1,25 +1,29 @@
-import { Directive, Host, HostBinding, Input } from '@angular/core';
+import { Directive, Host, HostBinding, Input, OnDestroy } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
-import { SplitLayoutDirective, SplitLayoutMode } from './split-layout.directive';
+import {
+  SplitLayoutDirective,
+  SplitLayoutMode,
+} from './split-layout.directive';
 
 /**
- * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ 
- * @ignore 
+ * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ
+ *
+ * @ignore
  */
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
       { flex: '0 1 env(fold-left)' },
-      { flex: '0 1 calc(100vw - env(fold-right))' }
+      { flex: '0 1 calc(100vw - env(fold-right))' },
     ],
     [ScreenSpanning.Horizontal]: [
       { flex: '0 1 env(fold-top)' },
-      { flex: '0 1 calc(100vh - env(fold-bottom))' }
-    ]
+      { flex: '0 1 calc(100vh - env(fold-bottom))' },
+    ],
   },
   [SplitLayoutMode.Grid]: {
     [ScreenSpanning.Vertical]: [
@@ -29,7 +33,7 @@ const layoutStyles = {
     [ScreenSpanning.Horizontal]: [
       { gridArea: 'segment0' },
       { gridArea: 'segment1' },
-    ]
+    ],
   },
   [SplitLayoutMode.Absolute]: {
     [ScreenSpanning.Vertical]: [
@@ -41,38 +45,38 @@ const layoutStyles = {
       {
         position: 'absolute',
         left: 'env(fold-right)',
-        right: 0
-      }
+        right: 0,
+      },
     ],
     [ScreenSpanning.Horizontal]: [
       {
         position: 'absolute',
         top: 0,
         width: '100%',
-        maxHeight: 'env(fold-top)'
+        maxHeight: 'env(fold-top)',
       },
       {
         position: 'absolute',
         top: 'env(fold-bottom)',
         width: '100%',
-        maxHeight: 'calc(100vh - env(fold-bottom))'
-      }
-    ]
-  }
+        maxHeight: 'calc(100vh - env(fold-bottom))',
+      },
+    ],
+  },
 };
 
 /**
  * This directive is used to set specify on which window segment the container
  * should be placed on multi screen devices.
- * 
+ *
  * When used on a single screen device, no layout change (CSS) is added.
  * Only devices with up to two screen are currently supported, meaning that the
  * window segment value must be either 0 or 1.
- * 
+ *
  * This directive can only be used within a {@link SplitLayoutDirective}.
  * If {@link SplitLayoutMode} is set to `absolute`, you can assign multiple container
  * element to the same window segment.
- * 
+ *
  * @example
  * <div fdSplitLayout="grid">
  *              <section fdWindow="0">Will be displayed on first screen</section>
@@ -80,11 +84,10 @@ const layoutStyles = {
  * </div>
  */
 @Directive({
-  selector: '[fdWindow]'
+  selector: '[fdWindow]',
 })
-export class WindowDirective {
-
-  private segment: number = -1;
+export class WindowDirective implements OnDestroy {
+  private segment = -1;
   private layoutStyle: SafeStyle;
   private screenContextSubscription: Subscription = null;
 
@@ -96,7 +99,8 @@ export class WindowDirective {
 
   /**
    * Sets the target window segment to display this container on when multi screen is detected.
-   * @param {number} segment The target window segment, must be 0 or 1.
+   *
+   * @param segment The target window segment, must be 0 or 1.
    */
   @Input()
   set fdWindow(segment: number) {
@@ -104,8 +108,14 @@ export class WindowDirective {
     this.updateStyle();
   }
 
-  constructor(private screenContext: ScreenContext, @Host() private splitLayout: SplitLayoutDirective) {
-    this.screenContextSubscription = this.screenContext.asObservable().pipe(skip(1)).subscribe(() => this.updateStyle());
+  constructor(
+    private screenContext: ScreenContext,
+    @Host() private splitLayout: SplitLayoutDirective
+  ) {
+    this.screenContextSubscription = this.screenContext
+      .asObservable()
+      .pipe(skip(1))
+      .subscribe(() => this.updateStyle());
   }
 
   /** @ignore */
@@ -129,5 +139,4 @@ export class WindowDirective {
       this.layoutStyle = {};
     }
   }
-
 }

@@ -11,7 +11,7 @@
     <p>This little demo showcases how <a href="https://github.com/sinedied/ngx-foldable">ngx-foldable</a> library can help you build dual-screen experiences for foldable or dual-screen devices.</p>
 
     <p class="note">
-      <span *fdIfSpan="'none'; else multi">
+      <span *fd-if-span="'none'; else multi">
         This app is running on a single screen setup.
       </span>
       <ng-template #multi>
@@ -23,11 +23,11 @@
   </section>
 
   <!-- Assign to second window segment -->
-  <section fdWindow="1" class="secondary" *fdIfSpan="'multi'">
-    <div *fdIfSpan="'fold-horizontal'">
+  <section fdWindow="1" class="secondary" *fd-if-span="'multi'">
+    <div *fd-if-span="'fold-horizontal'">
       <div class="surface rotated"></div>
     </div>
-    <div *fdIfSpan="'fold-vertical'">
+    <div *fd-if-span="'fold-vertical'">
       <div class="surface "></div>
     </div>
 

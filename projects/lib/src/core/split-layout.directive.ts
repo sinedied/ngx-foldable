@@ -12,61 +12,62 @@ import { ScreenSpanning } from './screen-spanning';
 export enum SplitLayoutMode {
   Flex = 'flex',
   Grid = 'grid',
-  Absolute = 'absolute'
+  Absolute = 'absolute',
 }
 
 /**
- * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ 
- * @ignore 
+ * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ
+ *
+ * @ignore
  */
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     common: {
       display: 'flex',
       justifyContent: 'space-between',
-      height: '100%'
+      height: '100%',
     },
     [ScreenSpanning.Vertical]: {
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
     [ScreenSpanning.Horizontal]: {
-      flexDirection: 'column'
-    }
+      flexDirection: 'column',
+    },
   },
   [SplitLayoutMode.Grid]: {
     common: {
       display: 'grid',
-      height: '100%'
+      height: '100%',
     },
     [ScreenSpanning.Vertical]: {
       gridTemplateColumns: '1fr 1fr',
       gridTemplateAreas: '"segment0 segment1"',
       gridAutoFlow: 'row',
-      columnGap: 'env(fold-width)'
+      columnGap: 'env(fold-width)',
     },
     [ScreenSpanning.Horizontal]: {
       gridTemplateRows: '1fr 1fr',
       gridTemplateAreas: '"segment0" "segment1"',
       gridAutoFlow: 'row',
-      rowGap: 'env(fold-height)'
-    }
+      rowGap: 'env(fold-height)',
+    },
   },
   [SplitLayoutMode.Absolute]: {
     common: {
       position: 'relative',
-      height: '100%'
-    }
-  }
+      height: '100%',
+    },
+  },
 };
 
 /**
  * Defines a parent layout container for creating a split layout on multi screen devices.
- * 
+ *
  * When used on a single screen device, no layout change (CSS) is added.
  * You can choose between different {@link SplitLayoutMode} to suit your design.
- * 
+ *
  * This directive should be used along with {@link WindowDirective}.
- *  
+ *
  * @example
  * <div fdSplitLayout="grid">
  *              <section fdWindow="0">Will be displayed on first screen</section>
@@ -74,17 +75,17 @@ const layoutStyles = {
  * </div>
  */
 @Directive({
-  selector: '[fdSplitLayout]'
+  selector: '[fdSplitLayout]',
 })
 export class SplitLayoutDirective implements OnDestroy {
-  
   private mode: SplitLayoutMode = SplitLayoutMode.Flex;
   private layoutStyle: SafeStyle;
   private screenContextSubscription: Subscription = null;
 
   /**
    * Sets the current split layout mode to use when multi screen is detected.
-   * @param {SplitLayoutMode} mode The split layout mode to use.
+   *
+   * @param mode The split layout mode to use.
    */
   @Input()
   set fdSplitLayout(mode: SplitLayoutMode) {
@@ -100,12 +101,16 @@ export class SplitLayoutDirective implements OnDestroy {
 
   constructor(private screenContext: ScreenContext) {
     this.updateStyle();
-    this.screenContextSubscription = this.screenContext.asObservable().pipe(skip(1)).subscribe(() => this.updateStyle());
+    this.screenContextSubscription = this.screenContext
+      .asObservable()
+      .pipe(skip(1))
+      .subscribe(() => this.updateStyle());
   }
 
   /**
    * The current split layout mode to use when multi screen is detected.
-   * @return {SplitLayoutMode} The current split layout mode.
+   *
+   * @return The current split layout mode.
    */
   get layoutMode(): SplitLayoutMode {
     return this.mode;
@@ -124,11 +129,10 @@ export class SplitLayoutDirective implements OnDestroy {
       const spanning = this.screenContext.screenSpanning;
       this.layoutStyle = {
         ...layoutStyles[this.mode].common,
-        ...layoutStyles[this.mode][spanning]
-      }
+        ...layoutStyles[this.mode][spanning],
+      };
     } else {
       this.layoutStyle = {};
     }
   }
-
 }
