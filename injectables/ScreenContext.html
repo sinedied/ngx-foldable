@@ -132,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/lib/src/core/screen-context.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/lib/src/core/screen-context.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -167,8 +167,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">projects/lib/src/core/screen-context.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">projects/lib/src/core/screen-context.ts:92</a></div>
                 </td>
             </tr>
 
@@ -178,14 +178,9 @@
                     <div class="io-description"><p>Gets the current screen context.</p>
 </div>
 
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../injectables/ScreenContext.html" target="_self" >ScreenContextData</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -213,8 +208,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">projects/lib/src/core/screen-context.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">projects/lib/src/core/screen-context.ts:85</a></div>
                 </td>
             </tr>
 
@@ -224,14 +219,9 @@
                     <div class="io-description"><p>Gets an observable emitting when the screen context changes.</p>
 </div>
 
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../injectables/ScreenContext.html" target="_self" >Observable&lt;ScreenContextData&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -267,8 +257,6 @@
                                 <div class="io-description"><p>The list of available window segments.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>DOMRect[]</code>
 
@@ -294,7 +282,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/lib/src/core/screen-context.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">projects/lib/src/core/screen-context.ts:71</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -302,8 +290,6 @@
                                 <div class="io-description"><p>The current screen spanning mode.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="../miscellaneous/enumerations.html#ScreenSpanning" target="_self" >ScreenSpanning</a></code>
 
@@ -329,7 +315,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/lib/src/core/screen-context.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">projects/lib/src/core/screen-context.ts:78</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -337,8 +323,6 @@
                                 <div class="io-description"><p>True is current device have multiple screens available.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
@@ -383,12 +367,13 @@ export class ScreenContextData {
  * See {@link ScreenContextData}
  */
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
 export class ScreenContext implements ScreenContextData, OnDestroy {
-
   private currentContext: ScreenContextData;
-  private mediaQuery &#x3D; matchMedia(&#x60;${singleFoldHorizontal}, ${singleFoldVertical}&#x60;);
+  private mediaQuery &#x3D; matchMedia(
+    &#x60;${singleFoldHorizontal}, ${singleFoldVertical}&#x60;
+  );
   private screenContext$: Observable&lt;ScreenContextData&gt;;
   private destroyed$: ReplaySubject&lt;void&gt; &#x3D; new ReplaySubject(1);
 
@@ -396,7 +381,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     this.currentContext &#x3D; this.getScreenContext();
     this.screenContext$ &#x3D; fromEvent(this.mediaQuery, &#x27;change&#x27;).pipe(
       startWith(1),
-      map(_ &#x3D;&gt; {
+      map((_) &#x3D;&gt; {
         this.currentContext &#x3D; this.getScreenContext();
         return this.currentContext;
       }),
@@ -411,10 +396,9 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
-  
-  /** 
+
+  /**
    * The list of available window segments.
-   * @returns {DOMRect[]}
    */
   get windowSegments(): DOMRect[] {
     return this.currentContext.windowSegments;
@@ -422,7 +406,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * The current screen spanning mode.
-   * @returns {ScreenSpanning}
    */
   get screenSpanning(): ScreenSpanning {
     return this.currentContext.screenSpanning;
@@ -430,7 +413,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * True is current device have multiple screens available.
-   * @returns {boolean}
    */
   get isMultiScreen(): boolean {
     return this.currentContext.isMultiScreen;
@@ -438,7 +420,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * Gets an observable emitting when the screen context changes.
-   * @returns {Observable&lt;ScreenContextData&gt;}
    */
   asObservable(): Observable&lt;ScreenContextData&gt; {
     return this.screenContext$;
@@ -446,7 +427,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * Gets the current screen context.
-   * @returns {ScreenContextData}
    */
   asObject(): ScreenContextData {
     return this.currentContext;
@@ -458,7 +438,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     return {
       windowSegments,
       screenSpanning,
-      isMultiScreen: screenSpanning !&#x3D;&#x3D; ScreenSpanning.None
+      isMultiScreen: screenSpanning !&#x3D;&#x3D; ScreenSpanning.None,
     };
   }
 

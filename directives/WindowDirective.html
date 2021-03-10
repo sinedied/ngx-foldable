@@ -73,6 +73,12 @@ element to the same window segment.</p>
 
             </p>
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+            </p>
 
             <p class="comment">
                 <h3>Example</h3>
@@ -153,7 +159,7 @@ element to the same window segment.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">projects/lib/src/core/window.directive.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">projects/lib/src/core/window.directive.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -221,7 +227,7 @@ element to the same window segment.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">projects/lib/src/core/window.directive.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">projects/lib/src/core/window.directive.ts:106</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -259,7 +265,7 @@ element to the same window segment.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">projects/lib/src/core/window.directive.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">projects/lib/src/core/window.directive.ts:106</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -314,28 +320,32 @@ element to the same window segment.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Host, HostBinding, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Host, HostBinding, Input, OnDestroy } from &#x27;@angular/core&#x27;;
 import { SafeStyle } from &#x27;@angular/platform-browser&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { skip } from &#x27;rxjs/operators&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
-import { SplitLayoutDirective, SplitLayoutMode } from &#x27;./split-layout.directive&#x27;;
+import {
+  SplitLayoutDirective,
+  SplitLayoutMode,
+} from &#x27;./split-layout.directive&#x27;;
 
 /**
- * Look &#x27;ma, CSS-in-JS with Angular! ಠ_ಠ 
- * @ignore 
+ * Look &#x27;ma, CSS-in-JS with Angular! ಠ_ಠ
+ *
+ * @ignore
  */
 const layoutStyles &#x3D; {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
       { flex: &#x27;0 1 env(fold-left)&#x27; },
-      { flex: &#x27;0 1 calc(100vw - env(fold-right))&#x27; }
+      { flex: &#x27;0 1 calc(100vw - env(fold-right))&#x27; },
     ],
     [ScreenSpanning.Horizontal]: [
       { flex: &#x27;0 1 env(fold-top)&#x27; },
-      { flex: &#x27;0 1 calc(100vh - env(fold-bottom))&#x27; }
-    ]
+      { flex: &#x27;0 1 calc(100vh - env(fold-bottom))&#x27; },
+    ],
   },
   [SplitLayoutMode.Grid]: {
     [ScreenSpanning.Vertical]: [
@@ -345,7 +355,7 @@ const layoutStyles &#x3D; {
     [ScreenSpanning.Horizontal]: [
       { gridArea: &#x27;segment0&#x27; },
       { gridArea: &#x27;segment1&#x27; },
-    ]
+    ],
   },
   [SplitLayoutMode.Absolute]: {
     [ScreenSpanning.Vertical]: [
@@ -357,38 +367,38 @@ const layoutStyles &#x3D; {
       {
         position: &#x27;absolute&#x27;,
         left: &#x27;env(fold-right)&#x27;,
-        right: 0
-      }
+        right: 0,
+      },
     ],
     [ScreenSpanning.Horizontal]: [
       {
         position: &#x27;absolute&#x27;,
         top: 0,
         width: &#x27;100%&#x27;,
-        maxHeight: &#x27;env(fold-top)&#x27;
+        maxHeight: &#x27;env(fold-top)&#x27;,
       },
       {
         position: &#x27;absolute&#x27;,
         top: &#x27;env(fold-bottom)&#x27;,
         width: &#x27;100%&#x27;,
-        maxHeight: &#x27;calc(100vh - env(fold-bottom))&#x27;
-      }
-    ]
-  }
+        maxHeight: &#x27;calc(100vh - env(fold-bottom))&#x27;,
+      },
+    ],
+  },
 };
 
 /**
  * This directive is used to set specify on which window segment the container
  * should be placed on multi screen devices.
- * 
+ *
  * When used on a single screen device, no layout change (CSS) is added.
  * Only devices with up to two screen are currently supported, meaning that the
  * window segment value must be either 0 or 1.
- * 
+ *
  * This directive can only be used within a {@link SplitLayoutDirective}.
  * If {@link SplitLayoutMode} is set to &#x60;absolute&#x60;, you can assign multiple container
  * element to the same window segment.
- * 
+ *
  * @example
  * &lt;div fdSplitLayout&#x3D;&quot;grid&quot;&gt;
  *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
@@ -396,11 +406,10 @@ const layoutStyles &#x3D; {
  * &lt;/div&gt;
  */
 @Directive({
-  selector: &#x27;[fdWindow]&#x27;
+  selector: &#x27;[fdWindow]&#x27;,
 })
-export class WindowDirective {
-
-  private segment: number &#x3D; -1;
+export class WindowDirective implements OnDestroy {
+  private segment &#x3D; -1;
   private layoutStyle: SafeStyle;
   private screenContextSubscription: Subscription &#x3D; null;
 
@@ -412,7 +421,8 @@ export class WindowDirective {
 
   /**
    * Sets the target window segment to display this container on when multi screen is detected.
-   * @param {number} segment The target window segment, must be 0 or 1.
+   *
+   * @param segment The target window segment, must be 0 or 1.
    */
   @Input()
   set fdWindow(segment: number) {
@@ -420,8 +430,14 @@ export class WindowDirective {
     this.updateStyle();
   }
 
-  constructor(private screenContext: ScreenContext, @Host() private splitLayout: SplitLayoutDirective) {
-    this.screenContextSubscription &#x3D; this.screenContext.asObservable().pipe(skip(1)).subscribe(() &#x3D;&gt; this.updateStyle());
+  constructor(
+    private screenContext: ScreenContext,
+    @Host() private splitLayout: SplitLayoutDirective
+  ) {
+    this.screenContextSubscription &#x3D; this.screenContext
+      .asObservable()
+      .pipe(skip(1))
+      .subscribe(() &#x3D;&gt; this.updateStyle());
   }
 
   /** @ignore */
@@ -445,7 +461,6 @@ export class WindowDirective {
       this.layoutStyle &#x3D; {};
     }
   }
-
 }
 </code></pre>
     </div>

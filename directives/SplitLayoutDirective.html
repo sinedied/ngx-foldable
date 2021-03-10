@@ -158,7 +158,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -208,7 +208,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:91</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -246,7 +246,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:91</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -307,7 +307,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:115</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -346,61 +346,62 @@ import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 export enum SplitLayoutMode {
   Flex &#x3D; &#x27;flex&#x27;,
   Grid &#x3D; &#x27;grid&#x27;,
-  Absolute &#x3D; &#x27;absolute&#x27;
+  Absolute &#x3D; &#x27;absolute&#x27;,
 }
 
 /**
- * Look &#x27;ma, CSS-in-JS with Angular! ಠ_ಠ 
- * @ignore 
+ * Look &#x27;ma, CSS-in-JS with Angular! ಠ_ಠ
+ *
+ * @ignore
  */
 const layoutStyles &#x3D; {
   [SplitLayoutMode.Flex]: {
     common: {
       display: &#x27;flex&#x27;,
       justifyContent: &#x27;space-between&#x27;,
-      height: &#x27;100%&#x27;
+      height: &#x27;100%&#x27;,
     },
     [ScreenSpanning.Vertical]: {
-      flexDirection: &#x27;row&#x27;
+      flexDirection: &#x27;row&#x27;,
     },
     [ScreenSpanning.Horizontal]: {
-      flexDirection: &#x27;column&#x27;
-    }
+      flexDirection: &#x27;column&#x27;,
+    },
   },
   [SplitLayoutMode.Grid]: {
     common: {
       display: &#x27;grid&#x27;,
-      height: &#x27;100%&#x27;
+      height: &#x27;100%&#x27;,
     },
     [ScreenSpanning.Vertical]: {
       gridTemplateColumns: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment0 segment1&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
-      columnGap: &#x27;env(fold-width)&#x27;
+      columnGap: &#x27;env(fold-width)&#x27;,
     },
     [ScreenSpanning.Horizontal]: {
       gridTemplateRows: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment0&quot; &quot;segment1&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
-      rowGap: &#x27;env(fold-height)&#x27;
-    }
+      rowGap: &#x27;env(fold-height)&#x27;,
+    },
   },
   [SplitLayoutMode.Absolute]: {
     common: {
       position: &#x27;relative&#x27;,
-      height: &#x27;100%&#x27;
-    }
-  }
+      height: &#x27;100%&#x27;,
+    },
+  },
 };
 
 /**
  * Defines a parent layout container for creating a split layout on multi screen devices.
- * 
+ *
  * When used on a single screen device, no layout change (CSS) is added.
  * You can choose between different {@link SplitLayoutMode} to suit your design.
- * 
+ *
  * This directive should be used along with {@link WindowDirective}.
- *  
+ *
  * @example
  * &lt;div fdSplitLayout&#x3D;&quot;grid&quot;&gt;
  *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
@@ -408,17 +409,17 @@ const layoutStyles &#x3D; {
  * &lt;/div&gt;
  */
 @Directive({
-  selector: &#x27;[fdSplitLayout]&#x27;
+  selector: &#x27;[fdSplitLayout]&#x27;,
 })
 export class SplitLayoutDirective implements OnDestroy {
-  
   private mode: SplitLayoutMode &#x3D; SplitLayoutMode.Flex;
   private layoutStyle: SafeStyle;
   private screenContextSubscription: Subscription &#x3D; null;
 
   /**
    * Sets the current split layout mode to use when multi screen is detected.
-   * @param {SplitLayoutMode} mode The split layout mode to use.
+   *
+   * @param mode The split layout mode to use.
    */
   @Input()
   set fdSplitLayout(mode: SplitLayoutMode) {
@@ -434,12 +435,16 @@ export class SplitLayoutDirective implements OnDestroy {
 
   constructor(private screenContext: ScreenContext) {
     this.updateStyle();
-    this.screenContextSubscription &#x3D; this.screenContext.asObservable().pipe(skip(1)).subscribe(() &#x3D;&gt; this.updateStyle());
+    this.screenContextSubscription &#x3D; this.screenContext
+      .asObservable()
+      .pipe(skip(1))
+      .subscribe(() &#x3D;&gt; this.updateStyle());
   }
 
   /**
    * The current split layout mode to use when multi screen is detected.
-   * @return {SplitLayoutMode} The current split layout mode.
+   *
+   * @return The current split layout mode.
    */
   get layoutMode(): SplitLayoutMode {
     return this.mode;
@@ -458,13 +463,12 @@ export class SplitLayoutDirective implements OnDestroy {
       const spanning &#x3D; this.screenContext.screenSpanning;
       this.layoutStyle &#x3D; {
         ...layoutStyles[this.mode].common,
-        ...layoutStyles[this.mode][spanning]
-      }
+        ...layoutStyles[this.mode][spanning],
+      };
     } else {
       this.layoutStyle &#x3D; {};
     }
   }
-
 }
 </code></pre>
     </div>

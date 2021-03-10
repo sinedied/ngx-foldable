@@ -36,10 +36,13 @@
 <img src="https://img.shields.io/node/v/ngx-foldable.svg" alt="Node version" class="img-responsive">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" class="img-responsive"></a></p>
 <blockquote>
-<p>ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the <a href="https://docs.microsoft.com/dual-screen/web/?WT.mc_id=ngxfoldable-github-yolasors">Surface Duo</a></p>
+<p>ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the <a href="https://docs.microsoft.com/dual-screen/web/?WT.mc_id=javascript-9776-yolasors">Surface Duo</a></p>
 </blockquote>
-<p>TODO: screenshot demo</p>
-<p>See the [Live Demo](TODO URL)</p>
+<p align="center">
+  <img src="./demo.png">
+<p>
+
+<p>See the <a href="https://sinedied.github.io/ngx-foldable/demo/">Live Demo</a></p>
 <h2 id="status">Status</h2>
 <p>This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.</p>
 <h2 id="how-to-test-on-your-browser">How to test on your browser</h2>
@@ -71,7 +74,7 @@ export class AppModule { }</code></pre></div><p>Use the provided <code>fdSplitLa
   &lt;section fdWindow=&quot;0&quot;&gt;
     This will be displayed on the first window segment of a multi screen or single screen device.
 
-    &lt;p *fdIfSpan=&quot;&#39;none&#39;; else alt&quot;&gt;This is only visible on a single screen device.&lt;/p&gt;
+    &lt;p *fd-if-span=&quot;&#39;none&#39;; else alt&quot;&gt;This is only visible on a single screen device.&lt;/p&gt;
     &lt;ng-template #alt&gt;&lt;p&gt;This is only visible on a multi screen device.&lt;/p&gt;&lt;/ng-template&gt;
   &lt;/section&gt;
 
@@ -79,9 +82,9 @@ export class AppModule { }</code></pre></div><p>Use the provided <code>fdSplitLa
   &lt;section fdWindow=&quot;1&quot;&gt;
     This will be displayed on the second window segment of a multi screen device.
 
-    &lt;p *fdIfSpan=&quot;&#39;multi&#39;&quot;&gt;This is only visible on multi screen device, regardless of the orientation.&lt;/p&gt;
-    &lt;p *fdIfSpan=&quot;&#39;fold-horizontal&#39;&quot;&gt;This is only visible on horizontal fold spanning.&lt;/p&gt;
-    &lt;p *fdIfSpan=&quot;&#39;fold-vertical&#39;&quot;&gt;This is only visible on vertical fold spanning.&lt;/p&gt;
+    &lt;p *fd-if-span=&quot;&#39;multi&#39;&quot;&gt;This is only visible on multi screen device, regardless of the orientation.&lt;/p&gt;
+    &lt;p *fd-if-span=&quot;&#39;fold-horizontal&#39;&quot;&gt;This is only visible on horizontal fold spanning.&lt;/p&gt;
+    &lt;p *fd-if-span=&quot;&#39;fold-vertical&#39;&quot;&gt;This is only visible on vertical fold spanning.&lt;/p&gt;
   &lt;/section&gt;
 &lt;/div&gt;</code></pre></div><p>Using the <code>ScreenContext</code> service, you can also receive updates when the screen context changes:</p>
 <div><pre class="line-numbers"><code class="language-typescript">import { ScreenContext } from &#39;ngx-foldable&#39;;
@@ -94,7 +97,7 @@ export class AppComponent {
         console.log(&#39;Screen context changed:&#39;, context);
       }
   }
-}</code></pre></div><p>You can read the full documentation [here](TODO link).</p>
+}</code></pre></div><p>You can read the full documentation <a href="https://sinedied.github.io/ngx-foldable/">here</a>.</p>
 
 
 

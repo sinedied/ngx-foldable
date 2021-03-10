@@ -65,13 +65,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/FoldableModule.html" data-type="entity-link">FoldableModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-FoldableModule-052d3cc8aa9118289eedaf3f5f052ebf"' : 'data-target="#xs-directives-links-module-FoldableModule-052d3cc8aa9118289eedaf3f5f052ebf"' }>
+                                        'data-target="#directives-links-module-FoldableModule-b2dacb29c74225f22b066027e45d091c"' : 'data-target="#xs-directives-links-module-FoldableModule-b2dacb29c74225f22b066027e45d091c"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FoldableModule-052d3cc8aa9118289eedaf3f5f052ebf"' :
-                                        'id="xs-directives-links-module-FoldableModule-052d3cc8aa9118289eedaf3f5f052ebf"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FoldableModule-b2dacb29c74225f22b066027e45d091c"' :
+                                        'id="xs-directives-links-module-FoldableModule-b2dacb29c74225f22b066027e45d091c"' }>
                                         <li class="link">
                                             <a href="directives/IfSpanDirective.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules">IfSpanDirective</a>

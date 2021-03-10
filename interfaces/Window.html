@@ -156,12 +156,13 @@ export class ScreenContextData {
  * See {@link ScreenContextData}
  */
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
 export class ScreenContext implements ScreenContextData, OnDestroy {
-
   private currentContext: ScreenContextData;
-  private mediaQuery &#x3D; matchMedia(&#x60;${singleFoldHorizontal}, ${singleFoldVertical}&#x60;);
+  private mediaQuery &#x3D; matchMedia(
+    &#x60;${singleFoldHorizontal}, ${singleFoldVertical}&#x60;
+  );
   private screenContext$: Observable&lt;ScreenContextData&gt;;
   private destroyed$: ReplaySubject&lt;void&gt; &#x3D; new ReplaySubject(1);
 
@@ -169,7 +170,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     this.currentContext &#x3D; this.getScreenContext();
     this.screenContext$ &#x3D; fromEvent(this.mediaQuery, &#x27;change&#x27;).pipe(
       startWith(1),
-      map(_ &#x3D;&gt; {
+      map((_) &#x3D;&gt; {
         this.currentContext &#x3D; this.getScreenContext();
         return this.currentContext;
       }),
@@ -184,10 +185,9 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
-  
-  /** 
+
+  /**
    * The list of available window segments.
-   * @returns {DOMRect[]}
    */
   get windowSegments(): DOMRect[] {
     return this.currentContext.windowSegments;
@@ -195,7 +195,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * The current screen spanning mode.
-   * @returns {ScreenSpanning}
    */
   get screenSpanning(): ScreenSpanning {
     return this.currentContext.screenSpanning;
@@ -203,7 +202,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * True is current device have multiple screens available.
-   * @returns {boolean}
    */
   get isMultiScreen(): boolean {
     return this.currentContext.isMultiScreen;
@@ -211,7 +209,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * Gets an observable emitting when the screen context changes.
-   * @returns {Observable&lt;ScreenContextData&gt;}
    */
   asObservable(): Observable&lt;ScreenContextData&gt; {
     return this.screenContext$;
@@ -219,7 +216,6 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   /**
    * Gets the current screen context.
-   * @returns {ScreenContextData}
    */
   asObject(): ScreenContextData {
     return this.currentContext;
@@ -231,7 +227,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     return {
       windowSegments,
       screenSpanning,
-      isMultiScreen: screenSpanning !&#x3D;&#x3D; ScreenSpanning.None
+      isMultiScreen: screenSpanning !&#x3D;&#x3D; ScreenSpanning.None,
     };
   }
 

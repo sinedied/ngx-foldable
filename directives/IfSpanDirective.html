@@ -182,7 +182,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -256,7 +256,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:58</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -277,7 +277,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:75</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -298,7 +298,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:67</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -340,8 +340,8 @@ a boolean expression.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">projects/lib/src/core/if-span.directive.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">projects/lib/src/core/if-span.directive.ts:94</a></div>
                 </td>
             </tr>
 
@@ -382,7 +382,7 @@ a boolean expression.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:58</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -444,7 +444,7 @@ a boolean expression.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:67</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -501,7 +501,7 @@ a boolean expression.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:75</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -547,7 +547,14 @@ a boolean expression.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, EmbeddedViewRef, Input, OnDestroy, TemplateRef, ViewContainerRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Directive,
+  EmbeddedViewRef,
+  Input,
+  OnDestroy,
+  TemplateRef,
+  ViewContainerRef,
+} from &#x27;@angular/core&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { skip } from &#x27;rxjs/operators&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
@@ -558,22 +565,22 @@ import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
  */
 export enum SpanCondition {
   /** Screen spanning mode is single fold vertical. */
-  Vertical &#x3D; &quot;fold-vertical&quot;,
+  Vertical &#x3D; &#x27;fold-vertical&#x27;,
   /** Screen spanning mode is single fold horizontal. */
-  Horizontal &#x3D; &quot;fold-horizontal&quot;,
+  Horizontal &#x3D; &#x27;fold-horizontal&#x27;,
   /** No screen spanning (single screen mode). */
-  None &#x3D; &quot;none&quot;,
+  None &#x3D; &#x27;none&#x27;,
   /** Any screen spanning mode is active (multi screen mode). */
-  Multi &#x3D; &#x27;multi&#x27;
+  Multi &#x3D; &#x27;multi&#x27;,
 }
 
 /**
  * Shows template only if the current screen spanning mode matches
  * specified {@link SpanCondition}.
- * 
+ *
  * Behaves like &#x60;ngIf&#x60;, except that it accepts a {@link SpanCondition} instead of
  * a boolean expression.
- * 
+ *
  * @example
  * &lt;p *fdIdSpan&#x3D;&quot;&#x27;multi&#x27;&quot;&gt;This text will only be visible on multi screen devices.&lt;/p&gt;
  * @example
@@ -581,20 +588,20 @@ export enum SpanCondition {
  * &lt;ng-template #alt&quot;&gt;This text will only be visible on multi screen devices.&lt;/ng-template&gt;
  */
 @Directive({
-  selector: &#x27;[fdIfSpan]&#x27;
+  selector: &#x27;[fdIfSpan]&#x27;,
 })
 export class IfSpanDirective&lt;T&gt; implements OnDestroy {
-
   private screenContextSubscription: Subscription &#x3D; null;
   private condition: SpanCondition;
-  private thenTemplateRef: TemplateRef&lt;T&gt;|null &#x3D; null;
-  private elseTemplateRef: TemplateRef&lt;T&gt;|null &#x3D; null;
-  private thenViewRef: EmbeddedViewRef&lt;T&gt;|null &#x3D; null;
-  private elseViewRef: EmbeddedViewRef&lt;T&gt;|null &#x3D; null;
-  
+  private thenTemplateRef: TemplateRef&lt;T&gt; | null &#x3D; null;
+  private elseTemplateRef: TemplateRef&lt;T&gt; | null &#x3D; null;
+  private thenViewRef: EmbeddedViewRef&lt;T&gt; | null &#x3D; null;
+  private elseViewRef: EmbeddedViewRef&lt;T&gt; | null &#x3D; null;
+
   /**
    * The spanning mode condition that defines if the template should be shown.
-   * @param {SpanCondition} condition The spanning mode condition for showing the template.
+   *
+   * @param condition The spanning mode condition for showing the template.
    */
   @Input()
   set fdIfSpan(condition: SpanCondition) {
@@ -606,7 +613,7 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
 
   /** A template to show if the span condition evaluates to true. */
   @Input()
-  set fdIfSpanThen(templateRef: TemplateRef&lt;T&gt;|null) {
+  set fdIfSpanThen(templateRef: TemplateRef&lt;T&gt; | null) {
     this.thenTemplateRef &#x3D; templateRef;
     this.thenViewRef &#x3D; null;
     this.updateView();
@@ -614,15 +621,22 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
 
   /** A template to show if the span condition evaluates to false. */
   @Input()
-  set fdIfSpanElse(templateRef: TemplateRef&lt;T&gt;|null) {
+  set fdIfSpanElse(templateRef: TemplateRef&lt;T&gt; | null) {
     this.elseTemplateRef &#x3D; templateRef;
     this.thenViewRef &#x3D; null;
     this.updateView();
   }
 
-  constructor(private screenContext: ScreenContext, private viewContainer: ViewContainerRef, templateRef: TemplateRef&lt;T&gt;) {
+  constructor(
+    private screenContext: ScreenContext,
+    private viewContainer: ViewContainerRef,
+    templateRef: TemplateRef&lt;T&gt;
+  ) {
     this.thenTemplateRef &#x3D; templateRef;
-    this.screenContextSubscription &#x3D; this.screenContext.asObservable().pipe(skip(1)).subscribe(() &#x3D;&gt; this.updateView());
+    this.screenContextSubscription &#x3D; this.screenContext
+      .asObservable()
+      .pipe(skip(1))
+      .subscribe(() &#x3D;&gt; this.updateView());
   }
 
   /** ignore */
@@ -653,7 +667,9 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
         this.viewContainer.clear();
         this.elseViewRef &#x3D; null;
         if (this.thenTemplateRef) {
-          this.thenViewRef &#x3D; this.viewContainer.createEmbeddedView(this.thenTemplateRef);
+          this.thenViewRef &#x3D; this.viewContainer.createEmbeddedView(
+            this.thenTemplateRef
+          );
         }
       }
     } else {
@@ -661,12 +677,13 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
         this.viewContainer.clear();
         this.thenViewRef &#x3D; null;
         if (this.elseTemplateRef) {
-          this.elseViewRef &#x3D; this.viewContainer.createEmbeddedView(this.elseTemplateRef);
+          this.elseViewRef &#x3D; this.viewContainer.createEmbeddedView(
+            this.elseTemplateRef
+          );
         }
       }
     }
   }
-
 }
 </code></pre>
     </div>
