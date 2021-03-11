@@ -20,6 +20,7 @@ jobs:
         npm run build:lib
         npm run build:demo
         npm run build:docs
+        npm run build:lib
       env:
         CI: true
     - run: npx semantic-release
