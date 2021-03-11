@@ -11,7 +11,7 @@
     "build:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs && cp -R dist/demo dist/docs/",
     "deploy:docs": "gh-pages -d dist/docs",
     "test": "ng test",
-    "test:ci": "ng lint && ng test --watch false",
+    "test:ci": "ng lint && ng test --browsers=ChromeHeadless --watch false",
     "lint": "ng lint",
     "copy:assets": "cp README.md LICENSE projects/lib/",
     "serve:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs -s -w -r 4210 -o --disable-internal",
