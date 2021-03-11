@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/sinedied/ngx-foldable/compare/1.0.0...1.0.1) (2021-03-11)
+
+
+### Bug Fixes
+
+* docs deployment ([b1c68ac](https://github.com/sinedied/ngx-foldable/commit/b1c68ac7641f2145addef1480f5e669207a349a5))
+
 # 1.0.0 (2021-03-11)
 
 
