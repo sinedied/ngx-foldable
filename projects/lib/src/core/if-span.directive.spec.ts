@@ -7,7 +7,7 @@ import { ScreenContext, ScreenContextData } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
 @Component({
-  template: `<div *fd-if-span="condition">visible</div>`,
+  template: `<div *fdIfSpan="condition">visible</div>`,
 })
 class TestComponent {
   condition = SpanCondition.None;

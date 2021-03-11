@@ -63,7 +63,7 @@ Use the provided `fdSplitLayout`, `fdWindow` and `fdIfSpan` directives to build 
   <section fdWindow="0">
     This will be displayed on the first window segment of a multi screen or single screen device.
     
-    <p *fd-if-span="'none'; else alt">This is only visible on a single screen device.</p>
+    <p *fdIfSpan="'none'; else alt">This is only visible on a single screen device.</p>
     <ng-template #alt><p>This is only visible on a multi screen device.</p></ng-template>
   </section>
 
@@ -71,9 +71,9 @@ Use the provided `fdSplitLayout`, `fdWindow` and `fdIfSpan` directives to build 
   <section fdWindow="1">
     This will be displayed on the second window segment of a multi screen device.
 
-    <p *fd-if-span="'multi'">This is only visible on multi screen device, regardless of the orientation.</p>
-    <p *fd-if-span="'fold-horizontal'">This is only visible on horizontal fold spanning.</p>
-    <p *fd-if-span="'fold-vertical'">This is only visible on vertical fold spanning.</p>
+    <p *fdIfSpan="'multi'">This is only visible on multi screen device, regardless of the orientation.</p>
+    <p *fdIfSpan="'fold-horizontal'">This is only visible on horizontal fold spanning.</p>
+    <p *fdIfSpan="'fold-vertical'">This is only visible on vertical fold spanning.</p>
   </section>
 </div>
 ```
