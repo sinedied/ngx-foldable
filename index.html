@@ -74,7 +74,7 @@ export class AppModule { }</code></pre></div><p>Use the provided <code>fdSplitLa
   &lt;section fdWindow=&quot;0&quot;&gt;
     This will be displayed on the first window segment of a multi screen or single screen device.
 
-    &lt;p *fd-if-span=&quot;&#39;none&#39;; else alt&quot;&gt;This is only visible on a single screen device.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;none&#39;; else alt&quot;&gt;This is only visible on a single screen device.&lt;/p&gt;
     &lt;ng-template #alt&gt;&lt;p&gt;This is only visible on a multi screen device.&lt;/p&gt;&lt;/ng-template&gt;
   &lt;/section&gt;
 
@@ -82,9 +82,9 @@ export class AppModule { }</code></pre></div><p>Use the provided <code>fdSplitLa
   &lt;section fdWindow=&quot;1&quot;&gt;
     This will be displayed on the second window segment of a multi screen device.
 
-    &lt;p *fd-if-span=&quot;&#39;multi&#39;&quot;&gt;This is only visible on multi screen device, regardless of the orientation.&lt;/p&gt;
-    &lt;p *fd-if-span=&quot;&#39;fold-horizontal&#39;&quot;&gt;This is only visible on horizontal fold spanning.&lt;/p&gt;
-    &lt;p *fd-if-span=&quot;&#39;fold-vertical&#39;&quot;&gt;This is only visible on vertical fold spanning.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;multi&#39;&quot;&gt;This is only visible on multi screen device, regardless of the orientation.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;fold-horizontal&#39;&quot;&gt;This is only visible on horizontal fold spanning.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;fold-vertical&#39;&quot;&gt;This is only visible on vertical fold spanning.&lt;/p&gt;
   &lt;/section&gt;
 &lt;/div&gt;</code></pre></div><p>Using the <code>ScreenContext</code> service, you can also receive updates when the screen context changes:</p>
 <div><pre class="line-numbers"><code class="language-typescript">import { ScreenContext } from &#39;ngx-foldable&#39;;

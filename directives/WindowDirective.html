@@ -70,6 +70,8 @@ window segment value must be either 0 or 1.</p>
 <p>This directive can only be used within a <a href="../directives/SplitLayoutDirective.html">SplitLayoutDirective</a>.
 If <a href="../miscellaneous/enumerations.html#SplitLayoutMode">SplitLayoutMode</a> is set to <code>absolute</code>, you can assign multiple container
 element to the same window segment.</p>
+<p>Note that if you have set the read direction to Right-To-Left mode (<code>rtl</code>) in CSS,
+the first segment will be the rightmost one.</p>
 
             </p>
 
@@ -154,12 +156,12 @@ element to the same window segment.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>, splitLayout: SplitLayoutDirective)</code>
+<code>constructor(element: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>, splitLayout: SplitLayoutDirective)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">projects/lib/src/core/window.directive.ts:109</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">projects/lib/src/core/window.directive.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -176,6 +178,18 @@ element to the same window segment.</p>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>element</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>screenContext</td>
                                                   
@@ -227,7 +241,7 @@ element to the same window segment.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">projects/lib/src/core/window.directive.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -265,7 +279,7 @@ element to the same window segment.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">projects/lib/src/core/window.directive.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -320,7 +334,14 @@ element to the same window segment.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Host, HostBinding, Input, OnDestroy } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Directive,
+  ElementRef,
+  Host,
+  HostBinding,
+  Input,
+  OnDestroy,
+} from &#x27;@angular/core&#x27;;
 import { SafeStyle } from &#x27;@angular/platform-browser&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { skip } from &#x27;rxjs/operators&#x27;;
@@ -399,6 +420,9 @@ const layoutStyles &#x3D; {
  * If {@link SplitLayoutMode} is set to &#x60;absolute&#x60;, you can assign multiple container
  * element to the same window segment.
  *
+ * Note that if you have set the read direction to Right-To-Left mode (&#x60;rtl&#x60;) in CSS,
+ * the first segment will be the rightmost one.
+ *
  * @example
  * &lt;div fdSplitLayout&#x3D;&quot;grid&quot;&gt;
  *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
@@ -431,6 +455,7 @@ export class WindowDirective implements OnDestroy {
   }
 
   constructor(
+    private element: ElementRef,
     private screenContext: ScreenContext,
     @Host() private splitLayout: SplitLayoutDirective
   ) {
@@ -454,9 +479,18 @@ export class WindowDirective implements OnDestroy {
       if (this.segment &lt; 0 || this.segment &gt; 1) {
         throw new Error(&#x27;Segment index must be 0 or 1&#x27;);
       }
+
       const mode &#x3D; this.splitLayout.layoutMode;
       const spanning &#x3D; this.screenContext.screenSpanning;
-      this.layoutStyle &#x3D; layoutStyles[mode][spanning][this.segment];
+
+      const direction &#x3D; getComputedStyle(this.element.nativeElement)?.direction;
+      // Swap segments for vertical span and RTL mode
+      const segment &#x3D;
+        spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Vertical &amp;&amp; direction &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27;
+          ? 1 - this.segment
+          : this.segment;
+
+      this.layoutStyle &#x3D; layoutStyles[mode][spanning][segment];
     } else {
       this.layoutStyle &#x3D; {};
     }
