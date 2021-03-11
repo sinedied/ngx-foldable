@@ -1,7 +1,0 @@
-- [ ] RTL support
-- [!] Unit tests
-- [x] Write docs
-- [x] Setup GHA to publish demo
-- [x] Fill package.json infos
-- [x] Setup semantic release
-- [ ] Publish lib NPM
