@@ -1,4 +1,4 @@
-import { Directive, Host, HostBinding, Input, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Host, HostBinding, Input, OnDestroy } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { skip } from 'rxjs/operators';
@@ -76,6 +76,9 @@ const layoutStyles = {
  * This directive can only be used within a {@link SplitLayoutDirective}.
  * If {@link SplitLayoutMode} is set to `absolute`, you can assign multiple container
  * element to the same window segment.
+ * 
+ * Note that if you have set the read direction to Right-To-Left mode (`rtl`) in CSS,
+ * the first segment will be the rightmost one.
  *
  * @example
  * <div fdSplitLayout="grid">
@@ -109,6 +112,7 @@ export class WindowDirective implements OnDestroy {
   }
 
   constructor(
+    private element: ElementRef,
     private screenContext: ScreenContext,
     @Host() private splitLayout: SplitLayoutDirective
   ) {
@@ -132,9 +136,15 @@ export class WindowDirective implements OnDestroy {
       if (this.segment < 0 || this.segment > 1) {
         throw new Error('Segment index must be 0 or 1');
       }
+
       const mode = this.splitLayout.layoutMode;
       const spanning = this.screenContext.screenSpanning;
-      this.layoutStyle = layoutStyles[mode][spanning][this.segment];
+
+      const direction = getComputedStyle(this.element.nativeElement)?.direction;
+      // Swap segments for vertical span and RTL mode 
+      const segment = spanning === ScreenSpanning.Vertical && direction === 'rtl' ? 1 - this.segment : this.segment;
+
+      this.layoutStyle = layoutStyles[mode][spanning][segment];
     } else {
       this.layoutStyle = {};
     }
