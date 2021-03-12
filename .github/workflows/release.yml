@@ -31,9 +31,9 @@ jobs:
         # Need owner/admin account to bypass branch protection
         GIT_COMMITTER_NAME: sinedied
         GIT_COMMITTER_EMAIL: noda@free.fr
-    - run: |
-        git config --global user.name "sinedied"
-        git config --global user.email "noda@free.fr"
-        npm run deploy:docs
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    - uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.GH_TOKEN }}
+        publish_dir: ./dist/docs
+        user_name: sinedied
+        user_email: noda@free.fr
