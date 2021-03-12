@@ -1,8 +1,9 @@
 # 📖 ngx-foldable
 
 [![NPM version](https://img.shields.io/npm/v/ngx-foldable.svg)](https://www.npmjs.com/package/ngx-foldable)
-[![Build Status](https://github.com/sinedied/ngx-foldable/workflows/build/badge.svg)](https://github.com/sinedied/ngx-foldable/actions)
 ![Node version](https://img.shields.io/node/v/ngx-foldable.svg)
+![Angular version](https://img.shields.io/badge/angular-%3E%3D8-dd0031?logo=Angular)
+[![Build Status](https://github.com/sinedied/ngx-foldable/workflows/build/badge.svg)](https://github.com/sinedied/ngx-foldable/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > ngx-foldable is a set of components and services to help you build dual-screen experiences for foldable or dual-screen devices, such as the [Surface Duo](https://docs.microsoft.com/dual-screen/web/?WT.mc_id=javascript-9776-yolasors)
