@@ -29,8 +29,8 @@
     "helper"
   ],
   "peerDependencies": {
-    "@angular/common": "^10.1.2",
-    "@angular/core": "^10.1.2"
+    "@angular/common": ">9",
+    "@angular/core": ">9"
   },
   "dependencies": {
     "tslib": "^2.0.0"
