@@ -12,17 +12,17 @@
   <img src="./demo.png">
 <p>
 
-See the [Live Demo](https://sinedied.github.io/ngx-foldable/demo/)
-
-## Status
-
-This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.
+See the [live demo](https://sinedied.github.io/ngx-foldable/demo/) or read the [full documentation](https://sinedied.github.io/ngx-foldable/).
 
 ## How to test on your browser
 
 The dual-screen emulation feature requires Microsoft Edge or Google Chrome canary versions for now, with experimental flags to enable.
 
-Follow [the instructions here](https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=ngxfoldable-github-yolasors#build-and-test-on-the-desktop) to setup your browser for dual-screen emulation.
+Follow [the instructions here](https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=javascript-9776-yolasors#build-and-test-on-the-desktop) to setup your browser for dual-screen emulation.
+
+## Status
+
+This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.
 
 ## Library usage
 
@@ -96,3 +96,8 @@ export class AppComponent {
 ```
 
 You can read the full documentation [here](https://sinedied.github.io/ngx-foldable/).
+
+## Related work
+
+- [react-foldable](https://github.com/aaronpowell/react-foldable): a similar library built for React
+- [foldable-devices/demos](https://github.com/foldable-devices/demos): web demos for foldables devices.
