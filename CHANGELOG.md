@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/sinedied/ngx-foldable/compare/1.0.2...1.0.3) (2021-03-12)
+
+
+### Bug Fixes
+
+* update min angular version ([d383609](https://github.com/sinedied/ngx-foldable/commit/d3836093a9a5eee19bead640062200bb1994d807))
+
 ## [1.0.2](https://github.com/sinedied/ngx-foldable/compare/1.0.1...1.0.2) (2021-03-12)
 
 
