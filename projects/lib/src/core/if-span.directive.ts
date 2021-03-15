@@ -11,19 +11,26 @@ import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
+/** Spanning mode conditions for use with {@link IfSpanDirective}. */
+export type SpanCondition =
+  | 'fold-vertical'
+  | 'fold-horizontal'
+  | 'none'
+  | 'multi';
 /**
- * Possible spanning mode conditions for use with {@link IfSpanDirective}.
+ * Enumeration of spanning mode conditions values for use with
+ * {@link IfSpanDirective}.
  */
-export enum SpanCondition {
+export const SpanCondition = {
   /** Screen spanning mode is single fold vertical. */
-  Vertical = 'fold-vertical',
+  Vertical: 'fold-vertical' as SpanCondition,
   /** Screen spanning mode is single fold horizontal. */
-  Horizontal = 'fold-horizontal',
+  Horizontal: 'fold-horizontal' as SpanCondition,
   /** No screen spanning (single screen mode). */
-  None = 'none',
+  None: 'none' as SpanCondition,
   /** Any screen spanning mode is active (multi screen mode). */
-  Multi = 'multi',
-}
+  Multi: 'multi' as SpanCondition,
+};
 
 /**
  * Shows template only if the current screen spanning mode matches
@@ -42,8 +49,8 @@ export enum SpanCondition {
   selector: '[fdIfSpan]',
 })
 export class IfSpanDirective<T> implements OnDestroy {
-  private screenContextSubscription: Subscription = null;
-  private condition: SpanCondition;
+  private screenContextSubscription: Subscription | null = null;
+  private condition: SpanCondition | null = null;
   private thenTemplateRef: TemplateRef<T> | null = null;
   private elseTemplateRef: TemplateRef<T> | null = null;
   private thenViewRef: EmbeddedViewRef<T> | null = null;

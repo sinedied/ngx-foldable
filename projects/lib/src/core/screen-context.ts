@@ -13,7 +13,7 @@ declare global {
 /**
  * Holds information about the device screen context.
  */
-export class ScreenContextData {
+export interface ScreenContextData {
   /** The list of available window segments. */
   readonly windowSegments: DOMRect[];
   /** The current screen spanning mode. */
@@ -23,7 +23,8 @@ export class ScreenContextData {
 }
 
 /**
- * This service allows to query and receive updates about current device's screen context.
+ * This service allows to query and receive updates about current device's
+ * screen context.
  *
  * See {@link ScreenContextData}
  */
@@ -112,7 +113,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     return ScreenSpanning.None;
   }
 
-  private getWindowSegments() {
+  private getWindowSegments(): DOMRect[] {
     if (!('getWindowSegments' in window)) {
       return [
         new DOMRect(

@@ -8,12 +8,18 @@ import { ScreenSpanning } from './screen-spanning';
 /**
  * Defines how the split layout container should be rendered when multi screen
  * is detected.
+ * See {@link SplitLayoutDirective}
  */
-export enum SplitLayoutMode {
-  Flex = 'flex',
-  Grid = 'grid',
-  Absolute = 'absolute',
-}
+export type SplitLayoutMode = 'flex' | 'grid' | 'absolute';
+/**
+ * Enumeration of split layout modes values for use with
+ * {@link SplitLayoutDirective}.
+ */
+export const SplitLayoutMode = {
+  Flex: 'flex' as SplitLayoutMode,
+  Grid: 'grid' as SplitLayoutMode,
+  Absolute: 'absolute' as SplitLayoutMode,
+};
 
 /**
  * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ
@@ -57,14 +63,18 @@ const layoutStyles = {
       position: 'relative',
       height: '100%',
     },
+    [ScreenSpanning.Vertical]: {},
+    [ScreenSpanning.Horizontal]: {},
   },
 };
 
 /**
- * Defines a parent layout container for creating a split layout on multi screen devices.
+ * Defines a parent layout container for creating a split layout on multi
+ * screen devices.
  *
  * When used on a single screen device, no layout change (CSS) is added.
- * You can choose between different {@link SplitLayoutMode} to suit your design.
+ * You can choose between different {@link SplitLayoutMode} to suit your
+ * design.
  *
  * This directive should be used along with {@link WindowDirective}.
  *
@@ -79,8 +89,8 @@ const layoutStyles = {
 })
 export class SplitLayoutDirective implements OnDestroy {
   private mode: SplitLayoutMode = SplitLayoutMode.Flex;
-  private layoutStyle: SafeStyle;
-  private screenContextSubscription: Subscription = null;
+  private layoutStyle: SafeStyle = {};
+  private screenContextSubscription: Subscription | null = null;
 
   /**
    * Sets the current split layout mode to use when multi screen is detected.
@@ -125,8 +135,8 @@ export class SplitLayoutDirective implements OnDestroy {
 
   private updateStyle() {
     const isMultiScreen = this.screenContext.isMultiScreen;
-    if (isMultiScreen) {
-      const spanning = this.screenContext.screenSpanning;
+    const spanning = this.screenContext.screenSpanning;
+    if (isMultiScreen && spanning !== ScreenSpanning.None) {
       this.layoutStyle = {
         ...layoutStyles[this.mode].common,
         ...layoutStyles[this.mode][spanning],

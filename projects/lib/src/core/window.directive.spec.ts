@@ -14,8 +14,8 @@ import { SplitLayoutDirective } from './split-layout.directive';
 })
 class TestComponent {}
 
-const getter = (obj, prop): jasmine.Spy =>
-  Object.getOwnPropertyDescriptor(obj, prop).get as jasmine.Spy;
+const getter = (obj: any, prop: string): jasmine.Spy =>
+  Object.getOwnPropertyDescriptor(obj, prop)?.get as jasmine.Spy;
 
 describe('WindowDirective', () => {
   let component: TestComponent;

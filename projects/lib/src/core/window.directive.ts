@@ -81,11 +81,11 @@ const layoutStyles = {
  * window segment value must be either 0 or 1.
  *
  * This directive can only be used within a {@link SplitLayoutDirective}.
- * If {@link SplitLayoutMode} is set to `absolute`, you can assign multiple container
- * element to the same window segment.
+ * If {@link SplitLayoutMode} is set to `absolute`, you can assign multiple
+ * container element to the same window segment.
  *
- * Note that if you have set the read direction to Right-To-Left mode (`rtl`) in CSS,
- * the first segment will be the rightmost one.
+ * Note that if you have set the read direction to Right-To-Left mode (`rtl`)
+ * in CSS, the first segment will be the rightmost one.
  *
  * @example
  * <div fdSplitLayout="grid">
@@ -98,8 +98,8 @@ const layoutStyles = {
 })
 export class WindowDirective implements OnDestroy {
   private segment = -1;
-  private layoutStyle: SafeStyle;
-  private screenContextSubscription: Subscription = null;
+  private layoutStyle: SafeStyle = {};
+  private screenContextSubscription: Subscription | null = null;
 
   /** @ignore */
   @HostBinding('style')
@@ -108,13 +108,15 @@ export class WindowDirective implements OnDestroy {
   }
 
   /**
-   * Sets the target window segment to display this container on when multi screen is detected.
+   * Sets the target window segment to display this container on when multi
+   * screen is detected.
    *
    * @param segment The target window segment, must be 0 or 1.
    */
   @Input()
-  set fdWindow(segment: number) {
-    this.segment = segment;
+  set fdWindow(segment: number | string) {
+    this.segment =
+      typeof segment === 'string' ? parseInt(segment, 10) : segment;
     this.updateStyle();
   }
 
@@ -138,15 +140,14 @@ export class WindowDirective implements OnDestroy {
 
   private updateStyle() {
     const isMultiScreen = this.screenContext.isMultiScreen;
+    const spanning = this.screenContext.screenSpanning;
 
-    if (isMultiScreen) {
+    if (isMultiScreen && spanning !== ScreenSpanning.None) {
       if (this.segment < 0 || this.segment > 1) {
         throw new Error('Segment index must be 0 or 1');
       }
 
       const mode = this.splitLayout.layoutMode;
-      const spanning = this.screenContext.screenSpanning;
-
       const direction = getComputedStyle(this.element.nativeElement)?.direction;
       // Swap segments for vertical span and RTL mode
       const segment =

@@ -16,7 +16,7 @@
       </span>
       <ng-template #multi>
         <span>
-          This app is running on <em>{{ (screenContext$ | async)?.windowSegments.length }}</em> screens.
+          This app is running on <em>{{ (screenContext$ | async)?.windowSegments?.length }}</em> screens.
         </span>
       </ng-template>
     </p>

@@ -13,8 +13,8 @@ class TestComponent {
   condition = SpanCondition.None;
 }
 
-const getter = (obj, prop): jasmine.Spy =>
-  Object.getOwnPropertyDescriptor(obj, prop).get as jasmine.Spy;
+const getter = (obj: any, prop: string): jasmine.Spy =>
+  Object.getOwnPropertyDescriptor(obj, prop)?.get as jasmine.Spy;
 
 describe('IfSpanDirective', () => {
   let component: TestComponent;
