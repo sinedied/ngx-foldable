@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { fromEvent, Observable, ReplaySubject } from 'rxjs';
-import { map, shareReplay, startWith, takeUntil } from 'rxjs/operators';
+import { fromEvent, merge, Observable, ReplaySubject } from 'rxjs';
+import { map, filter, shareReplay, startWith, takeUntil } from 'rxjs/operators';
 import { singleFoldHorizontal, singleFoldVertical } from './media-queries';
 import { ScreenSpanning } from './screen-spanning';
 
@@ -33,17 +33,20 @@ export interface ScreenContextData {
 })
 export class ScreenContext implements ScreenContextData, OnDestroy {
   private currentContext: ScreenContextData;
-  private mediaQuery = matchMedia(
-    `${singleFoldHorizontal}, ${singleFoldVertical}`
-  );
   private screenContext$: Observable<ScreenContextData>;
   private destroyed$: ReplaySubject<void> = new ReplaySubject(1);
 
   constructor() {
     this.currentContext = this.getScreenContext();
-    this.screenContext$ = fromEvent(this.mediaQuery, 'change').pipe(
+    this.screenContext$ = merge(
+      fromEvent(matchMedia(singleFoldHorizontal), 'change'),
+      fromEvent(matchMedia(singleFoldVertical), 'change')
+    ).pipe(
       startWith(1),
-      map((_) => {
+      filter(
+        () => this.getScreenSpanning() !== this.currentContext.screenSpanning
+      ),
+      map(() => {
         this.currentContext = this.getScreenContext();
         return this.currentContext;
       }),

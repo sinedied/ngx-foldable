@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 import {
@@ -115,9 +114,11 @@ export class WindowDirective implements OnDestroy {
    */
   @Input()
   set fdWindow(segment: number | string) {
-    this.segment =
-      typeof segment === 'string' ? parseInt(segment, 10) : segment;
-    this.updateStyle();
+    segment = typeof segment === 'string' ? parseInt(segment, 10) : segment;
+    if (segment !== this.segment) {
+      this.segment = segment;
+      this.updateStyle();
+    }
   }
 
   constructor(
@@ -127,7 +128,6 @@ export class WindowDirective implements OnDestroy {
   ) {
     this.screenContextSubscription = this.screenContext
       .asObservable()
-      .pipe(skip(1))
       .subscribe(() => this.updateStyle());
   }
 
@@ -139,6 +139,10 @@ export class WindowDirective implements OnDestroy {
   }
 
   private updateStyle() {
+    if (this.segment === -1) {
+      return;
+    }
+
     const isMultiScreen = this.screenContext.isMultiScreen;
     const spanning = this.screenContext.screenSpanning;
 

@@ -7,7 +7,6 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
@@ -93,7 +92,6 @@ export class IfSpanDirective<T> implements OnDestroy {
     this.thenTemplateRef = templateRef;
     this.screenContextSubscription = this.screenContext
       .asObservable()
-      .pipe(skip(1))
       .subscribe(() => this.updateView());
   }
 

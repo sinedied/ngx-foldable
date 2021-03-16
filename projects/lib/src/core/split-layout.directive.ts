@@ -1,7 +1,6 @@
 import { Directive, HostBinding, Input, OnDestroy } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { skip } from 'rxjs/operators';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 
@@ -99,8 +98,11 @@ export class SplitLayoutDirective implements OnDestroy {
    */
   @Input()
   set fdSplitLayout(mode: SplitLayoutMode) {
-    this.mode = mode || SplitLayoutMode.Flex;
-    this.updateStyle();
+    mode = mode || SplitLayoutMode.Flex;
+    if (mode !== this.mode) {
+      this.mode = mode;
+      this.updateStyle();
+    }
   }
 
   /** @ignore */
@@ -113,7 +115,6 @@ export class SplitLayoutDirective implements OnDestroy {
     this.updateStyle();
     this.screenContextSubscription = this.screenContext
       .asObservable()
-      .pipe(skip(1))
       .subscribe(() => this.updateStyle());
   }
 
