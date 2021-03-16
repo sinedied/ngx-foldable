@@ -68,10 +68,10 @@ should be placed on multi screen devices.</p>
 Only devices with up to two screen are currently supported, meaning that the
 window segment value must be either 0 or 1.</p>
 <p>This directive can only be used within a <a href="../directives/SplitLayoutDirective.html">SplitLayoutDirective</a>.
-If <a href="../miscellaneous/enumerations.html#SplitLayoutMode">SplitLayoutMode</a> is set to <code>absolute</code>, you can assign multiple container
-element to the same window segment.</p>
-<p>Note that if you have set the read direction to Right-To-Left mode (<code>rtl</code>) in CSS,
-the first segment will be the rightmost one.</p>
+If <a href="../miscellaneous/typealiases.html#SplitLayoutMode">SplitLayoutMode</a> is set to <code>absolute</code>, you can assign multiple
+container element to the same window segment.</p>
+<p>Note that if you have set the read direction to Right-To-Left mode (<code>rtl</code>)
+in CSS, the first segment will be the rightmost one.</p>
 
             </p>
 
@@ -161,7 +161,7 @@ the first segment will be the rightmost one.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">projects/lib/src/core/window.directive.ts:119</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">projects/lib/src/core/window.directive.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -233,20 +233,15 @@ the first segment will be the rightmost one.</p>
                         <b>fdWindow</b>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">projects/lib/src/core/window.directive.ts:117</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Sets the target window segment to display this container on when multi screen is detected.</p>
+                        <div class="io-description"><p>Sets the target window segment to display this container on when multi
+screen is detected.</p>
 </div>
                     </td>
                 </tr>
@@ -274,17 +269,18 @@ the first segment will be the rightmost one.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>fdWindow(segment: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code></span>
+                        <span class="accessor"><b>set</b><code>fdWindow(segment)</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">projects/lib/src/core/window.directive.ts:117</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Sets the target window segment to display this container on when multi screen is detected.</p>
+                                <div class="io-description"><p>Sets the target window segment to display this container on when multi
+screen is detected.</p>
 </div>
 
                                 <div class="io-description">
@@ -293,7 +289,6 @@ the first segment will be the rightmost one.</p>
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
-                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                         <td>Description</td>
                                                 </tr>
@@ -302,9 +297,6 @@ the first segment will be the rightmost one.</p>
                                                     <tr>
                                                             <td>segment</td>
                                                     
-                                                            <td>
-                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                            </td>
                                                     
                                                         <td>
                                                                 No
@@ -417,11 +409,11 @@ const layoutStyles &#x3D; {
  * window segment value must be either 0 or 1.
  *
  * This directive can only be used within a {@link SplitLayoutDirective}.
- * If {@link SplitLayoutMode} is set to &#x60;absolute&#x60;, you can assign multiple container
- * element to the same window segment.
+ * If {@link SplitLayoutMode} is set to &#x60;absolute&#x60;, you can assign multiple
+ * container element to the same window segment.
  *
- * Note that if you have set the read direction to Right-To-Left mode (&#x60;rtl&#x60;) in CSS,
- * the first segment will be the rightmost one.
+ * Note that if you have set the read direction to Right-To-Left mode (&#x60;rtl&#x60;)
+ * in CSS, the first segment will be the rightmost one.
  *
  * @example
  * &lt;div fdSplitLayout&#x3D;&quot;grid&quot;&gt;
@@ -434,8 +426,8 @@ const layoutStyles &#x3D; {
 })
 export class WindowDirective implements OnDestroy {
   private segment &#x3D; -1;
-  private layoutStyle: SafeStyle;
-  private screenContextSubscription: Subscription &#x3D; null;
+  private layoutStyle: SafeStyle &#x3D; {};
+  private screenContextSubscription: Subscription | null &#x3D; null;
 
   /** @ignore */
   @HostBinding(&#x27;style&#x27;)
@@ -444,13 +436,15 @@ export class WindowDirective implements OnDestroy {
   }
 
   /**
-   * Sets the target window segment to display this container on when multi screen is detected.
+   * Sets the target window segment to display this container on when multi
+   * screen is detected.
    *
    * @param segment The target window segment, must be 0 or 1.
    */
   @Input()
-  set fdWindow(segment: number) {
-    this.segment &#x3D; segment;
+  set fdWindow(segment: number | string) {
+    this.segment &#x3D;
+      typeof segment &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? parseInt(segment, 10) : segment;
     this.updateStyle();
   }
 
@@ -474,15 +468,14 @@ export class WindowDirective implements OnDestroy {
 
   private updateStyle() {
     const isMultiScreen &#x3D; this.screenContext.isMultiScreen;
+    const spanning &#x3D; this.screenContext.screenSpanning;
 
-    if (isMultiScreen) {
+    if (isMultiScreen &amp;&amp; spanning !&#x3D;&#x3D; ScreenSpanning.None) {
       if (this.segment &lt; 0 || this.segment &gt; 1) {
         throw new Error(&#x27;Segment index must be 0 or 1&#x27;);
       }
 
       const mode &#x3D; this.splitLayout.layoutMode;
-      const spanning &#x3D; this.screenContext.screenSpanning;
-
       const direction &#x3D; getComputedStyle(this.element.nativeElement)?.direction;
       // Swap segments for vertical span and RTL mode
       const segment &#x3D;

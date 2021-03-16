@@ -62,9 +62,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Defines a parent layout container for creating a split layout on multi screen devices.</p>
+                <p>Defines a parent layout container for creating a split layout on multi
+screen devices.</p>
 <p>When used on a single screen device, no layout change (CSS) is added.
-You can choose between different <a href="../miscellaneous/enumerations.html#SplitLayoutMode">SplitLayoutMode</a> to suit your design.</p>
+You can choose between different <a href="../miscellaneous/typealiases.html#SplitLayoutMode">SplitLayoutMode</a> to suit your
+design.</p>
 <p>This directive should be used along with <a href="../directives/WindowDirective.html">WindowDirective</a>.</p>
 
             </p>
@@ -158,7 +160,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:100</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -208,7 +210,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:101</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -246,7 +248,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:101</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -307,7 +309,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:125</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -318,7 +320,7 @@ You can choose between different <a href="../miscellaneous/enumerations.html#Spl
                                 <div>
                                 </div>
                                 <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="../miscellaneous/enumerations.html#SplitLayoutMode" target="_self" >SplitLayoutMode</a></code>
+                                    <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#SplitLayoutMode" target="_self" >SplitLayoutMode</a></code>
 
                                 </div>
                         </td>
@@ -342,12 +344,18 @@ import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 /**
  * Defines how the split layout container should be rendered when multi screen
  * is detected.
+ * See {@link SplitLayoutDirective}
  */
-export enum SplitLayoutMode {
-  Flex &#x3D; &#x27;flex&#x27;,
-  Grid &#x3D; &#x27;grid&#x27;,
-  Absolute &#x3D; &#x27;absolute&#x27;,
-}
+export type SplitLayoutMode &#x3D; &#x27;flex&#x27; | &#x27;grid&#x27; | &#x27;absolute&#x27;;
+/**
+ * Enumeration of split layout modes values for use with
+ * {@link SplitLayoutDirective}.
+ */
+export const SplitLayoutMode &#x3D; {
+  Flex: &#x27;flex&#x27; as SplitLayoutMode,
+  Grid: &#x27;grid&#x27; as SplitLayoutMode,
+  Absolute: &#x27;absolute&#x27; as SplitLayoutMode,
+};
 
 /**
  * Look &#x27;ma, CSS-in-JS with Angular! ಠ_ಠ
@@ -391,14 +399,18 @@ const layoutStyles &#x3D; {
       position: &#x27;relative&#x27;,
       height: &#x27;100%&#x27;,
     },
+    [ScreenSpanning.Vertical]: {},
+    [ScreenSpanning.Horizontal]: {},
   },
 };
 
 /**
- * Defines a parent layout container for creating a split layout on multi screen devices.
+ * Defines a parent layout container for creating a split layout on multi
+ * screen devices.
  *
  * When used on a single screen device, no layout change (CSS) is added.
- * You can choose between different {@link SplitLayoutMode} to suit your design.
+ * You can choose between different {@link SplitLayoutMode} to suit your
+ * design.
  *
  * This directive should be used along with {@link WindowDirective}.
  *
@@ -413,8 +425,8 @@ const layoutStyles &#x3D; {
 })
 export class SplitLayoutDirective implements OnDestroy {
   private mode: SplitLayoutMode &#x3D; SplitLayoutMode.Flex;
-  private layoutStyle: SafeStyle;
-  private screenContextSubscription: Subscription &#x3D; null;
+  private layoutStyle: SafeStyle &#x3D; {};
+  private screenContextSubscription: Subscription | null &#x3D; null;
 
   /**
    * Sets the current split layout mode to use when multi screen is detected.
@@ -459,8 +471,8 @@ export class SplitLayoutDirective implements OnDestroy {
 
   private updateStyle() {
     const isMultiScreen &#x3D; this.screenContext.isMultiScreen;
-    if (isMultiScreen) {
-      const spanning &#x3D; this.screenContext.screenSpanning;
+    const spanning &#x3D; this.screenContext.screenSpanning;
+    if (isMultiScreen &amp;&amp; spanning !&#x3D;&#x3D; ScreenSpanning.None) {
       this.layoutStyle &#x3D; {
         ...layoutStyles[this.mode].common,
         ...layoutStyles[this.mode][spanning],

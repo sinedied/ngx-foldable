@@ -63,8 +63,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>This service allows to query and receive updates about current device&#39;s screen context.</p>
-<p>See <a href="../classes/ScreenContextData.html">ScreenContextData</a></p>
+                <p>This service allows to query and receive updates about current device&#39;s
+screen context.</p>
+<p>See <a href="../interfaces/ScreenContextData.html">ScreenContextData</a></p>
 
             </p>
 
@@ -132,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/lib/src/core/screen-context.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/lib/src/core/screen-context.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -167,8 +168,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">projects/lib/src/core/screen-context.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">projects/lib/src/core/screen-context.ts:93</a></div>
                 </td>
             </tr>
 
@@ -208,8 +209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">projects/lib/src/core/screen-context.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">projects/lib/src/core/screen-context.ts:86</a></div>
                 </td>
             </tr>
 
@@ -249,7 +250,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/lib/src/core/screen-context.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/lib/src/core/screen-context.ts:65</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -282,7 +283,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">projects/lib/src/core/screen-context.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/lib/src/core/screen-context.ts:72</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -291,7 +292,7 @@
 </div>
 
                                 <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="../miscellaneous/enumerations.html#ScreenSpanning" target="_self" >ScreenSpanning</a></code>
+                                    <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#ScreenSpanning" target="_self" >ScreenSpanning</a></code>
 
                                 </div>
                         </td>
@@ -315,7 +316,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">projects/lib/src/core/screen-context.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/lib/src/core/screen-context.ts:79</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -352,7 +353,7 @@ declare global {
 /**
  * Holds information about the device screen context.
  */
-export class ScreenContextData {
+export interface ScreenContextData {
   /** The list of available window segments. */
   readonly windowSegments: DOMRect[];
   /** The current screen spanning mode. */
@@ -362,7 +363,8 @@ export class ScreenContextData {
 }
 
 /**
- * This service allows to query and receive updates about current device&#x27;s screen context.
+ * This service allows to query and receive updates about current device&#x27;s
+ * screen context.
  *
  * See {@link ScreenContextData}
  */
@@ -451,7 +453,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
     return ScreenSpanning.None;
   }
 
-  private getWindowSegments() {
+  private getWindowSegments(): DOMRect[] {
     if (!(&#x27;getWindowSegments&#x27; in window)) {
       return [
         new DOMRect(
