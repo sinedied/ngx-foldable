@@ -1,3 +1,11 @@
+## [1.0.5](https://github.com/sinedied/ngx-foldable/compare/1.0.4...1.0.5) (2021-03-16)
+
+
+### Bug Fixes
+
+* refresh on orientation changes and extra repaints ([0683aa3](https://github.com/sinedied/ngx-foldable/commit/0683aa348d992aa23ed2778d9b65f4bf5b95a44c))
+* screen context initialization ([14da071](https://github.com/sinedied/ngx-foldable/commit/14da07174867fcda1b4c3919907250b9ca89f8ca))
+
 ## [1.0.4](https://github.com/sinedied/ngx-foldable/compare/1.0.3...1.0.4) (2021-03-16)
 
 
