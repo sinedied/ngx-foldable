@@ -22,8 +22,7 @@
     ],
     "paths": {
       "ngx-foldable": [
-        "dist/ngx-foldable/ngx-foldable",
-        "dist/ngx-foldable"
+        "projects/lib/src/core/",
       ]
     }
   },
