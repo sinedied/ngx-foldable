@@ -182,7 +182,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -256,7 +256,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:64</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -277,7 +277,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:81</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -298,7 +298,7 @@ a boolean expression.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:73</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -340,8 +340,8 @@ a boolean expression.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">projects/lib/src/core/if-span.directive.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">projects/lib/src/core/if-span.directive.ts:99</a></div>
                 </td>
             </tr>
 
@@ -382,7 +382,7 @@ a boolean expression.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:64</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -444,7 +444,7 @@ a boolean expression.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:73</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -501,7 +501,7 @@ a boolean expression.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:81</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -556,7 +556,6 @@ a boolean expression.</p>
   ViewContainerRef,
 } from &#x27;@angular/core&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
-import { skip } from &#x27;rxjs/operators&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 
@@ -642,7 +641,6 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
     this.thenTemplateRef &#x3D; templateRef;
     this.screenContextSubscription &#x3D; this.screenContext
       .asObservable()
-      .pipe(skip(1))
       .subscribe(() &#x3D;&gt; this.updateView());
   }
 

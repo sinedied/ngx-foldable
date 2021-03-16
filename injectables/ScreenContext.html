@@ -133,7 +133,7 @@ screen context.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/lib/src/core/screen-context.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/lib/src/core/screen-context.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -168,8 +168,8 @@ screen context.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">projects/lib/src/core/screen-context.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">projects/lib/src/core/screen-context.ts:96</a></div>
                 </td>
             </tr>
 
@@ -209,8 +209,8 @@ screen context.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">projects/lib/src/core/screen-context.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">projects/lib/src/core/screen-context.ts:89</a></div>
                 </td>
             </tr>
 
@@ -250,7 +250,7 @@ screen context.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/lib/src/core/screen-context.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">projects/lib/src/core/screen-context.ts:68</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -283,7 +283,7 @@ screen context.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/lib/src/core/screen-context.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">projects/lib/src/core/screen-context.ts:75</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -316,7 +316,7 @@ screen context.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/lib/src/core/screen-context.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">projects/lib/src/core/screen-context.ts:82</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -339,8 +339,8 @@ screen context.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &#x27;@angular/core&#x27;;
-import { fromEvent, Observable, ReplaySubject } from &#x27;rxjs&#x27;;
-import { map, shareReplay, startWith, takeUntil } from &#x27;rxjs/operators&#x27;;
+import { fromEvent, merge, Observable, ReplaySubject } from &#x27;rxjs&#x27;;
+import { map, filter, shareReplay, startWith, takeUntil } from &#x27;rxjs/operators&#x27;;
 import { singleFoldHorizontal, singleFoldVertical } from &#x27;./media-queries&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 
@@ -373,17 +373,20 @@ export interface ScreenContextData {
 })
 export class ScreenContext implements ScreenContextData, OnDestroy {
   private currentContext: ScreenContextData;
-  private mediaQuery &#x3D; matchMedia(
-    &#x60;${singleFoldHorizontal}, ${singleFoldVertical}&#x60;
-  );
   private screenContext$: Observable&lt;ScreenContextData&gt;;
   private destroyed$: ReplaySubject&lt;void&gt; &#x3D; new ReplaySubject(1);
 
   constructor() {
     this.currentContext &#x3D; this.getScreenContext();
-    this.screenContext$ &#x3D; fromEvent(this.mediaQuery, &#x27;change&#x27;).pipe(
+    this.screenContext$ &#x3D; merge(
+      fromEvent(matchMedia(singleFoldHorizontal), &#x27;change&#x27;),
+      fromEvent(matchMedia(singleFoldVertical), &#x27;change&#x27;)
+    ).pipe(
+      filter(
+        () &#x3D;&gt; this.getScreenSpanning() !&#x3D;&#x3D; this.currentContext.screenSpanning
+      ),
       startWith(1),
-      map((_) &#x3D;&gt; {
+      map(() &#x3D;&gt; {
         this.currentContext &#x3D; this.getScreenContext();
         return this.currentContext;
       }),

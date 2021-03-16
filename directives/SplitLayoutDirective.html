@@ -160,7 +160,7 @@ design.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -210,7 +210,7 @@ design.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:100</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -248,7 +248,7 @@ design.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:100</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -309,7 +309,7 @@ design.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:126</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -337,7 +337,6 @@ design.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostBinding, Input, OnDestroy } from &#x27;@angular/core&#x27;;
 import { SafeStyle } from &#x27;@angular/platform-browser&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
-import { skip } from &#x27;rxjs/operators&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 
@@ -435,8 +434,11 @@ export class SplitLayoutDirective implements OnDestroy {
    */
   @Input()
   set fdSplitLayout(mode: SplitLayoutMode) {
-    this.mode &#x3D; mode || SplitLayoutMode.Flex;
-    this.updateStyle();
+    mode &#x3D; mode || SplitLayoutMode.Flex;
+    if (mode !&#x3D;&#x3D; this.mode) {
+      this.mode &#x3D; mode;
+      this.updateStyle();
+    }
   }
 
   /** @ignore */
@@ -449,7 +451,6 @@ export class SplitLayoutDirective implements OnDestroy {
     this.updateStyle();
     this.screenContextSubscription &#x3D; this.screenContext
       .asObservable()
-      .pipe(skip(1))
       .subscribe(() &#x3D;&gt; this.updateStyle());
   }
 

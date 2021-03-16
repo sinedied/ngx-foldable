@@ -161,7 +161,7 @@ in CSS, the first segment will be the rightmost one.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">projects/lib/src/core/window.directive.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">projects/lib/src/core/window.directive.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -235,7 +235,7 @@ in CSS, the first segment will be the rightmost one.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">projects/lib/src/core/window.directive.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -274,7 +274,7 @@ screen is detected.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">projects/lib/src/core/window.directive.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -336,7 +336,6 @@ screen is detected.</p>
 } from &#x27;@angular/core&#x27;;
 import { SafeStyle } from &#x27;@angular/platform-browser&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
-import { skip } from &#x27;rxjs/operators&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 import {
@@ -443,9 +442,11 @@ export class WindowDirective implements OnDestroy {
    */
   @Input()
   set fdWindow(segment: number | string) {
-    this.segment &#x3D;
-      typeof segment &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? parseInt(segment, 10) : segment;
-    this.updateStyle();
+    segment &#x3D; typeof segment &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? parseInt(segment, 10) : segment;
+    if (segment !&#x3D;&#x3D; this.segment) {
+      this.segment &#x3D; segment;
+      this.updateStyle();
+    }
   }
 
   constructor(
@@ -455,7 +456,6 @@ export class WindowDirective implements OnDestroy {
   ) {
     this.screenContextSubscription &#x3D; this.screenContext
       .asObservable()
-      .pipe(skip(1))
       .subscribe(() &#x3D;&gt; this.updateStyle());
   }
 
@@ -467,6 +467,10 @@ export class WindowDirective implements OnDestroy {
   }
 
   private updateStyle() {
+    if (this.segment &#x3D;&#x3D;&#x3D; -1) {
+      return;
+    }
+
     const isMultiScreen &#x3D; this.screenContext.isMultiScreen;
     const spanning &#x3D; this.screenContext.screenSpanning;
 

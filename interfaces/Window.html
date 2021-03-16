@@ -127,8 +127,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &#x27;@angular/core&#x27;;
-import { fromEvent, Observable, ReplaySubject } from &#x27;rxjs&#x27;;
-import { map, shareReplay, startWith, takeUntil } from &#x27;rxjs/operators&#x27;;
+import { fromEvent, merge, Observable, ReplaySubject } from &#x27;rxjs&#x27;;
+import { map, filter, shareReplay, startWith, takeUntil } from &#x27;rxjs/operators&#x27;;
 import { singleFoldHorizontal, singleFoldVertical } from &#x27;./media-queries&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 
@@ -161,17 +161,20 @@ export interface ScreenContextData {
 })
 export class ScreenContext implements ScreenContextData, OnDestroy {
   private currentContext: ScreenContextData;
-  private mediaQuery &#x3D; matchMedia(
-    &#x60;${singleFoldHorizontal}, ${singleFoldVertical}&#x60;
-  );
   private screenContext$: Observable&lt;ScreenContextData&gt;;
   private destroyed$: ReplaySubject&lt;void&gt; &#x3D; new ReplaySubject(1);
 
   constructor() {
     this.currentContext &#x3D; this.getScreenContext();
-    this.screenContext$ &#x3D; fromEvent(this.mediaQuery, &#x27;change&#x27;).pipe(
+    this.screenContext$ &#x3D; merge(
+      fromEvent(matchMedia(singleFoldHorizontal), &#x27;change&#x27;),
+      fromEvent(matchMedia(singleFoldVertical), &#x27;change&#x27;)
+    ).pipe(
+      filter(
+        () &#x3D;&gt; this.getScreenSpanning() !&#x3D;&#x3D; this.currentContext.screenSpanning
+      ),
       startWith(1),
-      map((_) &#x3D;&gt; {
+      map(() &#x3D;&gt; {
         this.currentContext &#x3D; this.getScreenContext();
         return this.currentContext;
       }),
