@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/sinedied/ngx-foldable/compare/1.0.3...1.0.4) (2021-03-16)
+
+
+### Bug Fixes
+
+* issues when using typescript strict mode ([b84fc9f](https://github.com/sinedied/ngx-foldable/commit/b84fc9f86a0c02bd71fa072f8be5ca1e63db90fb))
+
 ## [1.0.3](https://github.com/sinedied/ngx-foldable/compare/1.0.2...1.0.3) (2021-03-12)
 
 
