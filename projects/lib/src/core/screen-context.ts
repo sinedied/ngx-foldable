@@ -42,10 +42,10 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
       fromEvent(matchMedia(singleFoldHorizontal), 'change'),
       fromEvent(matchMedia(singleFoldVertical), 'change')
     ).pipe(
-      startWith(1),
       filter(
         () => this.getScreenSpanning() !== this.currentContext.screenSpanning
       ),
+      startWith(1),
       map(() => {
         this.currentContext = this.getScreenContext();
         return this.currentContext;
