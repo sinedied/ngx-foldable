@@ -16,13 +16,9 @@ See the [live demo](https://sinedied.github.io/ngx-foldable/demo/) or read the [
 
 ## How to test on your browser
 
-The dual-screen emulation feature requires Microsoft Edge or Google Chrome canary versions for now, with experimental flags to enable.
+The dual-screen emulation feature requires latest Microsoft Edge or Google Chrome versions, with experimental flags to enable.
 
 Follow [the instructions here](https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=javascript-9776-yolasors#build-and-test-on-the-desktop) to setup your browser for dual-screen emulation.
-
-## Status
-
-This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.
 
 ## Library usage
 
@@ -97,7 +93,21 @@ export class AppComponent {
 
 You can read the full documentation [here](https://sinedied.github.io/ngx-foldable/).
 
+## Contributing
+
+You're welcome to contribute to this project!
+Make sure you have read the [code of conduct](./CODE_OF_CONDUCT) before posting an issue or a pull request.
+
+Follow these steps to run this project locally:
+
+1. Clone the repository on your machine
+2. Run `npm install` to install packages
+3. Run `npm start` to start the dev server with the demo app
+
+You can then start making modifications on the library or demo app code.
+
 ## Related work
 
+- [Surface Duo Photo Gallery](https://github.com/sinedied/surface-duo-photo-gallery): Angular re-implementation of the [Surface Duo Photo Gallery sample](https://github.com/foldable-devices/demos/tree/master/photo-gallery) using this library
 - [react-foldable](https://github.com/aaronpowell/react-foldable): a similar library built for React
 - [foldable-devices/demos](https://github.com/foldable-devices/demos): web demos for foldables devices.
