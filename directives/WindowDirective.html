@@ -72,6 +72,8 @@ If <a href="../miscellaneous/typealiases.html#SplitLayoutMode">SplitLayoutMode</
 container element to the same window segment.</p>
 <p>Note that if you have set the read direction to Right-To-Left mode (<code>rtl</code>)
 in CSS, the first segment will be the rightmost one.</p>
+<p>If the <a href="../miscellaneous/typealiases.html#WindowOrder">WindowOrder</a> option is set to <a href="WindowOrder.Reverse">WindowOrder.Reverse</a>,
+the window segments order will be reversed in horizontal spanning mode.</p>
 
             </p>
 
@@ -156,12 +158,12 @@ in CSS, the first segment will be the rightmost one.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(element: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>, splitLayout: SplitLayoutDirective)</code>
+<code>constructor(screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>, splitLayout: SplitLayoutDirective)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">projects/lib/src/core/window.directive.ts:122</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">projects/lib/src/core/window.directive.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -178,18 +180,6 @@ in CSS, the first segment will be the rightmost one.</p>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>element</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                                 <tr>
                                                         <td>screenContext</td>
                                                   
@@ -235,7 +225,7 @@ in CSS, the first segment will be the rightmost one.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">projects/lib/src/core/window.directive.ts:114</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -274,7 +264,7 @@ screen is detected.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">projects/lib/src/core/window.directive.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">projects/lib/src/core/window.directive.ts:114</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -326,21 +316,16 @@ screen is detected.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Directive,
-  ElementRef,
-  Host,
-  HostBinding,
-  Input,
-  OnDestroy,
-} from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Host, HostBinding, Input, OnDestroy } from &#x27;@angular/core&#x27;;
 import { SafeStyle } from &#x27;@angular/platform-browser&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
 import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 import {
+  ReadingDirection,
   SplitLayoutDirective,
   SplitLayoutMode,
+  WindowOrder,
 } from &#x27;./split-layout.directive&#x27;;
 
 /**
@@ -414,6 +399,9 @@ const layoutStyles &#x3D; {
  * Note that if you have set the read direction to Right-To-Left mode (&#x60;rtl&#x60;)
  * in CSS, the first segment will be the rightmost one.
  *
+ * If the {@link WindowOrder} option is set to {@link WindowOrder.Reverse},
+ * the window segments order will be reversed in horizontal spanning mode.
+ *
  * @example
  * &lt;div fdSplitLayout&#x3D;&quot;grid&quot;&gt;
  *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
@@ -450,7 +438,6 @@ export class WindowDirective implements OnDestroy {
   }
 
   constructor(
-    private element: ElementRef,
     private screenContext: ScreenContext,
     @Host() private splitLayout: SplitLayoutDirective
   ) {
@@ -480,13 +467,19 @@ export class WindowDirective implements OnDestroy {
       }
 
       const mode &#x3D; this.splitLayout.layoutMode;
-      const direction &#x3D; getComputedStyle(this.element.nativeElement)?.direction;
-      // Swap segments for vertical span and RTL mode
-      const segment &#x3D;
-        spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Vertical &amp;&amp; direction &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27;
-          ? 1 - this.segment
-          : this.segment;
+      const order &#x3D; this.splitLayout.windowOrder;
+      const direction &#x3D; this.splitLayout.readingDirection;
+      // Swap segments for vertical span and RTL mode or
+      // horizontal span and reverse window order
+      const swap &#x3D;
+        (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Vertical &amp;&amp;
+          mode !&#x3D;&#x3D; SplitLayoutMode.Grid &amp;&amp;
+          direction &#x3D;&#x3D;&#x3D; ReadingDirection.RightToLeft) ||
+        (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Horizontal &amp;&amp;
+          mode &#x3D;&#x3D;&#x3D; SplitLayoutMode.Absolute &amp;&amp;
+          order &#x3D;&#x3D;&#x3D; WindowOrder.Reverse);
 
+      const segment &#x3D; swap ? 1 - this.segment : this.segment;
       this.layoutStyle &#x3D; layoutStyles[mode][spanning][segment];
     } else {
       this.layoutStyle &#x3D; {};

@@ -86,6 +86,24 @@ design.</p>
                             <pre class="line-numbers"><code class="language-html">&lt;div fdSplitLayout=&quot;grid&quot;&gt;
   &lt;section fdWindow=&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
   &lt;section fdWindow=&quot;1&quot;&gt;Will be displayed on second screen (if available)&lt;/section&gt;
+&lt;/div&gt;
+
+In addition, you can also choose keep the same window segments order or
+reverse it when the spanning mode change from vertical to horizontal using
+a second optional parameter on the directive:
+
+* </code></pre>
+                        </div>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">&lt;div fdSplitLayout=&quot;flex reverse&quot;&gt;
+&lt;section fdWindow=&quot;0&quot;&gt;
+   Will be displayed on first screen in vertical spanning mode
+   and on the second screen in horizontal spanning mode.
+&lt;/section&gt;
+&lt;section fdWindow=&quot;1&quot;&gt;
+   Will be displayed on second screen in vertical spanning mode
+   and on the first screen in horizontal spanning mode.
+&lt;/section&gt;
 &lt;/div&gt;</code></pre>
                         </div>
             </div>
@@ -142,6 +160,12 @@ design.</p>
                                 <li>
                                     <a href="#layoutMode">layoutMode</a>
                                 </li>
+                                <li>
+                                    <a href="#windowOrder">windowOrder</a>
+                                </li>
+                                <li>
+                                    <a href="#readingDirection">readingDirection</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -155,12 +179,12 @@ design.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>)</code>
+<code>constructor(element: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:112</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:205</a></div>
                             </td>
                         </tr>
 
@@ -177,6 +201,18 @@ design.</p>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>element</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>screenContext</td>
                                                   
@@ -210,12 +246,13 @@ design.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:196</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Sets the current split layout mode to use when multi screen is detected.</p>
+                        <div class="io-description"><p>Sets the current split layout options to use when multi screen is
+detected.</p>
 </div>
                     </td>
                 </tr>
@@ -243,17 +280,18 @@ design.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>fdSplitLayout(mode)</code></span>
+                        <span class="accessor"><b>set</b><code>fdSplitLayout(options)</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:196</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Sets the current split layout mode to use when multi screen is detected.</p>
+                                <div class="io-description"><p>Sets the current split layout options to use when multi screen is
+detected.</p>
 </div>
 
                                 <div class="io-description">
@@ -268,7 +306,7 @@ design.</p>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                            <td>mode</td>
+                                                            <td>options</td>
                                                     
                                                     
                                                         <td>
@@ -276,7 +314,11 @@ design.</p>
                                                         </td>
                                                         
                                                             <td>
-                                                                    <code><p>The split layout mode to use.</p>
+                                                                    <code><p>The split layout options to use.
+Format: <code>[mode] [order]</code></p>
+<ul>
+<li>The {</li>
+</ul>
 </code>
                                                             </td>
                                                     </tr>
@@ -309,7 +351,7 @@ design.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:222</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -328,13 +370,89 @@ design.</p>
 
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="windowOrder"></a>
+                        <span class="name"><b>windowOrder</b><a href="#windowOrder"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>windowOrder()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:231</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The window segments order to use when in horizontal spanning mode.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="../interfaces/Window.html" target="_self" >WindowOrder</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="readingDirection"></a>
+                        <span class="name"><b>readingDirection</b><a href="#readingDirection"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>readingDirection()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">projects/lib/src/core/split-layout.directive.ts:240</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The text reading direction for the host element.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#ReadingDirection" target="_self" >ReadingDirection</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostBinding, Input, OnDestroy } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+} from &#x27;@angular/core&#x27;;
 import { SafeStyle } from &#x27;@angular/platform-browser&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { ScreenContext } from &#x27;./screen-context&#x27;;
@@ -354,6 +472,64 @@ export const SplitLayoutMode &#x3D; {
   Flex: &#x27;flex&#x27; as SplitLayoutMode,
   Grid: &#x27;grid&#x27; as SplitLayoutMode,
   Absolute: &#x27;absolute&#x27; as SplitLayoutMode,
+
+  /**
+   * Checks if the given string value is a valid {@link SplitLayoutMode}.
+   *
+   * @param value The value to check.
+   * @return true if the value is a valid {@link SplitLayoutMode}.
+   */
+  isValid: (value: string): boolean &#x3D;&gt; {
+    switch (value) {
+      case SplitLayoutMode.Flex:
+      case SplitLayoutMode.Grid:
+      case SplitLayoutMode.Absolute:
+        return true;
+    }
+    return false;
+  },
+};
+
+/**
+ * Defines how the split layout container should order the window segments
+ * when in horizontal spanning mode vs vertical spanning mode.
+ * See {@link SplitLayoutDirective}
+ */
+export type WindowOrder &#x3D; &#x27;normal&#x27; | &#x27;reverse&#x27;;
+/**
+ * Enumeration of window order values for use with
+ * {@link SplitLayoutDirective}.
+ */
+export const WindowOrder &#x3D; {
+  Normal: &#x27;normal&#x27; as WindowOrder,
+  Reverse: &#x27;reverse&#x27; as WindowOrder,
+
+  /**
+   * Checks if the given string value is a valid {@link WindowOrder}.
+   *
+   * @param value The value to check.
+   * @return true if the value is a valid {@link WindowOrder}.
+   */
+  isValid: (value: string): boolean &#x3D;&gt; {
+    switch (value) {
+      case WindowOrder.Normal:
+      case WindowOrder.Reverse:
+        return true;
+    }
+    return false;
+  },
+};
+
+/**
+ * Defines the text reading direction for the host element.
+ */
+export type ReadingDirection &#x3D; &#x27;ltr&#x27; | &#x27;rtl&#x27;;
+/**
+ * Enumeration of the text reading direction values.
+ */
+export const ReadingDirection &#x3D; {
+  LeftToRight: &#x27;ltr&#x27; as ReadingDirection,
+  RightToLeft: &#x27;rtl&#x27; as ReadingDirection,
 };
 
 /**
@@ -374,6 +550,9 @@ const layoutStyles &#x3D; {
     [ScreenSpanning.Horizontal]: {
       flexDirection: &#x27;column&#x27;,
     },
+    [WindowOrder.Reverse]: {
+      flexDirection: &#x27;column-reverse&#x27;,
+    },
   },
   [SplitLayoutMode.Grid]: {
     common: {
@@ -392,6 +571,12 @@ const layoutStyles &#x3D; {
       gridAutoFlow: &#x27;row&#x27;,
       rowGap: &#x27;env(fold-height)&#x27;,
     },
+    [WindowOrder.Reverse]: {
+      gridTemplateRows: &#x27;1fr 1fr&#x27;,
+      gridTemplateAreas: &#x27;&quot;segment1&quot; &quot;segment0&quot;&#x27;,
+      gridAutoFlow: &#x27;row&#x27;,
+      rowGap: &#x27;env(fold-height)&#x27;,
+    },
   },
   [SplitLayoutMode.Absolute]: {
     common: {
@@ -400,6 +585,7 @@ const layoutStyles &#x3D; {
     },
     [ScreenSpanning.Vertical]: {},
     [ScreenSpanning.Horizontal]: {},
+    [WindowOrder.Reverse]: {},
   },
 };
 
@@ -418,27 +604,46 @@ const layoutStyles &#x3D; {
  *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
  *              &lt;section fdWindow&#x3D;&quot;1&quot;&gt;Will be displayed on second screen (if available)&lt;/section&gt;
  * &lt;/div&gt;
+ *
+ * In addition, you can also choose keep the same window segments order or
+ * reverse it when the spanning mode change from vertical to horizontal using
+ * a second optional parameter on the directive:
+ *
+ *  * @example
+ * &lt;div fdSplitLayout&#x3D;&quot;flex reverse&quot;&gt;
+ *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;
+ *                Will be displayed on first screen in vertical spanning mode
+ *                and on the second screen in horizontal spanning mode.
+ *              &lt;/section&gt;
+ *              &lt;section fdWindow&#x3D;&quot;1&quot;&gt;
+ *                Will be displayed on second screen in vertical spanning mode
+ *                and on the first screen in horizontal spanning mode.
+ *              &lt;/section&gt;
+ * &lt;/div&gt;
  */
 @Directive({
   selector: &#x27;[fdSplitLayout]&#x27;,
 })
 export class SplitLayoutDirective implements OnDestroy {
   private mode: SplitLayoutMode &#x3D; SplitLayoutMode.Flex;
+  private order: WindowOrder &#x3D; WindowOrder.Normal;
   private layoutStyle: SafeStyle &#x3D; {};
   private screenContextSubscription: Subscription | null &#x3D; null;
+  private direction: ReadingDirection &#x3D; &#x27;ltr&#x27;;
 
   /**
-   * Sets the current split layout mode to use when multi screen is detected.
+   * Sets the current split layout options to use when multi screen is
+   * detected.
    *
-   * @param mode The split layout mode to use.
+   * @param options The split layout options to use.
+   * Format: &#x60;[mode] [order]&#x60;
+   * - The {@link SplitLayoutMode} to use (default is {@link SplitLayoutMode.Flex}).
+   * - The {@link WindowOrder} to use (default is {@link WindowOrder.Normal}).
    */
   @Input()
-  set fdSplitLayout(mode: SplitLayoutMode) {
-    mode &#x3D; mode || SplitLayoutMode.Flex;
-    if (mode !&#x3D;&#x3D; this.mode) {
-      this.mode &#x3D; mode;
-      this.updateStyle();
-    }
+  set fdSplitLayout(options: string | undefined) {
+    this.parseOptions(options || &#x27;&#x27;);
+    this.updateStyle();
   }
 
   /** @ignore */
@@ -447,7 +652,10 @@ export class SplitLayoutDirective implements OnDestroy {
     return this.layoutStyle;
   }
 
-  constructor(private screenContext: ScreenContext) {
+  constructor(
+    private element: ElementRef,
+    private screenContext: ScreenContext
+  ) {
     this.updateStyle();
     this.screenContextSubscription &#x3D; this.screenContext
       .asObservable()
@@ -463,6 +671,24 @@ export class SplitLayoutDirective implements OnDestroy {
     return this.mode;
   }
 
+  /**
+   * The window segments order to use when in horizontal spanning mode.
+   *
+   * @return The current window order.
+   */
+  get windowOrder(): WindowOrder {
+    return this.order;
+  }
+
+  /**
+   * The text reading direction for the host element.
+   *
+   * @return The text reading direction.
+   */
+  get readingDirection(): ReadingDirection {
+    return this.direction;
+  }
+
   /** @ignore */
   ngOnDestroy() {
     if (this.screenContextSubscription !&#x3D;&#x3D; null) {
@@ -470,13 +696,29 @@ export class SplitLayoutDirective implements OnDestroy {
     }
   }
 
+  private parseOptions(options: string) {
+    let [mode, order] &#x3D; options.trim().split(&#x27; &#x27;);
+    mode &#x3D; SplitLayoutMode.isValid(mode) ? mode : SplitLayoutMode.Flex;
+    order &#x3D; WindowOrder.isValid(order) ? order : WindowOrder.Normal;
+    this.mode &#x3D; mode as SplitLayoutMode;
+    this.order &#x3D; order as WindowOrder;
+  }
+
   private updateStyle() {
     const isMultiScreen &#x3D; this.screenContext.isMultiScreen;
     const spanning &#x3D; this.screenContext.screenSpanning;
+    const reverse &#x3D;
+      spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Horizontal &amp;&amp;
+      this.order &#x3D;&#x3D;&#x3D; WindowOrder.Reverse;
+
+    this.direction &#x3D;
+      (getComputedStyle(this.element.nativeElement)
+        ?.direction as ReadingDirection) || ReadingDirection.LeftToRight;
+
     if (isMultiScreen &amp;&amp; spanning !&#x3D;&#x3D; ScreenSpanning.None) {
       this.layoutStyle &#x3D; {
         ...layoutStyles[this.mode].common,
-        ...layoutStyles[this.mode][spanning],
+        ...layoutStyles[this.mode][reverse ? WindowOrder.Reverse : spanning],
       };
     } else {
       this.layoutStyle &#x3D; {};

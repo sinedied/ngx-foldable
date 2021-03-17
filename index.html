@@ -45,10 +45,8 @@
 
 <p>See the <a href="https://sinedied.github.io/ngx-foldable/demo/">live demo</a> or read the <a href="https://sinedied.github.io/ngx-foldable/">full documentation</a>.</p>
 <h2 id="how-to-test-on-your-browser">How to test on your browser</h2>
-<p>The dual-screen emulation feature requires Microsoft Edge or Google Chrome canary versions for now, with experimental flags to enable.</p>
+<p>The dual-screen emulation feature requires latest Microsoft Edge or Google Chrome versions, with experimental flags to enable.</p>
 <p>Follow <a href="https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=javascript-9776-yolasors#build-and-test-on-the-desktop">the instructions here</a> to setup your browser for dual-screen emulation.</p>
-<h2 id="status">Status</h2>
-<p>This is currently an experimental project aiming to explore how existing web apps could be adapted to build responsive UIs on dual-screen devices, with as little changes as possible on the code.</p>
 <h2 id="library-usage">Library usage</h2>
 <p>Check out the <a href="./projects/demo/src/app">demo</a> source code to see an example usage of the library.</p>
 <p>Add the library to your Angular project:</p>
@@ -99,8 +97,19 @@ export class AppComponent {
       }
   }
 }</code></pre></div><p>You can read the full documentation <a href="https://sinedied.github.io/ngx-foldable/">here</a>.</p>
+<h2 id="contributing">Contributing</h2>
+<p>You&#39;re welcome to contribute to this project!
+Make sure you have read the <a href="./CODE_OF_CONDUCT">code of conduct</a> before posting an issue or a pull request.</p>
+<p>Follow these steps to run this project locally:</p>
+<ol>
+<li>Clone the repository on your machine</li>
+<li>Run <code>npm install</code> to install packages</li>
+<li>Run <code>npm start</code> to start the dev server with the demo app</li>
+</ol>
+<p>You can then start making modifications on the library or demo app code.</p>
 <h2 id="related-work">Related work</h2>
 <ul>
+<li><a href="https://github.com/sinedied/surface-duo-photo-gallery">Surface Duo Photo Gallery</a>: Angular re-implementation of the <a href="https://github.com/foldable-devices/demos/tree/master/photo-gallery">Surface Duo Photo Gallery sample</a> using this library</li>
 <li><a href="https://github.com/aaronpowell/react-foldable">react-foldable</a>: a similar library built for React</li>
 <li><a href="https://github.com/foldable-devices/demos">foldable-devices/demos</a>: web demos for foldables devices.</li>
 </ul>
