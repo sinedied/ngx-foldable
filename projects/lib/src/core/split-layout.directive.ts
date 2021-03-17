@@ -21,6 +21,21 @@ export const SplitLayoutMode = {
 };
 
 /**
+ * Defines how the split layout container should order the window segments
+ * when in horizontal spanning mode vs vertical spanning mode.
+ * See {@link SplitLayoutDirective}
+ */
+export type WindowOrder = 'normal' | 'reverse';
+/**
+ * Enumeration of window order values for use with
+ * {@link SplitLayoutDirective}.
+ */
+export const WindowOrder = {
+  Normal: 'normal' as WindowOrder,
+  Reverse: 'reverse' as WindowOrder,
+};
+
+/**
  * Look 'ma, CSS-in-JS with Angular! ಠ_ಠ
  *
  * @ignore
@@ -37,6 +52,9 @@ const layoutStyles = {
     },
     [ScreenSpanning.Horizontal]: {
       flexDirection: 'column',
+    },
+    [WindowOrder.Reverse]: {
+      flexDirection: 'column-reverse',
     },
   },
   [SplitLayoutMode.Grid]: {
@@ -56,6 +74,12 @@ const layoutStyles = {
       gridAutoFlow: 'row',
       rowGap: 'env(fold-height)',
     },
+    [WindowOrder.Reverse]: {
+      gridTemplateRows: '1fr 1fr',
+      gridTemplateAreas: '"segment1" "segment0"',
+      gridAutoFlow: 'row',
+      rowGap: 'env(fold-height)',
+    },
   },
   [SplitLayoutMode.Absolute]: {
     common: {
@@ -64,6 +88,7 @@ const layoutStyles = {
     },
     [ScreenSpanning.Vertical]: {},
     [ScreenSpanning.Horizontal]: {},
+    [WindowOrder.Reverse]: {},
   },
 };
 
@@ -82,27 +107,45 @@ const layoutStyles = {
  *              <section fdWindow="0">Will be displayed on first screen</section>
  *              <section fdWindow="1">Will be displayed on second screen (if available)</section>
  * </div>
+ *
+ * In addition, you can also choose keep the same window segments order or
+ * reverse it when the spanning mode change from vertical to horizontal using
+ * a second optional parameter on the directive:
+ *
+ *  * @example
+ * <div fdSplitLayout="flex reverse">
+ *              <section fdWindow="0">
+ *                Will be displayed on first screen in vertical spanning mode
+ *                and on the second screen in horizontal spanning mode.
+ *              </section>
+ *              <section fdWindow="1">
+ *                Will be displayed on second screen in vertical spanning mode
+ *                and on the first screen in horizontal spanning mode.
+ *              </section>
+ * </div>
  */
 @Directive({
   selector: '[fdSplitLayout]',
 })
 export class SplitLayoutDirective implements OnDestroy {
   private mode: SplitLayoutMode = SplitLayoutMode.Flex;
+  private order: WindowOrder = WindowOrder.Normal;
   private layoutStyle: SafeStyle = {};
   private screenContextSubscription: Subscription | null = null;
 
   /**
-   * Sets the current split layout mode to use when multi screen is detected.
+   * Sets the current split layout options to use when multi screen is
+   * detected.
    *
-   * @param mode The split layout mode to use.
+   * @param options The split layout options to use.
+   * Format: `[mode] [order]`
+   * - The {@link SplitLayoutMode} to use (default is {@link SplitLayoutMode.Flex}).
+   * - The {@link WindowOrder} to use (default is {@link WindowOrder.Normal}).
    */
   @Input()
-  set fdSplitLayout(mode: SplitLayoutMode) {
-    mode = mode || SplitLayoutMode.Flex;
-    if (mode !== this.mode) {
-      this.mode = mode;
-      this.updateStyle();
-    }
+  set fdSplitLayout(options: string | undefined) {
+    this.parseOptions(options || '');
+    this.updateStyle();
   }
 
   /** @ignore */
@@ -127,6 +170,15 @@ export class SplitLayoutDirective implements OnDestroy {
     return this.mode;
   }
 
+  /**
+   * The window segments order to use when in horizontal spanning mode.
+   *
+   * @return The current window order.
+   */
+  get windowOrder(): WindowOrder {
+    return this.order;
+  }
+
   /** @ignore */
   ngOnDestroy() {
     if (this.screenContextSubscription !== null) {
@@ -134,13 +186,25 @@ export class SplitLayoutDirective implements OnDestroy {
     }
   }
 
+  private parseOptions(options: string) {
+    let [mode, order] = options.trim().split(' ');
+    mode = mode || SplitLayoutMode.Flex;
+    order = order || WindowOrder.Normal;
+    this.mode = mode as SplitLayoutMode;
+    this.order = order as WindowOrder;
+  }
+
   private updateStyle() {
     const isMultiScreen = this.screenContext.isMultiScreen;
     const spanning = this.screenContext.screenSpanning;
+    const reverse =
+      spanning === ScreenSpanning.Horizontal &&
+      this.order === WindowOrder.Reverse;
+
     if (isMultiScreen && spanning !== ScreenSpanning.None) {
       this.layoutStyle = {
         ...layoutStyles[this.mode].common,
-        ...layoutStyles[this.mode][spanning],
+        ...layoutStyles[this.mode][reverse ? WindowOrder.Reverse : spanning],
       };
     } else {
       this.layoutStyle = {};

@@ -13,6 +13,7 @@ import { ScreenSpanning } from './screen-spanning';
 import {
   SplitLayoutDirective,
   SplitLayoutMode,
+  WindowOrder,
 } from './split-layout.directive';
 
 /**
@@ -86,6 +87,9 @@ const layoutStyles = {
  * Note that if you have set the read direction to Right-To-Left mode (`rtl`)
  * in CSS, the first segment will be the rightmost one.
  *
+ * If the {@link WindowOrder} option is set to {@link WindowOrder.Reverse},
+ * the window segments order will be reversed in horizontal spanning mode.
+ *
  * @example
  * <div fdSplitLayout="grid">
  *              <section fdWindow="0">Will be displayed on first screen</section>
@@ -152,10 +156,15 @@ export class WindowDirective implements OnDestroy {
       }
 
       const mode = this.splitLayout.layoutMode;
+      const order = this.splitLayout.windowOrder;
       const direction = getComputedStyle(this.element.nativeElement)?.direction;
-      // Swap segments for vertical span and RTL mode
+      // Swap segments for vertical span and RTL mode or
+      // horizontal span and reverse window order
       const segment =
-        spanning === ScreenSpanning.Vertical && direction === 'rtl'
+        (spanning === ScreenSpanning.Vertical && direction === 'rtl') ||
+        (spanning === ScreenSpanning.Horizontal &&
+          mode === SplitLayoutMode.Absolute &&
+          order === WindowOrder.Reverse)
           ? 1 - this.segment
           : this.segment;
 
