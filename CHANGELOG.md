@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/sinedied/ngx-foldable/compare/1.0.5...1.1.0) (2021-03-17)
+
+
+### Bug Fixes
+
+* inconsistent layout with rtl and fdIfSpan ([1acd46e](https://github.com/sinedied/ngx-foldable/commit/1acd46e32c237624d2e436c6bc1625cad3035f29))
+* only allow valid options for SplitLayoutDirective ([3240712](https://github.com/sinedied/ngx-foldable/commit/3240712f21dbd25347cdf69c8f4b53daee340dd7))
+
+
+### Features
+
+* add option to reverse window order ([acb3fff](https://github.com/sinedied/ngx-foldable/commit/acb3fff202be180639e2cffcf3e1483e1547d6c0))
+
 ## [1.0.5](https://github.com/sinedied/ngx-foldable/compare/1.0.4...1.0.5) (2021-03-16)
 
 
