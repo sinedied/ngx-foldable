@@ -1,16 +1,10 @@
-import {
-  Directive,
-  ElementRef,
-  Host,
-  HostBinding,
-  Input,
-  OnDestroy,
-} from '@angular/core';
+import { Directive, Host, HostBinding, Input, OnDestroy } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ScreenContext } from './screen-context';
 import { ScreenSpanning } from './screen-spanning';
 import {
+  ReadingDirection,
   SplitLayoutDirective,
   SplitLayoutMode,
   WindowOrder,
@@ -126,7 +120,6 @@ export class WindowDirective implements OnDestroy {
   }
 
   constructor(
-    private element: ElementRef,
     private screenContext: ScreenContext,
     @Host() private splitLayout: SplitLayoutDirective
   ) {
@@ -157,17 +150,18 @@ export class WindowDirective implements OnDestroy {
 
       const mode = this.splitLayout.layoutMode;
       const order = this.splitLayout.windowOrder;
-      const direction = getComputedStyle(this.element.nativeElement)?.direction;
+      const direction = this.splitLayout.readingDirection;
       // Swap segments for vertical span and RTL mode or
       // horizontal span and reverse window order
-      const segment =
-        (spanning === ScreenSpanning.Vertical && direction === 'rtl') ||
+      const swap =
+        (spanning === ScreenSpanning.Vertical &&
+          mode !== SplitLayoutMode.Grid &&
+          direction === ReadingDirection.RightToLeft) ||
         (spanning === ScreenSpanning.Horizontal &&
           mode === SplitLayoutMode.Absolute &&
-          order === WindowOrder.Reverse)
-          ? 1 - this.segment
-          : this.segment;
+          order === WindowOrder.Reverse);
 
+      const segment = swap ? 1 - this.segment : this.segment;
       this.layoutStyle = layoutStyles[mode][spanning][segment];
     } else {
       this.layoutStyle = {};

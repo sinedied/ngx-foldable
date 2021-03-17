@@ -1,4 +1,10 @@
-import { Directive, HostBinding, Input, OnDestroy } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+} from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ScreenContext } from './screen-context';
@@ -33,6 +39,18 @@ export type WindowOrder = 'normal' | 'reverse';
 export const WindowOrder = {
   Normal: 'normal' as WindowOrder,
   Reverse: 'reverse' as WindowOrder,
+};
+
+/**
+ * Defines the text reading direction for the host element.
+ */
+export type ReadingDirection = 'ltr' | 'rtl';
+/**
+ * Enumeration of the text reading direction values.
+ */
+export const ReadingDirection = {
+  LeftToRight: 'ltr' as ReadingDirection,
+  RightToLeft: 'rtl' as ReadingDirection,
 };
 
 /**
@@ -132,6 +150,7 @@ export class SplitLayoutDirective implements OnDestroy {
   private order: WindowOrder = WindowOrder.Normal;
   private layoutStyle: SafeStyle = {};
   private screenContextSubscription: Subscription | null = null;
+  private direction: ReadingDirection = 'ltr';
 
   /**
    * Sets the current split layout options to use when multi screen is
@@ -154,7 +173,10 @@ export class SplitLayoutDirective implements OnDestroy {
     return this.layoutStyle;
   }
 
-  constructor(private screenContext: ScreenContext) {
+  constructor(
+    private element: ElementRef,
+    private screenContext: ScreenContext
+  ) {
     this.updateStyle();
     this.screenContextSubscription = this.screenContext
       .asObservable()
@@ -179,6 +201,15 @@ export class SplitLayoutDirective implements OnDestroy {
     return this.order;
   }
 
+  /**
+   * The text reading direction for the host element.
+   *
+   * @return The text reading direction.
+   */
+  get readingDirection(): ReadingDirection {
+    return this.direction;
+  }
+
   /** @ignore */
   ngOnDestroy() {
     if (this.screenContextSubscription !== null) {
@@ -200,6 +231,10 @@ export class SplitLayoutDirective implements OnDestroy {
     const reverse =
       spanning === ScreenSpanning.Horizontal &&
       this.order === WindowOrder.Reverse;
+
+    this.direction =
+      (getComputedStyle(this.element.nativeElement)
+        ?.direction as ReadingDirection) || ReadingDirection.LeftToRight;
 
     if (isMultiScreen && spanning !== ScreenSpanning.None) {
       this.layoutStyle = {

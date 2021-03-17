@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2em;
+  overflow: auto;
 }
 
 .main::before {
