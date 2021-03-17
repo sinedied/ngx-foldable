@@ -24,6 +24,22 @@ export const SplitLayoutMode = {
   Flex: 'flex' as SplitLayoutMode,
   Grid: 'grid' as SplitLayoutMode,
   Absolute: 'absolute' as SplitLayoutMode,
+
+  /**
+   * Checks if the given string value is a valid {@link SplitLayoutMode}.
+   *
+   * @param value The value to check.
+   * @return true if the value is a valid {@link SplitLayoutMode}.
+   */
+  isValid: (value: string): boolean => {
+    switch (value) {
+      case SplitLayoutMode.Flex:
+      case SplitLayoutMode.Grid:
+      case SplitLayoutMode.Absolute:
+        return true;
+    }
+    return false;
+  },
 };
 
 /**
@@ -39,6 +55,21 @@ export type WindowOrder = 'normal' | 'reverse';
 export const WindowOrder = {
   Normal: 'normal' as WindowOrder,
   Reverse: 'reverse' as WindowOrder,
+
+  /**
+   * Checks if the given string value is a valid {@link WindowOrder}.
+   *
+   * @param value The value to check.
+   * @return true if the value is a valid {@link WindowOrder}.
+   */
+  isValid: (value: string): boolean => {
+    switch (value) {
+      case WindowOrder.Normal:
+      case WindowOrder.Reverse:
+        return true;
+    }
+    return false;
+  },
 };
 
 /**
@@ -219,8 +250,8 @@ export class SplitLayoutDirective implements OnDestroy {
 
   private parseOptions(options: string) {
     let [mode, order] = options.trim().split(' ');
-    mode = mode || SplitLayoutMode.Flex;
-    order = order || WindowOrder.Normal;
+    mode = SplitLayoutMode.isValid(mode) ? mode : SplitLayoutMode.Flex;
+    order = WindowOrder.isValid(order) ? order : WindowOrder.Normal;
     this.mode = mode as SplitLayoutMode;
     this.order = order as WindowOrder;
   }
