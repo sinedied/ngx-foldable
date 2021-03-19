@@ -163,7 +163,7 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">projects/lib/src/core/window.directive.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">projects/lib/src/core/window.directive.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -225,7 +225,7 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">projects/lib/src/core/window.directive.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">projects/lib/src/core/window.directive.ts:118</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -264,7 +264,7 @@ screen is detected.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">projects/lib/src/core/window.directive.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">projects/lib/src/core/window.directive.ts:118</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -336,12 +336,14 @@ import {
 const layoutStyles &#x3D; {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
-      { flex: &#x27;0 1 env(fold-left)&#x27; },
-      { flex: &#x27;0 1 calc(100vw - env(fold-right))&#x27; },
+      { flex: &#x27;0 0 env(fold-left)&#x27; },
+      // env(fold-right) not working on real devices at the moment
+      { flex: &#x27;0 0 calc(100vw - env(fold-left) - env(fold-width))&#x27; },
     ],
     [ScreenSpanning.Horizontal]: [
-      { flex: &#x27;0 1 env(fold-top)&#x27; },
-      { flex: &#x27;0 1 calc(100vh - env(fold-bottom))&#x27; },
+      { flex: &#x27;0 0 env(fold-top)&#x27; },
+      // env(fold-bottom) not working on real devices at the moment
+      { flex: &#x27;0 0 calc(100vh - env(fold-top) - env(fold-height))&#x27; },
     ],
   },
   [SplitLayoutMode.Grid]: {
@@ -376,9 +378,11 @@ const layoutStyles &#x3D; {
       },
       {
         position: &#x27;absolute&#x27;,
-        top: &#x27;env(fold-bottom)&#x27;,
+        // env(fold-bottom) not working on real devices at the moment
+        top: &#x27;calc(env(fold-top) - env(fold-height))&#x27;,
         width: &#x27;100%&#x27;,
-        maxHeight: &#x27;calc(100vh - env(fold-bottom))&#x27;,
+        // env(fold-bottom) not working on real devices at the moment
+        maxHeight: &#x27;calc(100vh - env(fold-top) - env(fold-height))&#x27;,
       },
     ],
   },
@@ -476,7 +480,7 @@ export class WindowDirective implements OnDestroy {
           mode !&#x3D;&#x3D; SplitLayoutMode.Grid &amp;&amp;
           direction &#x3D;&#x3D;&#x3D; ReadingDirection.RightToLeft) ||
         (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Horizontal &amp;&amp;
-          mode &#x3D;&#x3D;&#x3D; SplitLayoutMode.Absolute &amp;&amp;
+          mode !&#x3D;&#x3D; SplitLayoutMode.Grid &amp;&amp;
           order &#x3D;&#x3D;&#x3D; WindowOrder.Reverse);
 
       const segment &#x3D; swap ? 1 - this.segment : this.segment;
