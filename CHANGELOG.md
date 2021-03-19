@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/sinedied/ngx-foldable/compare/1.1.0...1.1.1) (2021-03-19)
+
+
+### Bug Fixes
+
+* layout issues on real devices ([8446001](https://github.com/sinedied/ngx-foldable/commit/844600128fb3af4760b577ef22299842b6f318d7))
+
 # [1.1.0](https://github.com/sinedied/ngx-foldable/compare/1.0.5...1.1.0) (2021-03-17)
 
 
