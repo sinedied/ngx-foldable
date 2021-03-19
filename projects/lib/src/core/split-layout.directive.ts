@@ -94,7 +94,7 @@ const layoutStyles = {
     common: {
       display: 'flex',
       justifyContent: 'space-between',
-      height: '100%',
+      height: '100vh',
     },
     [ScreenSpanning.Vertical]: {
       flexDirection: 'row',
@@ -109,7 +109,7 @@ const layoutStyles = {
   [SplitLayoutMode.Grid]: {
     common: {
       display: 'grid',
-      height: '100%',
+      height: '100vh',
     },
     [ScreenSpanning.Vertical]: {
       gridTemplateColumns: '1fr 1fr',
@@ -133,7 +133,7 @@ const layoutStyles = {
   [SplitLayoutMode.Absolute]: {
     common: {
       position: 'relative',
-      height: '100%',
+      height: '100vh',
     },
     [ScreenSpanning.Vertical]: {},
     [ScreenSpanning.Horizontal]: {},

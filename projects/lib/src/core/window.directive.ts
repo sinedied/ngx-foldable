@@ -18,12 +18,14 @@ import {
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
-      { flex: '0 1 env(fold-left)' },
-      { flex: '0 1 calc(100vw - env(fold-right))' },
+      { flex: '0 0 env(fold-left)' },
+      // env(fold-right) not working on real devices at the moment
+      { flex: '0 0 calc(100vw - env(fold-left) - env(fold-width))' },
     ],
     [ScreenSpanning.Horizontal]: [
-      { flex: '0 1 env(fold-top)' },
-      { flex: '0 1 calc(100vh - env(fold-bottom))' },
+      { flex: '0 0 env(fold-top)' },
+      // env(fold-bottom) not working on real devices at the moment
+      { flex: '0 0 calc(100vh - env(fold-top) - env(fold-height))' },
     ],
   },
   [SplitLayoutMode.Grid]: {
@@ -58,9 +60,11 @@ const layoutStyles = {
       },
       {
         position: 'absolute',
-        top: 'env(fold-bottom)',
+        // env(fold-bottom) not working on real devices at the moment
+        top: 'calc(env(fold-top) - env(fold-height))',
         width: '100%',
-        maxHeight: 'calc(100vh - env(fold-bottom))',
+        // env(fold-bottom) not working on real devices at the moment
+        maxHeight: 'calc(100vh - env(fold-top) - env(fold-height))',
       },
     ],
   },
@@ -158,7 +162,7 @@ export class WindowDirective implements OnDestroy {
           mode !== SplitLayoutMode.Grid &&
           direction === ReadingDirection.RightToLeft) ||
         (spanning === ScreenSpanning.Horizontal &&
-          mode === SplitLayoutMode.Absolute &&
+          mode !== SplitLayoutMode.Grid &&
           order === WindowOrder.Reverse);
 
       const segment = swap ? 1 - this.segment : this.segment;
