@@ -50,9 +50,7 @@
     "@angular/platform-browser-dynamic": "^11.2.5",
     "@angular/router": "^11.2.5",
     "rxjs": "~6.6.0",
-    "spanning-css-polyfill": "^2.0.1",
     "tslib": "^2.0.0",
-    "windowsegments-polyfill": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
