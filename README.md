@@ -84,10 +84,8 @@ export class AppComponent {
   constructor(private screenContext: ScreenContext) {
     this.screenContext
       .asObservable()
-      .subscribe({
-        next: (context) => {
-          console.log('Screen context changed:', context);
-        }
+      .subscribe((context) => {
+        console.log('Screen context changed:', context);
       });
   }
 }
