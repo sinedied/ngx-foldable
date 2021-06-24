@@ -161,7 +161,7 @@ const layoutStyles = {
  * reverse it when the spanning mode change from vertical to horizontal using
  * a second optional parameter on the directive:
  *
- *  * @example
+ * @example
  * <div fdSplitLayout="flex reverse">
  *              <section fdWindow="0">
  *                Will be displayed on first screen in vertical spanning mode
