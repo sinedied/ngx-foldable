@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/sinedied/ngx-foldable/compare/1.1.1...2.0.0) (2021-11-22)
+
+
+### Features
+
+* remove old APIs support ([df1ca39](https://github.com/sinedied/ngx-foldable/commit/df1ca390eae33279ef4ba145da6a5653c0231cfe))
+* update CSS for new APIs ([afab1c4](https://github.com/sinedied/ngx-foldable/commit/afab1c486462f9f2b3f36929f50c2c7df56d34c8))
+* update media queries to support new css segments API ([fc26aae](https://github.com/sinedied/ngx-foldable/commit/fc26aae9ab035715c8e429cc4aee5b7250f9b19f))
+* update screenContext to support new visualViewport API ([a444236](https://github.com/sinedied/ngx-foldable/commit/a444236028c6d301e753ef9fb3f798f1108d20bd))
+
+
+### BREAKING CHANGES
+
+* remove old APIs support
+
 ## [1.1.1](https://github.com/sinedied/ngx-foldable/compare/1.1.0...1.1.1) (2021-03-19)
 
 
