@@ -117,16 +117,19 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
   }
 
   private getWindowSegments(): DOMRect[] {
-    if (!('getWindowSegments' in window)) {
-      return [
-        new DOMRect(
-          window.pageXOffset,
-          window.pageYOffset,
-          window.innerWidth,
-          window.innerHeight
-        ),
-      ];
+    if ('getWindowSegments' in window) {
+      return window.getWindowSegments();
     }
-    return window.getWindowSegments();
+    if ('visualViewport' in window) {
+      return (window.visualViewport as any).segments;
+    }
+    return [
+      new DOMRect(
+        window.pageXOffset,
+        window.pageYOffset,
+        window.innerWidth,
+        window.innerHeight
+      ),
+    ];
   }
 }
