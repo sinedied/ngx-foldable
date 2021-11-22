@@ -33,6 +33,7 @@
           }
         ],
         "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/member-ordering": "off",
         "no-shadow": "off"
       }
     },
