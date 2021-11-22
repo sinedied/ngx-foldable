@@ -8,8 +8,9 @@ import { ScreenSpanning } from './screen-spanning';
 import { SplitLayoutDirective } from './split-layout.directive';
 
 @Component({
-  template: ` <div fdSplitLayout="flex">
-    <section fdWindow="0" class="main"></section>
+  template: `
+  <div fdSplitLayout="absolute">
+    <section fdWindow="0"></section>
   </div>`,
 })
 class TestComponent {}
@@ -60,7 +61,7 @@ describe('WindowDirective', () => {
     );
     fakeObservable$.next();
     fixture.detectChanges();
-    el = fixture.debugElement.query(By.css('section'));
+    el = fixture.debugElement.query(By.css('[fdWindow]'));
 
     expect(el.nativeElement.getAttribute('style')).not.toBeNull();
   });

@@ -57,7 +57,7 @@ describe('SplitLayoutDirective', () => {
     );
     fakeObservable$.next();
     fixture.detectChanges();
-    el = fixture.debugElement.query(By.css('div'));
+    el = fixture.debugElement.query(By.css('[fdSplitLayout]'));
 
     expect(el.nativeElement.getAttribute('style')).not.toBeNull();
   });
