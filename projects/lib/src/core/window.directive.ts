@@ -18,14 +18,12 @@ import {
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
-      { flex: '0 0 env(fold-left)' },
-      // env(fold-right) not working on real devices at the moment
-      { flex: '0 0 calc(100vw - env(fold-left) - env(fold-width))' },
+      { flex: '0 0 env(viewport-segment-right 0 0)' },
+      { flex: '0 0 calc(100vw - env(viewport-segment-left 1 0))' },
     ],
     [ScreenSpanning.Horizontal]: [
-      { flex: '0 0 env(fold-top)' },
-      // env(fold-bottom) not working on real devices at the moment
-      { flex: '0 0 calc(100vh - env(fold-top) - env(fold-height))' },
+      { flex: '0 0 env(viewport-segment-bottom 0 0)' },
+      { flex: '0 0 calc(100vh - env(viewport-segment-top 0 1))' },
     ],
   },
   [SplitLayoutMode.Grid]: {
@@ -43,11 +41,12 @@ const layoutStyles = {
       {
         position: 'absolute',
         left: 0,
-        right: 'calc(100vw - env(fold-left))',
+        // Not sure why, but 'right' isn't working
+        width: 'env(viewport-segment-right 0 0)',
       },
       {
         position: 'absolute',
-        left: 'env(fold-right)',
+        left: 'env(viewport-segment-left 1 0)',
         right: 0,
       },
     ],
@@ -56,15 +55,13 @@ const layoutStyles = {
         position: 'absolute',
         top: 0,
         width: '100%',
-        maxHeight: 'env(fold-top)',
+        maxHeight: 'calc(env(viewport-segment-bottom 0 0))',
       },
       {
         position: 'absolute',
-        // env(fold-bottom) not working on real devices at the moment
-        top: 'calc(env(fold-top) - env(fold-height))',
+        top: 'env(viewport-segment-top 0 1)',
         width: '100%',
-        // env(fold-bottom) not working on real devices at the moment
-        maxHeight: 'calc(100vh - env(fold-top) - env(fold-height))',
+        maxHeight: 'calc(100vh - env(viewport-segment-top 0 1))',
       },
     ],
   },

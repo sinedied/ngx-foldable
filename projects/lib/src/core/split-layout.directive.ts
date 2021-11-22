@@ -115,19 +115,19 @@ const layoutStyles = {
       gridTemplateColumns: '1fr 1fr',
       gridTemplateAreas: '"segment0 segment1"',
       gridAutoFlow: 'row',
-      columnGap: 'env(fold-width)',
+      columnGap: 'calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0))',
     },
     [ScreenSpanning.Horizontal]: {
       gridTemplateRows: '1fr 1fr',
       gridTemplateAreas: '"segment0" "segment1"',
       gridAutoFlow: 'row',
-      rowGap: 'env(fold-height)',
+      rowGap: 'calc(env(viewport-segment-top 0 1) - env(viewport-segment-bottom 0 0))',
     },
     [WindowOrder.Reverse]: {
       gridTemplateRows: '1fr 1fr',
       gridTemplateAreas: '"segment1" "segment0"',
       gridAutoFlow: 'row',
-      rowGap: 'env(fold-height)',
+      rowGap: 'calc(env(viewport-segment-top 0 1) - env(viewport-segment-bottom 0 0))',
     },
   },
   [SplitLayoutMode.Absolute]: {
