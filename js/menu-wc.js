@@ -1,6 +1,5 @@
 'use strict';
 
-
 customElements.define('compodoc-menu', class extends HTMLElement {
     constructor() {
         super();
@@ -57,7 +56,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
-                                <a href="modules/FoldableModule.html" data-type="entity-link">FoldableModule</a>
+                                <a href="modules/FoldableModule.html" data-type="entity-link" >FoldableModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                         'data-target="#directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' : 'data-target="#xs-directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' }>
@@ -68,16 +67,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' :
                                         'id="xs-directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' }>
                                         <li class="link">
-                                            <a href="directives/IfSpanDirective.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules">IfSpanDirective</a>
+                                            <a href="directives/IfSpanDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IfSpanDirective</a>
                                         </li>
                                         <li class="link">
-                                            <a href="directives/SplitLayoutDirective.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules">SplitLayoutDirective</a>
+                                            <a href="directives/SplitLayoutDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SplitLayoutDirective</a>
                                         </li>
                                         <li class="link">
-                                            <a href="directives/WindowDirective.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules">WindowDirective</a>
+                                            <a href="directives/WindowDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WindowDirective</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -93,7 +89,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
-                                    <a href="injectables/ScreenContext.html" data-type="entity-link">ScreenContext</a>
+                                    <a href="injectables/ScreenContext.html" data-type="entity-link" >ScreenContext</a>
                                 </li>
                             </ul>
                         </li>
@@ -106,10 +102,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/ScreenContextData.html" data-type="entity-link">ScreenContextData</a>
+                                <a href="interfaces/ScreenContextData.html" data-type="entity-link" >ScreenContextData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Window.html" data-type="entity-link">Window</a>
+                                <a href="interfaces/Window.html" data-type="entity-link" >Window</a>
                             </li>
                         </ul>
                     </li>

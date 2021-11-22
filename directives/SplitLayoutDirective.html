@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -37,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Directives</li>
-  <li>SplitLayoutDirective</li>
+  <li >SplitLayoutDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,6 +59,7 @@
             <code>projects/lib/src/core/split-layout.directive.ts</code>
         </p>
 
+
             <p class="comment">
                 <h3>Description</h3>
             </p>
@@ -68,6 +70,24 @@ screen devices.</p>
 You can choose between different <a href="../miscellaneous/typealiases.html#SplitLayoutMode">SplitLayoutMode</a> to suit your
 design.</p>
 <p>This directive should be used along with <a href="../directives/WindowDirective.html">WindowDirective</a>.</p>
+<div fdSplitLayout="grid">
+             <section fdWindow="0">Will be displayed on first screen</section>
+             <section fdWindow="1">Will be displayed on second screen (if available)</section>
+</div>
+
+<p>In addition, you can also choose keep the same window segments order or
+reverse it when the spanning mode change from vertical to horizontal using
+a second optional parameter on the directive:</p>
+<div fdSplitLayout="flex reverse">
+             <section fdWindow="0">
+               Will be displayed on first screen in vertical spanning mode
+               and on the second screen in horizontal spanning mode.
+             </section>
+             <section fdWindow="1">
+               Will be displayed on second screen in vertical spanning mode
+               and on the first screen in horizontal spanning mode.
+             </section>
+</div>
 
             </p>
 
@@ -78,35 +98,6 @@ design.</p>
                             <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
             </p>
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-                        <div>
-                            <pre class="line-numbers"><code class="language-html">&lt;div fdSplitLayout=&quot;grid&quot;&gt;
-  &lt;section fdWindow=&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
-  &lt;section fdWindow=&quot;1&quot;&gt;Will be displayed on second screen (if available)&lt;/section&gt;
-&lt;/div&gt;
-
-In addition, you can also choose keep the same window segments order or
-reverse it when the spanning mode change from vertical to horizontal using
-a second optional parameter on the directive:
-
-* </code></pre>
-                        </div>
-                        <div>
-                            <pre class="line-numbers"><code class="language-html">&lt;div fdSplitLayout=&quot;flex reverse&quot;&gt;
-&lt;section fdWindow=&quot;0&quot;&gt;
-   Will be displayed on first screen in vertical spanning mode
-   and on the second screen in horizontal spanning mode.
-&lt;/section&gt;
-&lt;section fdWindow=&quot;1&quot;&gt;
-   Will be displayed on second screen in vertical spanning mode
-   and on the first screen in horizontal spanning mode.
-&lt;/section&gt;
-&lt;/div&gt;</code></pre>
-                        </div>
-            </div>
 
         <section>
             <h3>Metadata</h3>
@@ -137,7 +128,7 @@ a second optional parameter on the directive:
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#fdSplitLayout">fdSplitLayout</a>
+                                <a href="#fdSplitLayout" >fdSplitLayout</a>
                             </li>
                         </ul>
                     </td>
@@ -155,16 +146,16 @@ a second optional parameter on the directive:
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#fdSplitLayout">fdSplitLayout</a>
+                                    <a href="#fdSplitLayout" >fdSplitLayout</a>
                                 </li>
                                 <li>
-                                    <a href="#layoutMode">layoutMode</a>
+                                    <a href="#layoutMode" >layoutMode</a>
                                 </li>
                                 <li>
-                                    <a href="#windowOrder">windowOrder</a>
+                                    <a href="#windowOrder" >windowOrder</a>
                                 </li>
                                 <li>
-                                    <a href="#readingDirection">readingDirection</a>
+                                    <a href="#readingDirection" >readingDirection</a>
                                 </li>
                             </ul>
                         </td>
@@ -179,7 +170,7 @@ a second optional parameter on the directive:
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(element: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>)</code>
+<code>constructor(element: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, screenContext: <a href="../injectables/ScreenContext.html" target="_self">ScreenContext</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -280,7 +271,7 @@ detected.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>fdSplitLayout(options)</code></span>
+                        <span class="accessor"><b>set</b><code>fdSplitLayout(options: string | undefined)</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -300,6 +291,7 @@ detected.</p>
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                         <td>Description</td>
                                                 </tr>
@@ -308,18 +300,22 @@ detected.</p>
                                                     <tr>
                                                             <td>options</td>
                                                     
+                                                            <td>
+                                                                        <code>string | undefined</code>
+                                                            </td>
                                                     
                                                         <td>
                                                                 No
                                                         </td>
                                                         
                                                             <td>
-                                                                    <code><p>The split layout options to use.
+                                                                    <p>The split layout options to use.
 Format: <code>[mode] [order]</code></p>
 <ul>
-<li>The {</li>
+<li>The <a href="../miscellaneous/typealiases.html#SplitLayoutMode">SplitLayoutMode</a> to use (default is <a href="<a">href="SplitLayoutMode"></a></a>).</li>
+<li>The <a href="../miscellaneous/typealiases.html#WindowOrder">WindowOrder</a> to use (default is <a href="<a">href="SplitLayoutMode"></a></a>).</li>
 </ul>
-</code>
+
                                                             </td>
                                                     </tr>
                                             </tbody>
@@ -563,19 +559,19 @@ const layoutStyles &#x3D; {
       gridTemplateColumns: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment0 segment1&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
-      columnGap: &#x27;env(fold-width)&#x27;,
+      columnGap: &#x27;calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0))&#x27;,
     },
     [ScreenSpanning.Horizontal]: {
       gridTemplateRows: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment0&quot; &quot;segment1&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
-      rowGap: &#x27;env(fold-height)&#x27;,
+      rowGap: &#x27;calc(env(viewport-segment-top 0 1) - env(viewport-segment-bottom 0 0))&#x27;,
     },
     [WindowOrder.Reverse]: {
       gridTemplateRows: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment1&quot; &quot;segment0&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
-      rowGap: &#x27;env(fold-height)&#x27;,
+      rowGap: &#x27;calc(env(viewport-segment-top 0 1) - env(viewport-segment-bottom 0 0))&#x27;,
     },
   },
   [SplitLayoutMode.Absolute]: {
@@ -609,7 +605,7 @@ const layoutStyles &#x3D; {
  * reverse it when the spanning mode change from vertical to horizontal using
  * a second optional parameter on the directive:
  *
- *  * @example
+ * @example
  * &lt;div fdSplitLayout&#x3D;&quot;flex reverse&quot;&gt;
  *              &lt;section fdWindow&#x3D;&quot;0&quot;&gt;
  *                Will be displayed on first screen in vertical spanning mode
@@ -737,14 +733,14 @@ export class SplitLayoutDirective implements OnDestroy {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -765,9 +761,9 @@ export class SplitLayoutDirective implements OnDestroy {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

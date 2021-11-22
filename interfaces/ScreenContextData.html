@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -43,7 +44,9 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>ScreenContextData</li>
+  <li
+  >
+  ScreenContextData</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -63,6 +66,7 @@
         <p class="comment">
             <code>projects/lib/src/core/screen-context.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -86,13 +90,22 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#isMultiScreen">isMultiScreen</a>
+                                        <a href="#isMultiScreen" 
+>
+                                            isMultiScreen
+                                        </a>
                                 </li>
                                 <li>
-                                        <a href="#screenSpanning">screenSpanning</a>
+                                        <a href="#screenSpanning" 
+>
+                                            screenSpanning
+                                        </a>
                                 </li>
                                 <li>
-                                        <a href="#windowSegments">windowSegments</a>
+                                        <a href="#windowSegments" 
+>
+                                            windowSegments
+                                        </a>
                                 </li>
                             </ul>
                         </td>
@@ -110,7 +123,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="isMultiScreen"></a>
-                                        <span class="name"><b>isMultiScreen</b><a href="#isMultiScreen"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>isMultiScreen</b>
+                                            <a href="#isMultiScreen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -134,7 +151,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>True is current device have multiple screens available. </p>
+                                    <div class="io-description"><p>True is current device have multiple screens available.</p>
 </div>
                                 </td>
                             </tr>
@@ -145,7 +162,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="screenSpanning"></a>
-                                        <span class="name"><b>screenSpanning</b><a href="#screenSpanning"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>screenSpanning</b>
+                                            <a href="#screenSpanning">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -169,7 +190,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The current screen spanning mode. </p>
+                                    <div class="io-description"><p>The current screen spanning mode.</p>
 </div>
                                 </td>
                             </tr>
@@ -180,7 +201,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="windowSegments"></a>
-                                        <span class="name"><b>windowSegments</b><a href="#windowSegments"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>windowSegments</b>
+                                            <a href="#windowSegments">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -204,7 +229,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The list of available window segments. </p>
+                                    <div class="io-description"><p>The list of available window segments.</p>
 </div>
                                 </td>
                             </tr>
@@ -334,17 +359,20 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
   }
 
   private getWindowSegments(): DOMRect[] {
-    if (!(&#x27;getWindowSegments&#x27; in window)) {
-      return [
-        new DOMRect(
-          window.pageXOffset,
-          window.pageYOffset,
-          window.innerWidth,
-          window.innerHeight
-        ),
-      ];
+    if (&#x27;getWindowSegments&#x27; in window) {
+      console.warn(&#x27;getWindowSegments() is not supported anymore, please update your browser to use the new visualViewport API&#x27;);
     }
-    return window.getWindowSegments();
+    if (&#x27;visualViewport&#x27; in window) {
+      return (window.visualViewport as any).segments;
+    }
+    return [
+      new DOMRect(
+        window.pageXOffset,
+        window.pageYOffset,
+        window.innerWidth,
+        window.innerHeight
+      ),
+    ];
   }
 }
 </code></pre>
@@ -352,14 +380,14 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 </div>
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -380,9 +408,9 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

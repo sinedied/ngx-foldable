@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -37,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Directives</li>
-  <li>WindowDirective</li>
+  <li >WindowDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,6 +59,7 @@
             <code>projects/lib/src/core/window.directive.ts</code>
         </p>
 
+
             <p class="comment">
                 <h3>Description</h3>
             </p>
@@ -74,6 +76,10 @@ container element to the same window segment.</p>
 in CSS, the first segment will be the rightmost one.</p>
 <p>If the <a href="../miscellaneous/typealiases.html#WindowOrder">WindowOrder</a> option is set to <a href="WindowOrder.Reverse">WindowOrder.Reverse</a>,
 the window segments order will be reversed in horizontal spanning mode.</p>
+<div fdSplitLayout="grid">
+             <section fdWindow="0">Will be displayed on first screen</section>
+             <section fdWindow="1">Will be displayed on second screen (if available)</section>
+</div>
 
             </p>
 
@@ -84,17 +90,6 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                             <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
             </p>
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-                        <div>
-                            <pre class="line-numbers"><code class="language-html">&lt;div fdSplitLayout=&quot;grid&quot;&gt;
-  &lt;section fdWindow=&quot;0&quot;&gt;Will be displayed on first screen&lt;/section&gt;
-  &lt;section fdWindow=&quot;1&quot;&gt;Will be displayed on second screen (if available)&lt;/section&gt;
-&lt;/div&gt;</code></pre>
-                        </div>
-            </div>
 
         <section>
             <h3>Metadata</h3>
@@ -125,7 +120,7 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#fdWindow">fdWindow</a>
+                                <a href="#fdWindow" >fdWindow</a>
                             </li>
                         </ul>
                     </td>
@@ -143,7 +138,7 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#fdWindow">fdWindow</a>
+                                    <a href="#fdWindow" >fdWindow</a>
                                 </li>
                             </ul>
                         </td>
@@ -158,12 +153,12 @@ the window segments order will be reversed in horizontal spanning mode.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(screenContext: <a href="../injectables/ScreenContext.html">ScreenContext</a>, splitLayout: SplitLayoutDirective)</code>
+<code>constructor(screenContext: <a href="../injectables/ScreenContext.html" target="_self">ScreenContext</a>, splitLayout: <a href="../directives/SplitLayoutDirective.html" target="_self">SplitLayoutDirective</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">projects/lib/src/core/window.directive.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">projects/lib/src/core/window.directive.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -196,7 +191,7 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                                                         <td>splitLayout</td>
                                                   
                                                         <td>
-                                                                    <code>SplitLayoutDirective</code>
+                                                                        <code><a href="../directives/SplitLayoutDirective.html" target="_self" >SplitLayoutDirective</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -225,7 +220,7 @@ the window segments order will be reversed in horizontal spanning mode.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">projects/lib/src/core/window.directive.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">projects/lib/src/core/window.directive.ts:115</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -259,12 +254,12 @@ screen is detected.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>fdWindow(segment)</code></span>
+                        <span class="accessor"><b>set</b><code>fdWindow(segment: number | string)</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">projects/lib/src/core/window.directive.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">projects/lib/src/core/window.directive.ts:115</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -279,6 +274,7 @@ screen is detected.</p>
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                         <td>Description</td>
                                                 </tr>
@@ -287,14 +283,17 @@ screen is detected.</p>
                                                     <tr>
                                                             <td>segment</td>
                                                     
+                                                            <td>
+                                                                        <code>number | string</code>
+                                                            </td>
                                                     
                                                         <td>
                                                                 No
                                                         </td>
                                                         
                                                             <td>
-                                                                    <code><p>The target window segment, must be 0 or 1.</p>
-</code>
+                                                                    <p>The target window segment, must be 0 or 1.</p>
+
                                                             </td>
                                                     </tr>
                                             </tbody>
@@ -336,14 +335,12 @@ import {
 const layoutStyles &#x3D; {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.Vertical]: [
-      { flex: &#x27;0 0 env(fold-left)&#x27; },
-      // env(fold-right) not working on real devices at the moment
-      { flex: &#x27;0 0 calc(100vw - env(fold-left) - env(fold-width))&#x27; },
+      { flex: &#x27;0 0 env(viewport-segment-right 0 0)&#x27; },
+      { flex: &#x27;0 0 calc(100vw - env(viewport-segment-left 1 0))&#x27; },
     ],
     [ScreenSpanning.Horizontal]: [
-      { flex: &#x27;0 0 env(fold-top)&#x27; },
-      // env(fold-bottom) not working on real devices at the moment
-      { flex: &#x27;0 0 calc(100vh - env(fold-top) - env(fold-height))&#x27; },
+      { flex: &#x27;0 0 env(viewport-segment-bottom 0 0)&#x27; },
+      { flex: &#x27;0 0 calc(100vh - env(viewport-segment-top 0 1))&#x27; },
     ],
   },
   [SplitLayoutMode.Grid]: {
@@ -361,11 +358,12 @@ const layoutStyles &#x3D; {
       {
         position: &#x27;absolute&#x27;,
         left: 0,
-        right: &#x27;calc(100vw - env(fold-left))&#x27;,
+        // Not sure why, but &#x27;right&#x27; isn&#x27;t working
+        width: &#x27;env(viewport-segment-right 0 0)&#x27;,
       },
       {
         position: &#x27;absolute&#x27;,
-        left: &#x27;env(fold-right)&#x27;,
+        left: &#x27;env(viewport-segment-left 1 0)&#x27;,
         right: 0,
       },
     ],
@@ -374,15 +372,13 @@ const layoutStyles &#x3D; {
         position: &#x27;absolute&#x27;,
         top: 0,
         width: &#x27;100%&#x27;,
-        maxHeight: &#x27;env(fold-top)&#x27;,
+        maxHeight: &#x27;calc(env(viewport-segment-bottom 0 0))&#x27;,
       },
       {
         position: &#x27;absolute&#x27;,
-        // env(fold-bottom) not working on real devices at the moment
-        top: &#x27;calc(env(fold-top) - env(fold-height))&#x27;,
+        top: &#x27;env(viewport-segment-top 0 1)&#x27;,
         width: &#x27;100%&#x27;,
-        // env(fold-bottom) not working on real devices at the moment
-        maxHeight: &#x27;calc(100vh - env(fold-top) - env(fold-height))&#x27;,
+        maxHeight: &#x27;calc(100vh - env(viewport-segment-top 0 1))&#x27;,
       },
     ],
   },
@@ -502,14 +498,14 @@ export class WindowDirective implements OnDestroy {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -530,9 +526,9 @@ export class WindowDirective implements OnDestroy {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
