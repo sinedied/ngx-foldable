@@ -118,7 +118,7 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
 
   private getWindowSegments(): DOMRect[] {
     if ('getWindowSegments' in window) {
-      return window.getWindowSegments();
+      console.warn('getWindowSegments() is not supported anymore, please update your browser to use the new visualViewport API');
     }
     if ('visualViewport' in window) {
       return (window.visualViewport as any).segments;
