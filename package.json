@@ -6,8 +6,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build:lib": "npm run -s copy:assets && ng build --prod",
-    "build:demo": "ng build --prod demo --base-href='/ngx-foldable/demo/'",
+    "build:lib": "npm run -s copy:assets && ng build --configuration production",
+    "build:demo": "ng build --configuration production demo --base-href='/ngx-foldable/demo/'",
     "build:docs": "compodoc -p projects/lib/tsconfig.lib.json projects/lib/src/core -d dist/docs && cp -R dist/demo dist/docs/",
     "deploy:docs": "gh-pages -d dist/docs",
     "test": "ng test",
