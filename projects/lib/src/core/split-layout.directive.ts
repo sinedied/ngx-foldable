@@ -96,10 +96,10 @@ const layoutStyles = {
       justifyContent: 'space-between',
       height: '100vh',
     },
-    [ScreenSpanning.Vertical]: {
+    [ScreenSpanning.DualHorizontal]: {
       flexDirection: 'row',
     },
-    [ScreenSpanning.Horizontal]: {
+    [ScreenSpanning.DualVertical]: {
       flexDirection: 'column',
     },
     [WindowOrder.Reverse]: {
@@ -111,13 +111,13 @@ const layoutStyles = {
       display: 'grid',
       height: '100vh',
     },
-    [ScreenSpanning.Vertical]: {
+    [ScreenSpanning.DualHorizontal]: {
       gridTemplateColumns: '1fr 1fr',
       gridTemplateAreas: '"segment0 segment1"',
       gridAutoFlow: 'row',
       columnGap: 'calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0))',
     },
-    [ScreenSpanning.Horizontal]: {
+    [ScreenSpanning.DualVertical]: {
       gridTemplateRows: '1fr 1fr',
       gridTemplateAreas: '"segment0" "segment1"',
       gridAutoFlow: 'row',
@@ -135,8 +135,8 @@ const layoutStyles = {
       position: 'relative',
       height: '100vh',
     },
-    [ScreenSpanning.Vertical]: {},
-    [ScreenSpanning.Horizontal]: {},
+    [ScreenSpanning.DualHorizontal]: {},
+    [ScreenSpanning.DualVertical]: {},
     [WindowOrder.Reverse]: {},
   },
 };
@@ -260,7 +260,7 @@ export class SplitLayoutDirective implements OnDestroy {
     const isMultiScreen = this.screenContext.isMultiScreen;
     const spanning = this.screenContext.screenSpanning;
     const reverse =
-      spanning === ScreenSpanning.Horizontal &&
+      spanning === ScreenSpanning.DualVertical &&
       this.order === WindowOrder.Reverse;
 
     this.direction =

@@ -54,7 +54,7 @@ describe('IfSpanDirective', () => {
     it('should make el invisible on multi screen mode', () => {
       getter(screenContextSpy, 'isMultiScreen').and.returnValue(true);
       getter(screenContextSpy, 'screenSpanning').and.returnValue(
-        ScreenSpanning.Vertical
+        ScreenSpanning.DualHorizontal
       );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
@@ -67,7 +67,7 @@ describe('IfSpanDirective', () => {
     beforeEach(() => {
       component.condition = SpanCondition.Multi;
       getter(screenContextSpy, 'screenSpanning').and.returnValue(
-        ScreenSpanning.Horizontal
+        ScreenSpanning.DualVertical
       );
     });
 
@@ -99,7 +99,7 @@ describe('IfSpanDirective', () => {
 
     it('should make el visible on horizontal span mode', () => {
       getter(screenContextSpy, 'screenSpanning').and.returnValue(
-        ScreenSpanning.Horizontal
+        ScreenSpanning.DualVertical
       );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
@@ -109,7 +109,7 @@ describe('IfSpanDirective', () => {
 
     it('should make el invisible on vertical span mode', () => {
       getter(screenContextSpy, 'screenSpanning').and.returnValue(
-        ScreenSpanning.Vertical
+        ScreenSpanning.DualHorizontal
       );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
@@ -137,7 +137,7 @@ describe('IfSpanDirective', () => {
 
     it('should make el invisible on horizontal span mode', () => {
       getter(screenContextSpy, 'screenSpanning').and.returnValue(
-        ScreenSpanning.Horizontal
+        ScreenSpanning.DualVertical
       );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));
@@ -147,7 +147,7 @@ describe('IfSpanDirective', () => {
 
     it('should make el visible on vertical span mode', () => {
       getter(screenContextSpy, 'screenSpanning').and.returnValue(
-        ScreenSpanning.Vertical
+        ScreenSpanning.DualHorizontal
       );
       fixture.detectChanges();
       el = fixture.debugElement.query(By.css('div'));

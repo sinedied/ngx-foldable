@@ -57,7 +57,7 @@ describe('WindowDirective', () => {
   it('should add styling in multi screen mode', () => {
     getter(screenContextSpy, 'isMultiScreen').and.returnValue(true);
     getter(screenContextSpy, 'screenSpanning').and.returnValue(
-      ScreenSpanning.Horizontal
+      ScreenSpanning.DualVertical
     );
     fakeObservable$.next();
     fixture.detectChanges();

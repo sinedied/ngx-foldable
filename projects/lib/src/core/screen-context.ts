@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { fromEvent, merge, Observable, ReplaySubject } from 'rxjs';
 import { map, filter, shareReplay, startWith, takeUntil } from 'rxjs/operators';
-import { singleFoldHorizontal, singleFoldVertical } from './media-queries';
+import { dualVerticalViewport, dualHorizontalViewport } from './media-queries';
 import { ScreenSpanning } from './screen-spanning';
 
 declare global {
@@ -39,8 +39,8 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
   constructor() {
     this.currentContext = this.getScreenContext();
     this.screenContext$ = merge(
-      fromEvent(matchMedia(singleFoldHorizontal), 'change'),
-      fromEvent(matchMedia(singleFoldVertical), 'change')
+      fromEvent(matchMedia(dualVerticalViewport), 'change'),
+      fromEvent(matchMedia(dualHorizontalViewport), 'change')
     ).pipe(
       filter(
         () => this.getScreenSpanning() !== this.currentContext.screenSpanning
@@ -108,10 +108,10 @@ export class ScreenContext implements ScreenContextData, OnDestroy {
   }
 
   private getScreenSpanning(): ScreenSpanning {
-    if (matchMedia(singleFoldHorizontal).matches) {
-      return ScreenSpanning.Horizontal;
-    } else if (matchMedia(singleFoldVertical).matches) {
-      return ScreenSpanning.Vertical;
+    if (matchMedia(dualVerticalViewport).matches) {
+      return ScreenSpanning.DualVertical;
+    } else if (matchMedia(dualHorizontalViewport).matches) {
+      return ScreenSpanning.DualHorizontal;
     }
     return ScreenSpanning.None;
   }

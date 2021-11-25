@@ -17,27 +17,27 @@ import {
  */
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
-    [ScreenSpanning.Vertical]: [
+    [ScreenSpanning.DualHorizontal]: [
       { flex: '0 0 env(viewport-segment-right 0 0)' },
       { flex: '0 0 calc(100vw - env(viewport-segment-left 1 0))' },
     ],
-    [ScreenSpanning.Horizontal]: [
+    [ScreenSpanning.DualVertical]: [
       { flex: '0 0 env(viewport-segment-bottom 0 0)' },
       { flex: '0 0 calc(100vh - env(viewport-segment-top 0 1))' },
     ],
   },
   [SplitLayoutMode.Grid]: {
-    [ScreenSpanning.Vertical]: [
+    [ScreenSpanning.DualHorizontal]: [
       { gridArea: 'segment0' },
       { gridArea: 'segment1' },
     ],
-    [ScreenSpanning.Horizontal]: [
+    [ScreenSpanning.DualVertical]: [
       { gridArea: 'segment0' },
       { gridArea: 'segment1' },
     ],
   },
   [SplitLayoutMode.Absolute]: {
-    [ScreenSpanning.Vertical]: [
+    [ScreenSpanning.DualHorizontal]: [
       {
         position: 'absolute',
         left: 0,
@@ -50,7 +50,7 @@ const layoutStyles = {
         right: 0,
       },
     ],
-    [ScreenSpanning.Horizontal]: [
+    [ScreenSpanning.DualVertical]: [
       {
         position: 'absolute',
         top: 0,
@@ -155,10 +155,10 @@ export class WindowDirective implements OnDestroy {
       // Swap segments for vertical span and RTL mode or
       // horizontal span and reverse window order
       const swap =
-        (spanning === ScreenSpanning.Vertical &&
+        (spanning === ScreenSpanning.DualHorizontal &&
           mode !== SplitLayoutMode.Grid &&
           direction === ReadingDirection.RightToLeft) ||
-        (spanning === ScreenSpanning.Horizontal &&
+        (spanning === ScreenSpanning.DualVertical &&
           mode !== SplitLayoutMode.Grid &&
           order === WindowOrder.Reverse);
 

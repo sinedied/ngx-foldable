@@ -69,8 +69,8 @@ Use the provided `fdSplitLayout`, `fdWindow` and `fdIfSpan` directives to build 
     This will be displayed on the second window segment of a multi screen device.
 
     <p *fdIfSpan="'multi'">This is only visible on multi screen device, regardless of the orientation.</p>
-    <p *fdIfSpan="'fold-horizontal'">This is only visible on horizontal fold spanning.</p>
-    <p *fdIfSpan="'fold-vertical'">This is only visible on vertical fold spanning.</p>
+    <p *fdIfSpan="'dual-vertical'">This is only visible on dual vertical viewports.</p>
+    <p *fdIfSpan="'dual-horizontal'">This is only visible on dual horizontal viewports.</p>
   </section>
 </div>
 ```
