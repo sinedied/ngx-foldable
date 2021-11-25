@@ -1,3 +1,28 @@
+# [3.0.0](https://github.com/sinedied/ngx-foldable/compare/2.0.0...3.0.0) (2021-11-25)
+
+
+### Features
+
+* rename spanning mode and media queries ([66c7a62](https://github.com/sinedied/ngx-foldable/commit/66c7a62a93fa890ea8dc2b6f7a03b88253251116))
+* upgrade to latest APF ([5ac1ca9](https://github.com/sinedied/ngx-foldable/commit/5ac1ca9c4bc6ce57af6c79e1c4a395f40f18628c))
+
+
+### BREAKING CHANGES
+
+* This library now requires Angular v13 or latest.
+Use the previous versions of this library if you require compatibility with older Angular version.
+* To better match the new viewport browser API, the spanning modes and media queries have been renamed.
+It now matches the number of segments on a given axis instead of the fold axis,
+which should be less confusing.
+
+You can migrate by performing these replacements:
+- ScreenSpanning.Vertical -> ScreenSpanning.DualHorizontal
+- ScreenSpanning.Horizontal -> ScreenSpanning.DualVertical
+- 'fold-horizontal' -> 'dual-vertical'
+- 'fold-vertical' -> 'dual-horizontal'
+- singleFoldHorizontal -> dualVerticalViewport
+- singleFoldVertical -> dualHorizontalViewport
+
 # [2.0.0](https://github.com/sinedied/ngx-foldable/compare/1.1.1...2.0.0) (2021-11-22)
 
 
