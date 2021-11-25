@@ -18,12 +18,12 @@ import {
 const layoutStyles = {
   [SplitLayoutMode.Flex]: {
     [ScreenSpanning.DualHorizontal]: [
-      { flex: '0 0 env(viewport-segment-right 0 0)' },
-      { flex: '0 0 calc(100vw - env(viewport-segment-left 1 0))' },
+      { flex: '0 0 env(viewport-segment-width 0 0)' },
+      { flex: '0 0 env(viewport-segment-width 1 0)' },
     ],
     [ScreenSpanning.DualVertical]: [
-      { flex: '0 0 env(viewport-segment-bottom 0 0)' },
-      { flex: '0 0 calc(100vh - env(viewport-segment-top 0 1))' },
+      { flex: '0 0 env(viewport-segment-height 0 0)' },
+      { flex: '0 0 env(viewport-segment-height 0 1)' },
     ],
   },
   [SplitLayoutMode.Grid]: {
@@ -41,7 +41,7 @@ const layoutStyles = {
       {
         position: 'absolute',
         left: 0,
-        // Not sure why, but 'right' isn't working
+        // Not sure why, but 'right:' isn't working
         width: 'env(viewport-segment-right 0 0)',
       },
       {
@@ -55,13 +55,13 @@ const layoutStyles = {
         position: 'absolute',
         top: 0,
         width: '100%',
-        maxHeight: 'calc(env(viewport-segment-bottom 0 0))',
+        maxHeight: 'env(viewport-segment-height 0 0)',
       },
       {
         position: 'absolute',
         top: 'env(viewport-segment-top 0 1)',
         width: '100%',
-        maxHeight: 'calc(100vh - env(viewport-segment-top 0 1))',
+        maxHeight: 'env(viewport-segment-height 0 1)',
       },
     ],
   },
