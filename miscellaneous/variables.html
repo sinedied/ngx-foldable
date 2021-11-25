@@ -59,16 +59,16 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#dualHorizontalViewport" title="projects/lib/src/core/media-queries.ts" ><b>dualHorizontalViewport</b>&nbsp;&nbsp;&nbsp;(projects/.../media-queries.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#dualVerticalViewport" title="projects/lib/src/core/media-queries.ts" ><b>dualVerticalViewport</b>&nbsp;&nbsp;&nbsp;(projects/.../media-queries.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ReadingDirection" title="projects/lib/src/core/split-layout.directive.ts" ><b>ReadingDirection</b>&nbsp;&nbsp;&nbsp;(projects/.../split-layout.directive.ts)</a>
                         </li>
                         <li>
                             <a href="#ScreenSpanning" title="projects/lib/src/core/screen-spanning.ts" ><b>ScreenSpanning</b>&nbsp;&nbsp;&nbsp;(projects/.../screen-spanning.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#singleFoldHorizontal" title="projects/lib/src/core/media-queries.ts" ><b>singleFoldHorizontal</b>&nbsp;&nbsp;&nbsp;(projects/.../media-queries.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#singleFoldVertical" title="projects/lib/src/core/media-queries.ts" ><b>singleFoldVertical</b>&nbsp;&nbsp;&nbsp;(projects/.../media-queries.ts)</a>
                         </li>
                         <li>
                             <a href="#SpanCondition" title="projects/lib/src/core/if-span.directive.ts" ><b>SpanCondition</b>&nbsp;&nbsp;&nbsp;(projects/.../if-span.directive.ts)</a>
@@ -86,6 +86,73 @@
     </table>
 </section>
 
+    <h3>projects/lib/src/core/media-queries.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dualHorizontalViewport"></a>
+                    <span class="name">
+                        <span ><b>dualHorizontalViewport</b></span>
+                        <a href="#dualHorizontalViewport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;(horizontal-viewport-segments: 2)&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Media query used to detect dual horizontal viewports screen mode.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dualVerticalViewport"></a>
+                    <span class="name">
+                        <span ><b>dualVerticalViewport</b></span>
+                        <a href="#dualVerticalViewport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;(vertical-viewport-segments: 2)&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Media query used to detect dual vertical viewports screen mode.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>projects/lib/src/core/split-layout.directive.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -250,10 +317,10 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-  /** Screen spanning mode is single fold vertical. */
-  Vertical: &#x27;fold-vertical&#x27; as ScreenSpanning,
-  /** Screen spanning mode is single fold horizontal. */
-  Horizontal: &#x27;fold-horizontal&#x27; as ScreenSpanning,
+  /** Screen spanning mode is dual horizontal viewports. */
+  DualHorizontal: &#x27;dual-horizontal&#x27; as ScreenSpanning,
+  /** Screen spanning mode is dual vertical viewports. */
+  DualVertical: &#x27;dual-vertical&#x27; as ScreenSpanning,
   /** No screen spanning (single screen mode). */
   None: &#x27;none&#x27; as ScreenSpanning,
 }</code>
@@ -263,73 +330,6 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Enumeration of screen spanning mode values.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>projects/lib/src/core/media-queries.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="singleFoldHorizontal"></a>
-                    <span class="name">
-                        <span ><b>singleFoldHorizontal</b></span>
-                        <a href="#singleFoldHorizontal"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;(vertical-viewport-segments: 2)&#x27;</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Media query used to detect single fold horizontal screen mode.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="singleFoldVertical"></a>
-                    <span class="name">
-                        <span ><b>singleFoldVertical</b></span>
-                        <a href="#singleFoldVertical"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;(horizontal-viewport-segments: 2)&#x27;</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Media query used to detect single fold vertical screen mode.</p>
 </div>
                 </td>
             </tr>
@@ -359,10 +359,10 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-  /** Screen spanning mode is single fold vertical. */
-  Vertical: &#x27;fold-vertical&#x27; as SpanCondition,
-  /** Screen spanning mode is single fold horizontal. */
-  Horizontal: &#x27;fold-horizontal&#x27; as SpanCondition,
+  /** Screen spanning mode is dual horizontal viewports. */
+  Vertical: &#x27;dual-horizontal&#x27; as SpanCondition,
+  /** Screen spanning mode is dual vertical viewports. */
+  Horizontal: &#x27;dual-vertical&#x27; as SpanCondition,
   /** No screen spanning (single screen mode). */
   None: &#x27;none&#x27; as SpanCondition,
   /** Any screen spanning mode is active (multi screen mode). */

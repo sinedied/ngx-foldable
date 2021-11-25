@@ -334,31 +334,31 @@ import {
  */
 const layoutStyles &#x3D; {
   [SplitLayoutMode.Flex]: {
-    [ScreenSpanning.Vertical]: [
-      { flex: &#x27;0 0 env(viewport-segment-right 0 0)&#x27; },
-      { flex: &#x27;0 0 calc(100vw - env(viewport-segment-left 1 0))&#x27; },
+    [ScreenSpanning.DualHorizontal]: [
+      { flex: &#x27;0 0 env(viewport-segment-width 0 0)&#x27; },
+      { flex: &#x27;0 0 env(viewport-segment-width 1 0)&#x27; },
     ],
-    [ScreenSpanning.Horizontal]: [
-      { flex: &#x27;0 0 env(viewport-segment-bottom 0 0)&#x27; },
-      { flex: &#x27;0 0 calc(100vh - env(viewport-segment-top 0 1))&#x27; },
+    [ScreenSpanning.DualVertical]: [
+      { flex: &#x27;0 0 env(viewport-segment-height 0 0)&#x27; },
+      { flex: &#x27;0 0 env(viewport-segment-height 0 1)&#x27; },
     ],
   },
   [SplitLayoutMode.Grid]: {
-    [ScreenSpanning.Vertical]: [
+    [ScreenSpanning.DualHorizontal]: [
       { gridArea: &#x27;segment0&#x27; },
       { gridArea: &#x27;segment1&#x27; },
     ],
-    [ScreenSpanning.Horizontal]: [
+    [ScreenSpanning.DualVertical]: [
       { gridArea: &#x27;segment0&#x27; },
       { gridArea: &#x27;segment1&#x27; },
     ],
   },
   [SplitLayoutMode.Absolute]: {
-    [ScreenSpanning.Vertical]: [
+    [ScreenSpanning.DualHorizontal]: [
       {
         position: &#x27;absolute&#x27;,
         left: 0,
-        // Not sure why, but &#x27;right&#x27; isn&#x27;t working
+        // Not sure why, but &#x27;right:&#x27; isn&#x27;t working
         width: &#x27;env(viewport-segment-right 0 0)&#x27;,
       },
       {
@@ -367,18 +367,18 @@ const layoutStyles &#x3D; {
         right: 0,
       },
     ],
-    [ScreenSpanning.Horizontal]: [
+    [ScreenSpanning.DualVertical]: [
       {
         position: &#x27;absolute&#x27;,
         top: 0,
         width: &#x27;100%&#x27;,
-        maxHeight: &#x27;calc(env(viewport-segment-bottom 0 0))&#x27;,
+        maxHeight: &#x27;env(viewport-segment-height 0 0)&#x27;,
       },
       {
         position: &#x27;absolute&#x27;,
         top: &#x27;env(viewport-segment-top 0 1)&#x27;,
         width: &#x27;100%&#x27;,
-        maxHeight: &#x27;calc(100vh - env(viewport-segment-top 0 1))&#x27;,
+        maxHeight: &#x27;env(viewport-segment-height 0 1)&#x27;,
       },
     ],
   },
@@ -472,10 +472,10 @@ export class WindowDirective implements OnDestroy {
       // Swap segments for vertical span and RTL mode or
       // horizontal span and reverse window order
       const swap &#x3D;
-        (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Vertical &amp;&amp;
+        (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.DualHorizontal &amp;&amp;
           mode !&#x3D;&#x3D; SplitLayoutMode.Grid &amp;&amp;
           direction &#x3D;&#x3D;&#x3D; ReadingDirection.RightToLeft) ||
-        (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Horizontal &amp;&amp;
+        (spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.DualVertical &amp;&amp;
           mode !&#x3D;&#x3D; SplitLayoutMode.Grid &amp;&amp;
           order &#x3D;&#x3D;&#x3D; WindowOrder.Reverse);
 

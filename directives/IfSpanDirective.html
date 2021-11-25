@@ -564,8 +564,8 @@ import { ScreenSpanning } from &#x27;./screen-spanning&#x27;;
 
 /** Spanning mode conditions for use with {@link IfSpanDirective}. */
 export type SpanCondition &#x3D;
-  | &#x27;fold-vertical&#x27;
-  | &#x27;fold-horizontal&#x27;
+  | &#x27;dual-horizontal&#x27;
+  | &#x27;dual-vertical&#x27;
   | &#x27;none&#x27;
   | &#x27;multi&#x27;;
 /**
@@ -573,10 +573,10 @@ export type SpanCondition &#x3D;
  * {@link IfSpanDirective}.
  */
 export const SpanCondition &#x3D; {
-  /** Screen spanning mode is single fold vertical. */
-  Vertical: &#x27;fold-vertical&#x27; as SpanCondition,
-  /** Screen spanning mode is single fold horizontal. */
-  Horizontal: &#x27;fold-horizontal&#x27; as SpanCondition,
+  /** Screen spanning mode is dual horizontal viewports. */
+  Vertical: &#x27;dual-horizontal&#x27; as SpanCondition,
+  /** Screen spanning mode is dual vertical viewports. */
+  Horizontal: &#x27;dual-vertical&#x27; as SpanCondition,
   /** No screen spanning (single screen mode). */
   None: &#x27;none&#x27; as SpanCondition,
   /** Any screen spanning mode is active (multi screen mode). */
@@ -659,9 +659,9 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
       case SpanCondition.Multi:
         return this.screenContext.isMultiScreen;
       case SpanCondition.Horizontal:
-        return this.screenContext.screenSpanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Horizontal;
+        return this.screenContext.screenSpanning &#x3D;&#x3D;&#x3D; ScreenSpanning.DualVertical;
       case SpanCondition.Vertical:
-        return this.screenContext.screenSpanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Vertical;
+        return this.screenContext.screenSpanning &#x3D;&#x3D;&#x3D; ScreenSpanning.DualHorizontal;
       default:
         return this.screenContext.screenSpanning &#x3D;&#x3D;&#x3D; ScreenSpanning.None;
     }

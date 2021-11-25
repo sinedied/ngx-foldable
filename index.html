@@ -83,8 +83,8 @@ export class AppModule { }</code></pre></div><p>Use the provided <code>fdSplitLa
     This will be displayed on the second window segment of a multi screen device.
 
     &lt;p *fdIfSpan=&quot;&#39;multi&#39;&quot;&gt;This is only visible on multi screen device, regardless of the orientation.&lt;/p&gt;
-    &lt;p *fdIfSpan=&quot;&#39;fold-horizontal&#39;&quot;&gt;This is only visible on horizontal fold spanning.&lt;/p&gt;
-    &lt;p *fdIfSpan=&quot;&#39;fold-vertical&#39;&quot;&gt;This is only visible on vertical fold spanning.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;dual-vertical&#39;&quot;&gt;This is only visible on dual vertical viewports.&lt;/p&gt;
+    &lt;p *fdIfSpan=&quot;&#39;dual-horizontal&#39;&quot;&gt;This is only visible on dual horizontal viewports.&lt;/p&gt;
   &lt;/section&gt;
 &lt;/div&gt;</code></pre></div><p>Using the <code>ScreenContext</code> service, you can also receive updates when the screen context changes:</p>
 <div><pre class="line-numbers"><code class="language-typescript">import { ScreenContext } from &#39;ngx-foldable&#39;;

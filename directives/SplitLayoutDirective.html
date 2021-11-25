@@ -540,10 +540,10 @@ const layoutStyles &#x3D; {
       justifyContent: &#x27;space-between&#x27;,
       height: &#x27;100vh&#x27;,
     },
-    [ScreenSpanning.Vertical]: {
+    [ScreenSpanning.DualHorizontal]: {
       flexDirection: &#x27;row&#x27;,
     },
-    [ScreenSpanning.Horizontal]: {
+    [ScreenSpanning.DualVertical]: {
       flexDirection: &#x27;column&#x27;,
     },
     [WindowOrder.Reverse]: {
@@ -555,13 +555,13 @@ const layoutStyles &#x3D; {
       display: &#x27;grid&#x27;,
       height: &#x27;100vh&#x27;,
     },
-    [ScreenSpanning.Vertical]: {
+    [ScreenSpanning.DualHorizontal]: {
       gridTemplateColumns: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment0 segment1&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
       columnGap: &#x27;calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0))&#x27;,
     },
-    [ScreenSpanning.Horizontal]: {
+    [ScreenSpanning.DualVertical]: {
       gridTemplateRows: &#x27;1fr 1fr&#x27;,
       gridTemplateAreas: &#x27;&quot;segment0&quot; &quot;segment1&quot;&#x27;,
       gridAutoFlow: &#x27;row&#x27;,
@@ -579,8 +579,8 @@ const layoutStyles &#x3D; {
       position: &#x27;relative&#x27;,
       height: &#x27;100vh&#x27;,
     },
-    [ScreenSpanning.Vertical]: {},
-    [ScreenSpanning.Horizontal]: {},
+    [ScreenSpanning.DualHorizontal]: {},
+    [ScreenSpanning.DualVertical]: {},
     [WindowOrder.Reverse]: {},
   },
 };
@@ -704,7 +704,7 @@ export class SplitLayoutDirective implements OnDestroy {
     const isMultiScreen &#x3D; this.screenContext.isMultiScreen;
     const spanning &#x3D; this.screenContext.screenSpanning;
     const reverse &#x3D;
-      spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.Horizontal &amp;&amp;
+      spanning &#x3D;&#x3D;&#x3D; ScreenSpanning.DualVertical &amp;&amp;
       this.order &#x3D;&#x3D;&#x3D; WindowOrder.Reverse;
 
     this.direction &#x3D;
