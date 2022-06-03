@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content directive">
                    <div class="content-data">
+
 
 
 
@@ -68,11 +69,12 @@
 specified <a href="../miscellaneous/typealiases.html#SpanCondition">SpanCondition</a>.</p>
 <p>Behaves like <code>ngIf</code>, except that it accepts a <a href="../miscellaneous/typealiases.html#SpanCondition">SpanCondition</a> instead of
 a boolean expression.</p>
-<p *fdIdSpan="'multi'">This text will only be visible on multi screen devices.</p>
-<p *fdIdSpan="'none'; else alt">This text will only be visible on single screen devices.</p>
-<ng-template #alt">This text will only be visible on multi screen devices.</ng-template>
-
+<div><pre class="line-numbers"><code class="language-html">&lt;p *fdIdSpan=&quot;&#39;multi&#39;&quot;&gt;This text will only be visible on multi screen devices.&lt;/p&gt;
+```html
+&lt;p *fdIdSpan=&quot;&#39;none&#39;; else alt&quot;&gt;This text will only be visible on single screen devices.&lt;/p&gt;
+&lt;ng-template #alt&quot;&gt;This text will only be visible on multi screen devices.&lt;/ng-template&gt;</code></pre></div>
             </p>
+
 
             <p class="comment">
                 <h3>Implements</h3>
@@ -84,7 +86,7 @@ a boolean expression.</p>
 
         <section>
             <h3>Metadata</h3>
-            <table class="table table-sm table-hover">
+            <table class="table table-sm table-hover metadata">
                 <tbody>
 
                     <tr>
@@ -247,6 +249,12 @@ a boolean expression.</p>
                         <b>fdIfSpan</b>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#SpanCondition" target="_self" >SpanCondition</a></code>
+
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:64</a></div>
@@ -268,6 +276,12 @@ a boolean expression.</p>
                         <b>fdIfSpanElse</b>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef | null</code>
+
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">projects/lib/src/core/if-span.directive.ts:81</a></div>
@@ -287,6 +301,12 @@ a boolean expression.</p>
                     <td class="col-md-4">
                         <a name="fdIfSpanThen"></a>
                         <b>fdIfSpanThen</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef | null</code>
+
                     </td>
                 </tr>
                         <tr>
@@ -710,6 +730,7 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
 
 
 
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -723,6 +744,15 @@ export class IfSpanDirective&lt;T&gt; implements OnDestroy {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -43,6 +43,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-paper"></span>LICENSE
                             </a>
                         </li>
+                                <li class="link">
+                                    <a href="properties.html" data-type="chapter-link">
+                                        <span class="icon ion-ios-apps"></span>Properties
+                                    </a>
+                                </li>
                     </ul>
                 </li>
                     <li class="chapter modules">
@@ -59,13 +64,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/FoldableModule.html" data-type="entity-link" >FoldableModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' : 'data-target="#xs-directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' }>
+                                        'data-target="#directives-links-module-FoldableModule-25286065bd98967f577cbb8d25da9f42816e20264139a5894469acbebe917f9ddf808873f6308949d0e885f5b9b02b661eaeed14143767ee04e5566cee77eca0"' : 'data-target="#xs-directives-links-module-FoldableModule-25286065bd98967f577cbb8d25da9f42816e20264139a5894469acbebe917f9ddf808873f6308949d0e885f5b9b02b661eaeed14143767ee04e5566cee77eca0"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' :
-                                        'id="xs-directives-links-module-FoldableModule-4f58d7fd51aa4282f033491dfbee3a6a"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FoldableModule-25286065bd98967f577cbb8d25da9f42816e20264139a5894469acbebe917f9ddf808873f6308949d0e885f5b9b02b661eaeed14143767ee04e5566cee77eca0"' :
+                                        'id="xs-directives-links-module-FoldableModule-25286065bd98967f577cbb8d25da9f42816e20264139a5894469acbebe917f9ddf808873f6308949d0e885f5b9b02b661eaeed14143767ee04e5566cee77eca0"' }>
                                         <li class="link">
                                             <a href="directives/IfSpanDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IfSpanDirective</a>
                                         </li>
