@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest]
-        node-version: ['12', '>=14']
+        node-version: ['14', '>=16']
 
     name: ${{ matrix.platform }} / Node.js v${{ matrix.node-version }}
     runs-on: ${{ matrix.platform }}
