@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/sinedied/ngx-foldable/compare/3.0.0...3.1.0) (2022-06-03)
+
+
+### Features
+
+* support new stable API ([30b605d](https://github.com/sinedied/ngx-foldable/commit/30b605d4918ca41a09b3537be16acd25a70d1a91))
+
 # [3.0.0](https://github.com/sinedied/ngx-foldable/compare/2.0.0...3.0.0) (2021-11-25)
 
 
