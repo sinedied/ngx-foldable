@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/sinedied/ngx-foldable/compare/3.1.0...4.0.0) (2022-06-03)
+
+
+### Bug Fixes
+
+* set minimum Angular version to 14 ([26533ab](https://github.com/sinedied/ngx-foldable/commit/26533ab46527b35385cb9ff89382014ca7f361ff))
+* set minimum node version ([7527356](https://github.com/sinedied/ngx-foldable/commit/7527356cf5b6d6787462a72e6c6077d9d433a6e7))
+
+
+### BREAKING CHANGES
+
+* set minimum node version to 14.15
+* set minimum Angular version to 14
+
 # [3.1.0](https://github.com/sinedied/ngx-foldable/compare/3.0.0...3.1.0) (2022-06-03)
 
 
