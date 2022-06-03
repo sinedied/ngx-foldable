@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/ngx-foldable.svg)](https://www.npmjs.com/package/ngx-foldable)
 ![Node version](https://img.shields.io/node/v/ngx-foldable.svg)
-![Angular version](https://img.shields.io/badge/angular-%3E%3D8-dd0031?logo=Angular)
+![Angular version](https://img.shields.io/badge/angular-%3E%3D13-dd0031?logo=Angular)
 [![Build Status](https://github.com/sinedied/ngx-foldable/workflows/build/badge.svg)](https://github.com/sinedied/ngx-foldable/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -16,8 +16,9 @@ See the [live demo](https://sinedied.github.io/ngx-foldable/demo/) or read the [
 
 ## How to test on your browser
 
-The dual-screen emulation feature requires latest Microsoft Edge or Google Chrome versions, with experimental flags to enable.
+The dual-screen emulation feature requires latest Microsoft Edge or Google Chrome versions (>= 97).
 
+If you have older browser versions, you need to enable experimental flags.
 Follow [the instructions here](https://devblogs.microsoft.com/surface-duo/build-and-test-dual-screen-web-apps/?WT.mc_id=javascript-9776-yolasors#build-and-test-on-the-desktop) to setup your browser for dual-screen emulation.
 
 ## Library usage
