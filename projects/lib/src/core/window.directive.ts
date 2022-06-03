@@ -32,8 +32,14 @@ const layoutStyles = {
       { gridArea: 'segment1' },
     ],
     [ScreenSpanning.DualVertical]: [
-      { gridArea: 'segment0' },
-      { gridArea: 'segment1' },
+      {
+        gridArea: 'segment0',
+        height: 'env(viewport-segment-height 0 0)'
+      },
+      {
+        gridArea: 'segment1',
+        height: 'env(viewport-segment-height 0 1)'
+      },
     ],
   },
   [SplitLayoutMode.Absolute]: {
@@ -41,7 +47,6 @@ const layoutStyles = {
       {
         position: 'absolute',
         left: 0,
-        // Not sure why, but 'right:' isn't working
         width: 'env(viewport-segment-right 0 0)',
       },
       {
@@ -159,7 +164,6 @@ export class WindowDirective implements OnDestroy {
           mode !== SplitLayoutMode.Grid &&
           direction === ReadingDirection.RightToLeft) ||
         (spanning === ScreenSpanning.DualVertical &&
-          mode !== SplitLayoutMode.Grid &&
           order === WindowOrder.Reverse);
 
       const segment = swap ? 1 - this.segment : this.segment;

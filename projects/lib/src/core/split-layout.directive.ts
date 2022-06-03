@@ -94,7 +94,7 @@ const layoutStyles = {
     common: {
       display: 'flex',
       justifyContent: 'space-between',
-      height: '100vh',
+      height: 'env(viewport-segment-bottom 0 1)',
     },
     [ScreenSpanning.DualHorizontal]: {
       flexDirection: 'row',
@@ -109,7 +109,7 @@ const layoutStyles = {
   [SplitLayoutMode.Grid]: {
     common: {
       display: 'grid',
-      height: '100vh',
+      height: 'env(viewport-segment-bottom 0 1)',
     },
     [ScreenSpanning.DualHorizontal]: {
       gridTemplateColumns: '1fr 1fr',
@@ -125,7 +125,7 @@ const layoutStyles = {
     },
     [WindowOrder.Reverse]: {
       gridTemplateRows: '1fr 1fr',
-      gridTemplateAreas: '"segment1" "segment0"',
+      gridTemplateAreas: '"segment0" "segment1"',
       gridAutoFlow: 'row',
       rowGap: 'calc(env(viewport-segment-top 0 1) - env(viewport-segment-bottom 0 0))',
     },
@@ -133,7 +133,7 @@ const layoutStyles = {
   [SplitLayoutMode.Absolute]: {
     common: {
       position: 'relative',
-      height: '100vh',
+      height: 'env(viewport-segment-bottom 0 1)',
     },
     [ScreenSpanning.DualHorizontal]: {},
     [ScreenSpanning.DualVertical]: {},

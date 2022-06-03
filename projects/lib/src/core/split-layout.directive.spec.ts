@@ -39,7 +39,7 @@ describe('SplitLayoutDirective', () => {
       providers: [{ provide: ScreenContext, useValue: screenContextSpy }],
     }).createComponent(TestComponent);
 
-    fakeObservable$.next();
+    fakeObservable$.next({} as ScreenContextData);
     component = fixture.componentInstance;
   });
 
@@ -55,7 +55,7 @@ describe('SplitLayoutDirective', () => {
     getter(screenContextSpy, 'screenSpanning').and.returnValue(
       ScreenSpanning.DualVertical
     );
-    fakeObservable$.next();
+    fakeObservable$.next({} as ScreenContextData);
     fixture.detectChanges();
     el = fixture.debugElement.query(By.css('[fdSplitLayout]'));
 
