@@ -29,13 +29,13 @@
     "helper"
   ],
   "peerDependencies": {
-    "@angular/common": ">=14",
-    "@angular/core": ">=14"
+    "@angular/common": ">=15",
+    "@angular/core": ">=15"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=14.20.0"
   }
 }
