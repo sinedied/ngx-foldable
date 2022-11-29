@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/ngx-foldable.svg)](https://www.npmjs.com/package/ngx-foldable)
 ![Node version](https://img.shields.io/node/v/ngx-foldable.svg)
-![Angular version](https://img.shields.io/badge/angular-%3E%3D14-dd0031?logo=Angular)
+![Angular version](https://img.shields.io/badge/angular-%3E%3D15-dd0031?logo=Angular)
 [![Build Status](https://github.com/sinedied/ngx-foldable/workflows/build/badge.svg)](https://github.com/sinedied/ngx-foldable/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
