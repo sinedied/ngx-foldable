@@ -1,3 +1,16 @@
+# [5.0.0](https://github.com/sinedied/ngx-foldable/compare/4.0.0...5.0.0) (2022-11-29)
+
+
+### Features
+
+* update to Angular 15 ([4cb5766](https://github.com/sinedied/ngx-foldable/commit/4cb5766e6cccb2fd04c35df56bd208c1f5a39cfe))
+
+
+### BREAKING CHANGES
+
+* Need Angular version >=15
+Need Node.js version >=14.20.0
+
 # [4.0.0](https://github.com/sinedied/ngx-foldable/compare/3.1.0...4.0.0) (2022-06-03)
 
 
